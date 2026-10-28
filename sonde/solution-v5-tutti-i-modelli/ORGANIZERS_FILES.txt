@@ -1,0 +1,9 @@
+Files of the organizers' getting-started repository (no license stated) contained in the submitted bundle solution-v5-tutti-i-modelli.zip (SHA-256 9fe70a4877416847c25bc41825b3b1605098a254b490897a8daaee20ea088e7a) and omitted here. Fetch them from https://github.com/aimo-interp/getting-started and check them against these hashes.
+
+bc90bd8eed4d9f6383cbb9ae1626896afea90b0e71c46d9a56bc87d376f85592  uncertainty_artifacts/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.joblib
+41ab595a2f0a7f85f64df2dc96b937e71e8bf24dedc6b45c270ed037986fd673  uncertainty_profile/__init__.py
+34af304a3af2a74e79c0e7b55e695634ecc8768b831802f4694f4f7de0985899  uncertainty_profile/artifact.py
+e447bc34f80f9207f31711cb113efb3a01a8a0bdb4e913020ebb736bcbc2e971  uncertainty_profile/config.py
+87a2a830a0b3177a167cb99dc33ce0eba7133a93048fe9eefd04ec589e6f2104  uncertainty_profile/extraction.py
+7ebddd5e955713bb238599a902a1787e1fb0761be48d44d2f039b88bb8e66feb  uncertainty_profile/inference.py
+7498385a4f7e6453b1565a7dd9316b5b918109355787bb9f714c58f579828dd7  uncertainty_profile/metrics.py

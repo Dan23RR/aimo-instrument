@@ -1,0 +1,27 @@
+regressore: Pipeline | soglia 0.5760 | feature 14
+
+8.2  n=164 etichettati (robust 40) | costante di maggioranza 0.756
+   flag (solo CUBLAS)   AUROC grezza 0.5131 | nel verso della regola 0.4869 | predetti robust 42/164 = 25.6% (su 174: 25.9%) | accuratezza della regola 0.598
+   senza flag rep0      AUROC grezza 0.5131 | nel verso della regola 0.4869 | predetti robust 42/164 = 25.6% (su 174: 25.9%) | accuratezza della regola 0.598
+   senza flag rep1      AUROC grezza 0.3980 | nel verso della regola 0.6020 | predetti robust 55/164 = 33.5% (su 174: 34.5%) | accuratezza della regola 0.640
+   score identici: flag vs rep0 174/174 | rep0 vs rep1 6/174 | differenza assoluta mediana rep0-rep1 0.126
+   Spearman fra rep0 e rep1: 0.245 sui 164 etichettati, 0.261 sui 174
+   rep1 nel verso della regola 0.6020: p permutazionale unilaterale 0.0257, bilaterale 0.0513 (20000 permutazioni)
+   differenza rep1 - rep0 nel verso della regola 0.1151, IC95 bootstrap appaiato [-0.015, 0.246]
+   problemi etichettati presenti nell'addestramento del regressore (augmented-sample-math-agg): 137/164
+
+8.4  quote predette robust con il regressore e la soglia di DeepSeek sulle feature di ciascun modello
+   e16_Qwen__Qwen3.5-4B.jsonl                       n=174 | 43.7% sotto la soglia | score min 0.276 max 0.847
+   e16_Skywork__Skywork-OR1-Math-7B.jsonl           n=174 | 44.3% sotto la soglia | score min 0.274 max 0.920
+   e16_allenai__Olmo-3-7B-Think.jsonl               n=174 | 36.2% sotto la soglia | score min 0.280 max 0.776
+   e16_deepseek-ai__DeepSeek-R1-0528-Qwen3-8B.jsonl n=174 | 25.9% sotto la soglia | score min 0.210 max 0.944
+
+2.3(b)  generation_frac_selected_is_top1 nel percorso ufficiale e soglie degli split della foresta
+   split sulla feature 4915 su 28738 (17.1%) | soglie da 0.968362 a 0.993476 | importanza 0.210
+   quattro modelli  n=1964 | uguali a 1,0: 0 | min 0.95848 max 0.99902 | dentro [soglia minima, soglia massima] 92.6%
+   solo DeepSeek    n=1442 | uguali a 1,0: 0 | min 0.95848 max 0.99532 | dentro [soglia minima, soglia massima] 98.8%
+   estrazione A100 (feature_greedy): frac_top1 uguale a 1,0 su 164/164
+
+8.2  lo stesso regressore sulle nostre feature A100 (estrattore nostro, non ufficiale)
+   mean_prob = media top-1 (come l'estrattore ufficiale in greedy) AUROC grezza 0.6395, nel verso della regola 0.3605 | predetti robust 65.2% | accuratezza 0.348
+   mean_prob = exp(mean_logprob) (bozze precedenti)               AUROC grezza 0.6486, nel verso della regola 0.3514 | predetti robust 66.5% | accuratezza 0.323

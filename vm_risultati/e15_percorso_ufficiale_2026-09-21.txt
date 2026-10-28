@@ -1,0 +1,2 @@
+sonda ufficiale, percorso di probe_inference.py: layer 31, 40 probe mediati, 8 gruppi
+n=164 problemi etichettati | AUROC del margine 0.7089 | predetti robust (margine >= 0) 0.0%

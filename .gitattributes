@@ -1,0 +1,2 @@
+# Store every file byte for byte, so that the SHA-256 values in MANIFEST.tsv hold after any checkout.
+* -text

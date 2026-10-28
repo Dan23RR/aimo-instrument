@@ -1,0 +1,3017 @@
+[
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "057f8a",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 0.181818
+ },
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "88c219",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.3
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "057f8a",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 12,
+  "base_accuracy": 0.3
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "88c219",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 10,
+  "base_accuracy": 0.1
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "71beb6",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 0.7
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "a1d40b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "88c219",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.166667
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "057f8a",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 10,
+  "base_accuracy": 0.6
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "a1d40b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "bbd91e",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "a1d40b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 10,
+  "base_accuracy": 0.9
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "bbd91e",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 0.8
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "a1d40b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "1fce4b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 0.9
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "349493",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 10,
+  "base_accuracy": 0.6
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "349493",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.3
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "88c219",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 11,
+  "base_accuracy": 0.8
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "1fce4b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 0.8
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "1acac0",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 13,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "a1d40b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 13,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "480182",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "88c219",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.7
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "1acac0",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "1fce4b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 12,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "480182",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 12,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "bbd91e",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 12,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "349493",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 10,
+  "base_accuracy": 0.9
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "480182",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 12,
+  "base_accuracy": 0.9
+ },
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "480182",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "bbd91e",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "1acac0",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "71beb6",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "71beb6",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 12,
+  "base_accuracy": 0.7
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "1acac0",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "1fce4b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "bbd91e",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "480182",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 0.9
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "71beb6",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 0.9
+ },
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "1fce4b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "1fce4b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "349493",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "71beb6",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 0.6
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "349493",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "71beb6",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 12,
+  "base_accuracy": 0.8
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "480182",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 0.571429
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "1acac0",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "1acac0",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "1acac0",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "71beb6",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "a1d40b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "bbd91e",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "1acac0",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 13,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "1fce4b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 13,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "bbd91e",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 13,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "bbd91e",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "1fce4b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 8,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "480182",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "349493",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.6
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "349493",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "057f8a",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 12,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "88c219",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gemini-3.1-pro-preview:low",
+  "problem_id": "192e23",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 10,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "192e23",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "057f8a",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "192e23",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "480182",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "71beb6",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "88c219",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "192e23",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 10,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "057f8a",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "192e23",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "problem_id": "88c219",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "057f8a",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "problem_id": "192e23",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "057f8a",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 7,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "192e23",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+  "problem_id": "192e23",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.0
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11:low",
+  "problem_id": "a1d40b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 12,
+  "base_accuracy": 0.9
+ },
+ {
+  "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+  "problem_id": "349493",
+  "dataset_id": "aimo-2025-reference",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 0.8
+ },
+ {
+  "model_id": "gpt-5.2-2025-12-11",
+  "problem_id": "a1d40b",
+  "dataset_id": "aimo-2025-reference",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 0.5
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "0ef9e9",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "1fafbf",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "22bdf3",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "367220",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "4dfb64",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "50c03e",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "57dfba",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "57f5ba",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "5b3955",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "5b8faf",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "682d38",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "70a967",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "71447b",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "7e960f",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "8089f7",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "84509f",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "864a11",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "8fc9ef",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "9.6e+74",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "90757c",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "931253",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "9400dc",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "95339a",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "99bd42",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "a54059",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "b1caa0",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "b471aa",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "b8a30f",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "bd9e4e",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "be8b9b",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "c19133",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "cabaf7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "cd36c4",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "d5dccc",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "f02de8",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "f941d4",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 4,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "0ddfbf",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "100ef2",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "202cbb",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 0.666667
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "28c5dc",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "2cbaf2",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "36c315",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 0.9
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "3cb6f9",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "3f7f5a",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "4.6e+140",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "45c3c9",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "51a8c4",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "523f17",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "52ddd7",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "52edcd",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "5e3c27",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "6369000.0",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "6de278",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "6ff534",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "7551df",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "76405c",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "7a2528",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "7d00c2",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "7df8d1",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "801d70",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "88bd2f",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "8cb519",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "94b3fb",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "9b653d",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "9dc966",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 0.6
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "a515ce",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "a8d045",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "afd836",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "b634e9",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "ba21b9",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "d1f4d0",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "d866c7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "da0076",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "dc97f8",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "e1c606",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "e352ec",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "e92d8b",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "f05048",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "f5f202",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "214cf8",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "26f2cd",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "7594c4",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "c5312f",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "b4098c",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "0d430e",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "57219d",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "a42579",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "7cd26e",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "243f8d",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "8bdf3a",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "b1c28e",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "ce3777",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "352801",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "378b35",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "4c9df3",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "542a08",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "657be8",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "7da212",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "aeff89",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "b51d9a",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "d4d141",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "db39ee",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "fa27ed",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "fcc688",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "0507bc",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "3f18c9",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "9c18c8",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "4a9e77",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "5a2227",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "ae392d",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "4bf798",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "c621a5",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "0fe021",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "32df10",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "985d38",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "9f1d72",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "a15335",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "3e68d3",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "9e1d15",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "652cd3",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "724cda",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "db22ae",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "ac94df",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "3c5015",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "53840e",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "0f00d7",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "d6b519",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "67fb1d",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "e67fd2",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "683978",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "17760e",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "2f952c",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "d099e6",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "306ac8",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "60f67a",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 6,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "e46b6f",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "ec224b",
+  "dataset_id": "hendrycks-math-train-reference-500",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "1fafbf",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "22bdf3",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "4dfb64",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "57dfba",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "70a967",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "931253",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "be8b9b",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "cabaf7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "d5dccc",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "f02de8",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "f941d4",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": true,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "28c5dc",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "36c315",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 0.9
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "45c3c9",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "523f17",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "52edcd",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "6de278",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "7d00c2",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "88bd2f",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "94b3fb",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "9dc966",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 0.6
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "a8d045",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "afd836",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "b634e9",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "ba21b9",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "d866c7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "da0076",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "dc97f8",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "e1c606",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "f05048",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "26f2cd",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "7594c4",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "57219d",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "352801",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "378b35",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "657be8",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "7da212",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "d4d141",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "fa27ed",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "5a2227",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "4bf798",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "c621a5",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "0fe021",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "985d38",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "9f1d72",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "a15335",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "724cda",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "ac94df",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "3c5015",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "d6b519",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "e67fd2",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "problem_id": "60f67a",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "02c9e0",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "086383",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "1736f7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "1fafbf",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "28c5dc",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "2ec87e",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 4,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "3c5015",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 4,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "52edcd",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "57219d",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "666aa8",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "7594c4",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "7c0459",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "931253",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "9355b7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "94b3fb",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "985d38",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "a414f7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "a8d045",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 4,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "be8b9b",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "cabaf7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "cd08ba",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "d5dccc",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "d866c7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "da0076",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "dc97f8",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "e50022",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "e55bfd",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "e59314",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 4,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "e67fd2",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "e85917",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 4,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "f05048",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "fa27ed",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "04fd05",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "0fe021",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "313d10",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "352801",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "378b35",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "569e19",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "57dfba",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "7da212",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "9f1d72",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "a15335",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "ca4699",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "cc718b",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 2,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "d4d141",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "d89936",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "45c3c9",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "a60b6e",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "meta-llama__Llama-3.1-8B-Instruct_low",
+  "problem_id": "e1e099",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": false,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "a60b6e",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "04fd05",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "cc718b",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "2ec87e",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 4,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "194077",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "e55bfd",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "247d2d",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "3e68e2",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "c64e81",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "ca4699",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "9f2f66",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 3,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "cd08ba",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "d89936",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 5,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "bf2cc8",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 4,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "313d10",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": false,
+  "robust_dichiarata": null,
+  "n_righe": 4,
+  "base_accuracy": 1.0
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "a414f7",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 2,
+  "base_accuracy": 0.888889
+ },
+ {
+  "model_id": "qwen3-8b:low",
+  "problem_id": "02c9e0",
+  "dataset_id": "hendrycks-math-test-reference-100",
+  "robust": true,
+  "robust_dichiarata": null,
+  "n_righe": 1,
+  "base_accuracy": 0.4
+ }
+]

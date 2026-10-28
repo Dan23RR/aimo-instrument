@@ -1,0 +1,15 @@
+Etichettature di Qwen3.5-4B eseguite l'8 e 9 settembre 2026 con il prompt NUDO (solo il testo
+del problema, senza richiesta di formato). INVALIDE.
+
+Motivo, misurato il 9/9 con e13_diag_prompt.py sugli stessi problemi:
+  prompt NUDO      -> il modello entra in un loop e satura 16384 token senza mai chiudere in
+                      \boxed{}; 0.03 risposte estraibili su 10 campioni.
+  prompt ESPLICITO -> conclude in 5584 token con la risposta corretta.
+
+Quindi l'etichetta di robustezza risultava costantemente falsa per un difetto di formato del
+prompt, non per il comportamento del modello.
+
+DeepSeek-R1-0528-Qwen3-8B non e' interessato dal difetto: chiude da solo con \boxed{} (8.99
+risposte su 10) e resta col prompt nudo per coerenza interna fra le sue tre condizioni.
+
+Conservati per il registro. Non usare per nessuna analisi.

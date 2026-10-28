@@ -1,0 +1,38 @@
+1. LE 164 ETICHETTE DEEPSEEK
+   con etichetta dichiarata 138 (robust 36) | derivate con la congiunzione 26
+   derivate: robust per la congiunzione 4 (con base_accuracy 0: 2) | fonti {'augmented-sample-math-full-filtered': 17, 'aimo-interp-challenge-sample-full': 9}
+   una regola di maggioranza per famiglia (accuratezza perturbata > 0,5 in ogni famiglia) chiama robust 21 delle 26 derivate; tasso DeepSeek risultante 0.348 (con la congiunzione 0.244)
+   derivate con almeno una famiglia ad accuratezza perturbata fra 0,5 e 1 (esclusi): 22
+   sulle 379 righe con etichetta dichiarata, 'accuratezza perturbata > 0,5' concorda con l'etichetta su 379
+
+2. REGIME DI CAMPIONAMENTO PER FILE
+   aimo-interp-challenge-sample-full      righe  558 | modelli 8 | predizioni base (piu' frequenti) [(10, 491), (11, 21), (2, 10)] | predizioni perturbate per riga di famiglia (piu' frequenti) [(10, 493), (4, 25), (7, 10), (5, 8)]
+      varianti dannose elencate per riga (piu' frequenti): [(1, 80), (2, 26), (4, 19), (10, 18), (5, 16)] | campo n_predictions delle varianti elencate (piu' frequenti): [(1, 784), (10, 32), (2, 4), (9, 1)], su 821 varianti
+   val-sample                             righe   28 | modelli 7 | predizioni base (piu' frequenti) [(10, 28)] | predizioni perturbate per riga di famiglia (piu' frequenti) [(10, 19)]
+      varianti dannose elencate per riga (piu' frequenti): [(1, 10), (10, 2), (8, 2), (7, 2), (9, 1)] | campo n_predictions delle varianti elencate (piu' frequenti): [(1, 70), (10, 10)], su 80 varianti
+   augmented-sample-math-agg              righe  141 | modelli 1 | predizioni base (piu' frequenti) [(10, 84), (1, 12), (20, 11)] | predizioni perturbate per riga di famiglia (piu' frequenti) [(50, 39), (40, 14), (30, 13), (10, 6)]
+      varianti dannose elencate per riga (piu' frequenti): [(4, 26), (5, 25), (3, 21), (2, 20), (1, 13)] | campo n_predictions delle varianti elencate (piu' frequenti): [(10, 290), (6, 12), (9, 8), (1, 6), (7, 6)], su 345 varianti
+   augmented-sample-math-agg-filtered     righe   54 | modelli 1 | predizioni base (piu' frequenti) [(10, 42), (1, 6), (5, 2)] | predizioni perturbate per riga di famiglia (piu' frequenti) [(50, 12), (10, 6), (30, 6), (40, 3)]
+      varianti dannose elencate per riga (piu' frequenti): [(1, 11), (2, 11), (4, 9), (5, 8), (3, 4)] | campo n_predictions delle varianti elencate (piu' frequenti): [(10, 101), (9, 6), (6, 4), (8, 3), (2, 2)], su 121 varianti
+   augmented-sample-math                  righe  156 | modelli 1 | predizioni base (piu' frequenti) [(1, 156)] | predizioni perturbate per riga di famiglia (piu' frequenti) [(5, 156)]
+      varianti dannose elencate per riga (piu' frequenti): [(5, 95), (4, 38), (3, 23)] | campo n_predictions delle varianti elencate (piu' frequenti): [(1, 696)], su 696 varianti
+   augmented-sample-math-full-filtered    righe  259 | modelli 1 | predizioni base (piu' frequenti) [(10, 188), (1, 26), (5, 10)] | predizioni perturbate per riga di famiglia (piu' frequenti) [(50, 118), (10, 16), (30, 16), (40, 15)]
+      varianti dannose elencate per riga (piu' frequenti): [(1, 37), (2, 17), (5, 11), (4, 10), (3, 8)] | campo n_predictions delle varianti elencate (piu' frequenti): [(10, 146), (9, 12), (8, 8), (6, 8), (5, 4)], su 190 varianti
+
+3. VAL-SAMPLE CONTRO SAMPLE-FULL
+   righe di val-sample 28, coppie 24 | righe la cui coppia e' anche in sample-full 28 | con la stessa base_accuracy 28
+
+4. DIFETTO 2.3(a): permutation_type a lista se e solo se robust
+   val-sample                             etichettate  28 | robust   9 | a lista   9 | 'lista sse robust' vale su 28/28
+   augmented-sample-math-agg              etichettate 141 | robust  36 | a lista  36 | 'lista sse robust' vale su 141/141
+   augmented-sample-math-agg-filtered     etichettate  54 | robust  11 | a lista  11 | 'lista sse robust' vale su 54/54
+   augmented-sample-math                  etichettate 156 | robust   0 | a lista   0 | 'lista sse robust' vale su 156/156
+
+5. COPPIE ROBUST CON BASE_ACCURACY 0 (tabella aggregata dei 6 file, 335 coppie)
+   coppie 335, robust 80, robust con base_accuracy 0: 20
+
+6. REGOLA V8 (n_char >= 98, lunghi = robust) SULLE COPPIE PUBBLICHE
+   335 coppie pubblicate  soglia 98, verso lunghi robust: sensibilita' 0.850, specificita' 0.455, accuratezza bilanciata 0.65245
+   335 coppie pubblicate  soglia 98, verso corti robust: sensibilita' 0.150, specificita' 0.545, accuratezza bilanciata 0.34755
+   283 coppie distinte    soglia 98, verso lunghi robust: sensibilita' 0.841, specificita' 0.421, accuratezza bilanciata 0.63057
+   283 coppie distinte    soglia 98, verso corti robust: sensibilita' 0.159, specificita' 0.579, accuratezza bilanciata 0.36943

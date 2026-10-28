@@ -1,0 +1,32 @@
+tabella_aggregata: 335 righe; righe DeepSeek duplicate di qwen3-8b:low: 52; dopo la deduplica 283
+
+A. H1 (testo del problema)
+   originale, CV raggruppata          n=335 | modello 0.6746 | maggioranza 0.7612 | guadagno -8.7 punti | soglia 2.7
+   senza duplicati, CV raggruppata    n=283 | modello 0.6820 | maggioranza 0.7562 | guadagno -7.4 punti | soglia 3.0
+   originale, CV NON raggruppata, seme 1 n=335 | modello 0.7522 | maggioranza 0.7612 | guadagno -0.9 punti | soglia 2.7
+   originale, CV NON raggruppata, seme 2 n=335 | modello 0.7582 | maggioranza 0.7612 | guadagno -0.3 punti | soglia 2.7
+   originale, CV NON raggruppata, seme 3 n=335 | modello 0.7403 | maggioranza 0.7612 | guadagno -2.1 punti | soglia 2.7
+
+B. H2, test originale di E1 (nullo a tasso globale, vive se z > 2)
+   originale                          problemi multi-modello 73 | concordi 56 | attesi 36.1 | z = 4.65
+   alias unito (una riga per coppia)  problemi multi-modello 49 | concordi 32 | attesi 25.7 | z = 1.81
+
+C. Regola T su tutti i dati pubblici aggregati
+   originale                          n=335 | regola 0.8209 | costante 0.7612 | guadagno +6.0 punti | soglia 2.7
+   alias unito                        n=283 | regola 0.8269 | costante 0.7562 | guadagno +7.1 punti | soglia 3.0
+
+D. H7 e H8 (base accuracy fra modelli)
+   originale                          n=335 | H7 guadagno +0.0 punti (soglia 2.7) | H8 tetto 0.7761 contro maggioranza per modello 0.7731 (+0.3)
+   alias unito                        n=283 | H7 guadagno +0.0 punti (soglia 3.0) | H8 tetto 0.7739 contro maggioranza per modello 0.7703 (+0.4)
+
+E. H13 (oracolo con soglia scelta sugli item del bersaglio)
+   libero           92/109 contro maggioranza 84/109 | guadagno +7.3 punti (+8 item) | soglia 4.8
+   senza_costanti   90/109 contro maggioranza 84/109 | guadagno +5.5 punti (+6 item) | soglia 4.8
+      Qwen/Qwen3.5-397B-A17B-FP8:low               n=10 magg  8 | libero  9 (+1) | senza costanti  9 (+1)
+      gemini-3.1-pro-preview:low                   n=10 magg  8 | libero  9 (+1) | senza costanti  9 (+1)
+      gpt-5.2-2025-12-11                           n=10 magg  7 | libero  7 (+0) | senza costanti  6 (-1)
+      gpt-5.2-2025-12-11:low                       n=10 magg  5 | libero  6 (+1) | senza costanti  6 (+1)
+      gpt-oss-120b:low                             n=10 magg  6 | libero  8 (+2) | senza costanti  8 (+2)
+      huikang-gpt-oss-120b-aimo3:low               n=10 magg  6 | libero  7 (+1) | senza costanti  7 (+1)
+      lukealonso/GLM-5.1-NVFP4:low                 n=10 magg  5 | libero  7 (+2) | senza costanti  7 (+2)
+      meta-llama__Llama-3.1-8B-Instruct_low        n=39 magg 39 | libero 39 (+0) | senza costanti 38 (-1)

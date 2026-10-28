@@ -1,0 +1,339 @@
+{
+  "fonte": "API di Codabench /api/submissions/?phase=26647 e ?phase=30038, letta dal Chrome di Daniel (utente dan23rr) il 28/10/2026 alle 19:36-19:40, quando tutti gli invii del 28/10 erano finiti; trascritta da Claude a partire dall'istantanea delle 18:32-18:39 (invii_dan23rr_2026-10-28.json), cambiando stato e punteggio dei sei invii del 28/10 e l'ordine dei punteggi del padre 924968, che l'API restituisce in ordine non fisso (stessi valori). created in UTC al minuto; punteggi come restituiti (primo valore = accuratezza), arrotondati a 4 cifre per la fase 26647 e a 3 per la 30038. Controllo: sha256 della stringa canonica, con i punteggi dei padri ordinati perche' l'API li restituisce in ordine variabile, uguale a quello calcolato nel browser (5b1d877c119958a4...b3decf2c4c54d2f6).",
+  "fasi": {
+    "26647": "Warmup phase, task 35430",
+    "30038": "Competition phase: task 35766 Main e 35767 Small originali, 36237 Main e 36241 Small dal 16/9"
+  },
+  "invii": [
+    {
+      "id": 907310,
+      "fase": 26647,
+      "file": "solution-always-spurious.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-29T10:01",
+      "punteggio": "0.4706/1.0000/0.0000"
+    },
+    {
+      "id": 907677,
+      "fase": 26647,
+      "file": "solution-baseline-strumentata.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-29T14:38",
+      "punteggio": "0.5294/1.0000/0.0000"
+    },
+    {
+      "id": 907967,
+      "fase": 26647,
+      "file": "solution-v21-cronometro.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-29T21:06",
+      "punteggio": "0.5294/1.0000/0.0000"
+    },
+    {
+      "id": 909567,
+      "fase": 26647,
+      "file": "solution-v3-batch.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-31T04:29",
+      "punteggio": "0.5294/1.0000/0.0000"
+    },
+    {
+      "id": 909843,
+      "fase": 26647,
+      "file": "solution-v4-allocazione.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-31T09:42",
+      "punteggio": "0.5294/1.0000/0.0000"
+    },
+    {
+      "id": 909853,
+      "fase": 26647,
+      "file": "solution-v5-tutti-i-modelli.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-31T09:50",
+      "punteggio": "0.5882/1.0000/0.0000"
+    },
+    {
+      "id": 909976,
+      "fase": 26647,
+      "file": "solution-v6-calibrata.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-31T12:06",
+      "punteggio": "0.6471/1.0000/0.0000"
+    },
+    {
+      "id": 909994,
+      "fase": 26647,
+      "file": "solution-v6-calibrata.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-31T12:31",
+      "punteggio": "0.5294/1.0000/0.0000"
+    },
+    {
+      "id": 910002,
+      "fase": 26647,
+      "file": "solution-v6-calibrata.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-31T12:46",
+      "punteggio": "0.6471/1.0000/0.0000"
+    },
+    {
+      "id": 910013,
+      "fase": 26647,
+      "file": "solution-v6-calibrata.zip",
+      "stato": "Finished",
+      "task": 35430,
+      "padre": null,
+      "creato": "2026-08-31T13:01",
+      "punteggio": "0.6471/1.0000/0.0000"
+    },
+    {
+      "id": 912096,
+      "fase": 30038,
+      "file": "solution-v6-main.zip",
+      "stato": "Finished",
+      "task": 35766,
+      "padre": null,
+      "creato": "2026-09-02T11:58",
+      "punteggio": "0.524/1.000/0.000"
+    },
+    {
+      "id": 912097,
+      "fase": 30038,
+      "file": "solution-v6-small.zip",
+      "stato": "Finished",
+      "task": 35767,
+      "padre": null,
+      "creato": "2026-09-02T11:59",
+      "punteggio": "0.526/1.000/0.000"
+    },
+    {
+      "id": 924968,
+      "fase": 30038,
+      "file": "solution-v8-main.zip",
+      "stato": "Finished",
+      "task": null,
+      "padre": null,
+      "creato": "2026-09-13T15:25",
+      "punteggio": "0.524/0.000/1.000/0.000/0.000/19.000"
+    },
+    {
+      "id": 924969,
+      "fase": 30038,
+      "file": "solution-v8-main.zip",
+      "stato": "Finished",
+      "task": 35766,
+      "padre": 924968,
+      "creato": "2026-09-13T15:25",
+      "punteggio": "0.524/1.000/0.000"
+    },
+    {
+      "id": 924970,
+      "fase": 30038,
+      "file": "solution-v8-main.zip",
+      "stato": "Finished",
+      "task": 35767,
+      "padre": 924968,
+      "creato": "2026-09-13T15:25",
+      "punteggio": "0.000/0.000/19.000"
+    },
+    {
+      "id": 924972,
+      "fase": 30038,
+      "file": "solution-v8-small.zip",
+      "stato": "Finished",
+      "task": null,
+      "padre": null,
+      "creato": "2026-09-13T15:25",
+      "punteggio": "0.526/0.000/0.000/1.000/21.000/0.000"
+    },
+    {
+      "id": 924973,
+      "fase": 30038,
+      "file": "solution-v8-small.zip",
+      "stato": "Finished",
+      "task": 35766,
+      "padre": 924972,
+      "creato": "2026-09-13T15:25",
+      "punteggio": "0.000/0.000/21.000"
+    },
+    {
+      "id": 924974,
+      "fase": 30038,
+      "file": "solution-v8-small.zip",
+      "stato": "Finished",
+      "task": 35767,
+      "padre": 924972,
+      "creato": "2026-09-13T15:25",
+      "punteggio": "0.526/1.000/0.000"
+    },
+    {
+      "id": 925822,
+      "fase": 30038,
+      "file": "solution-v8-main.zip",
+      "stato": "Finished",
+      "task": 35766,
+      "padre": null,
+      "creato": "2026-09-14T09:05",
+      "punteggio": "0.524/1.000/0.000"
+    },
+    {
+      "id": 928172,
+      "fase": 30038,
+      "file": "solution-v8-main.zip",
+      "stato": "Cancelled",
+      "task": 36237,
+      "padre": 924968,
+      "creato": "2026-09-16T20:11",
+      "punteggio": null
+    },
+    {
+      "id": 928173,
+      "fase": 30038,
+      "file": "solution-v8-main.zip",
+      "stato": "Cancelled",
+      "task": null,
+      "padre": 924968,
+      "creato": "2026-09-16T20:11",
+      "punteggio": null
+    },
+    {
+      "id": 928174,
+      "fase": 30038,
+      "file": "solution-v8-small.zip",
+      "stato": "Cancelled",
+      "task": 36237,
+      "padre": 924972,
+      "creato": "2026-09-16T20:11",
+      "punteggio": null
+    },
+    {
+      "id": 928175,
+      "fase": 30038,
+      "file": "solution-v8-small.zip",
+      "stato": "Cancelled",
+      "task": null,
+      "padre": 924972,
+      "creato": "2026-09-16T20:11",
+      "punteggio": null
+    },
+    {
+      "id": 929013,
+      "fase": 30038,
+      "file": "solution-v8-main.zip",
+      "stato": "Cancelled",
+      "task": 36241,
+      "padre": 924968,
+      "creato": "2026-09-16T22:35",
+      "punteggio": null
+    },
+    {
+      "id": 929014,
+      "fase": 30038,
+      "file": "solution-v8-small.zip",
+      "stato": "Cancelled",
+      "task": 36241,
+      "padre": 924972,
+      "creato": "2026-09-16T22:35",
+      "punteggio": null
+    },
+    {
+      "id": 936802,
+      "fase": 30038,
+      "file": "solution-v8-main.zip",
+      "stato": "Finished",
+      "task": 36237,
+      "padre": null,
+      "creato": "2026-09-21T08:34",
+      "punteggio": "0.476/1.000/0.000"
+    },
+    {
+      "id": 936806,
+      "fase": 30038,
+      "file": "solution-v8-small.zip",
+      "stato": "Finished",
+      "task": 36241,
+      "padre": null,
+      "creato": "2026-09-21T08:35",
+      "punteggio": "0.500/1.000/0.000"
+    },
+    {
+      "id": 1016713,
+      "fase": 30038,
+      "file": "solution-v8-main.zip",
+      "stato": "Finished",
+      "task": 36237,
+      "padre": null,
+      "creato": "2026-10-28T17:27",
+      "punteggio": "0.476/1.000/0.000"
+    },
+    {
+      "id": 1016730,
+      "fase": 30038,
+      "file": "solution-v8-small.zip",
+      "stato": "Finished",
+      "task": 36241,
+      "padre": null,
+      "creato": "2026-10-28T17:31",
+      "punteggio": "0.500/1.000/0.000"
+    },
+    {
+      "id": 1016732,
+      "fase": 30038,
+      "file": "solution-costante-main.zip",
+      "stato": "Finished",
+      "task": 36237,
+      "padre": null,
+      "creato": "2026-10-28T17:31",
+      "punteggio": "0.476/1.000/0.000"
+    },
+    {
+      "id": 1016733,
+      "fase": 30038,
+      "file": "solution-costante-small.zip",
+      "stato": "Finished",
+      "task": null,
+      "padre": null,
+      "creato": "2026-10-28T17:31",
+      "punteggio": "0.500/0.000/1.000/0.000/21.000/0.000"
+    },
+    {
+      "id": 1016734,
+      "fase": 30038,
+      "file": "solution-costante-small.zip",
+      "stato": "Finished",
+      "task": 36237,
+      "padre": 1016733,
+      "creato": "2026-10-28T17:31",
+      "punteggio": "0.000/0.000/21.000"
+    },
+    {
+      "id": 1016735,
+      "fase": 30038,
+      "file": "solution-costante-small.zip",
+      "stato": "Finished",
+      "task": 36241,
+      "padre": 1016733,
+      "creato": "2026-10-28T17:31",
+      "punteggio": "0.500/1.000/0.000"
+    }
+  ]
+}

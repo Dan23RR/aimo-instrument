@@ -1,0 +1,6 @@
+righe 749 | quota con base_accuracy 0 o 1: 0.7063 | coppie 116
+coppie con base_accuracy diversa fra le loro righe: 0
+base > 0             robust osservato 16/116 = 13.8% | simulato 14.8% | kappa test-retest media 0.938, IC90 [0.869, 1.000], mediana 0.931
+base >= 0,5          robust osservato 16/116 = 13.8% | simulato 14.8% | kappa test-retest media 0.940, IC90 [0.869, 1.000], mediana 0.934
+base >= 0,6          robust osservato 16/116 = 13.8% | simulato 14.8% | kappa test-retest media 0.941, IC90 [0.869, 1.000], mediana 0.934
+nessuna condizione   robust osservato 16/116 = 13.8% | simulato 14.8% | kappa test-retest media 0.938, IC90 [0.869, 1.000], mediana 0.931

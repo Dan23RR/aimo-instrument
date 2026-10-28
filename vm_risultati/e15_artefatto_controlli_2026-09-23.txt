@@ -1,0 +1,24 @@
+1. PUNTEGGI DI VALIDAZIONE SALVATI NELL'ARTEFATTO
+   NONE           probe 740 | esattamente 0,500: 734
+   RANDOMIZATION  probe 740 | esattamente 0,500: 740
+   migliore per fold (NONE): [0.5, 0.7375, 0.6, 0.5]
+   media sui semi per (fold, layer), massimo: 0.5475 a (1, 31) | media su fold e semi per layer, massimo: 0.5119 al layer 31
+   layer_scores dell'artefatto (media che include i controlli): massimo 0.5059 al layer 31
+
+2. MARGINI DELL'ARTEFATTO SULLE NOSTRE 164 ETICHETTE, E CONTROLLO DI LUNGHEZZA
+   aggregazione del codice di inferenza (layer 31, 40 probe): predetti robust 0.0%
+   aggregazione pre-registrata (gruppi NONE al proprio layer): predetti robust 0.0%
+   codice di inferenza                    AUROC 0.709 | Spearman con n_char +0.769 | residuo su log(n_token) 0.631, su log(n_char) 0.566 | terzile lungo (n=56, robust 21) 0.461
+   pre-registrata                         AUROC 0.739 | Spearman con n_char +0.847 | residuo su log(n_token) 0.680, su log(n_char) 0.619 | terzile lungo (n=56, robust 21) 0.482
+   soli gruppi NONE al layer 31           AUROC 0.723 | Spearman con n_char +0.822 | residuo su log(n_token) 0.650, su log(n_char) 0.575 | terzile lungo (n=56, robust 21) 0.457
+   soli gruppi di CONTROLLO al layer 31   AUROC 0.683 | Spearman con n_char +0.645 | residuo su log(n_token) 0.606, su log(n_char) 0.561 | terzile lungo (n=56, robust 21) 0.469
+   AUROC per gruppo di controllo al layer 31: [0.701, 0.659, 0.688, 0.673]
+
+3. DIREZIONI DEI PROBE AL LAYER 31
+   stesso seme, gruppo con etichette vere contro gruppo di controllo: coseno da 0.933 a 0.998 (mediana 0.994)
+   semi diversi, qualunque gruppo: coseno da -0.014 a 0.075 (mediana 0.025)
+   500 direzioni casuali al layer 31: AUROC p5 0.360, p95 0.655; quota con |AUROC - 0,5| >= 0,18: 0.038
+
+4. LA NOSTRA SONDA (punteggi OOF salvati)
+   sonda nostra                           AUROC 0.710 | Spearman con n_char +0.551 | residuo su log(n_token) 0.667, su log(n_char) 0.621 | terzile lungo (n=56, robust 21) 0.537
+   log(n_char) al netto del punteggio della sonda: AUROC 0.620

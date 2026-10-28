@@ -1,0 +1,602 @@
+{
+ "revisore B3": {
+  "findings": [
+   {
+    "id": "B3-1",
+    "sezione": "7 Recommendations, R6",
+    "citazione_bozza": "On DeepSeek, both probes we examined, ours and the organizers' artifact, ordered the labels mostly through problem length (Section 3)",
+    "problema": "Per la nostra sonda l'affermazione è falsa rispetto alla fonte. La v2.4 dice solo che, come predittore, la sonda è largamente ridondante con la lunghezza e che cosa legga non è stabilito. «Mostly through problem length» vale soltanto per l'artefatto degli organizzatori. I numeri vanno contro: residualizzata sul log del numero di caratteri la nostra sonda tiene 0,62 su 0,71, cioè più di metà del vantaggio sul caso. La v2.4 ha ritirato perfino la versione più debole («mostly, though not only»). La frase contraddice anche il §3 della bozza («What the probe reads is not established»).",
+    "fonte": "WRITEUP.md §8.3: «As a predictor of the label the probe is largely redundant with length: the two together gain about two points over either alone. What the probe reads is not established»; Appendix D, item 46: «\"The probe reads mostly, though not only, problem length\" (v2.2, v2.3) claimed more than the control shows, which is redundancy as predictors.»; Abstract: «our probe adds about two points of AUROC to the character count; and the organizers' probe artifact orders our labels at AUROC 0.71 mostly through problem length»",
+    "gravita": "alta",
+    "correzione": "On DeepSeek, the organizers' artifact ordered the labels mostly through problem length, and our own probe was largely redundant with length as a predictor (about two points of AUROC over character count), with what it reads not established (Section 3); an ablation that removes the white-box component without controlling for length cannot separate the two."
+   },
+   {
+    "id": "B3-2",
+    "sezione": "7 Recommendations, R4",
+    "citazione_bozza": "until then, no score difference smaller than the label's own instability can be interpreted.",
+    "problema": "Questa R4 non esiste nella v2.4: lì R4 è «Enlarge the labeled training split». La seconda proposizione trae una conclusione che la fonte non trae mai. È anche mal definita: l'instabilità dell'etichetta ufficiale non è misurata, quindi la soglia non esiste. E l'instabilità test-retest di un'etichetta non impedisce di per sé di confrontare due submission sulle stesse etichette fisse. Dalla fonte è sostenibile solo che l'affidabilità ufficiale resta non misurata.",
+    "fonte": "WRITEUP.md §7.3: «It overstates that agreement by about 0.4 on every model, so 0.94 says little about the reliability of the official label, which remains unmeasured.»; §10: «R4. Enlarge the labeled training split.» (nessun passo della v2.4 parla di differenze di punteggio non interpretabili)",
+    "gravita": "media",
+    "correzione": "**R4. Measure the label's reliability directly.** Two independent draws of variants, labeled with the official process, would give the test-retest agreement that the plug-in simulation cannot (Section 5.2); until then, the reliability of the official label remains unmeasured."
+   },
+   {
+    "id": "B3-3",
+    "sezione": "5, Table 3 (didascalia)",
+    "citazione_bozza": "Agreement of regenerated labels (Cohen's kappa, 95% intervals in brackets) on 164 problems",
+    "problema": "I kappa non sono calcolati su 164 problemi. kappa(A,B) usa n=159; kappa(A,A′) e la concordanza con le etichette ufficiali usano n=160, perché i problemi senza varianti accettate non hanno etichetta. Solo la colonna «Robust in draw A» è su 164, con i 4 problemi senza varianti contati come non robust. I valori sono giusti, sbagliato è l'n dichiarato.",
+    "fonte": "vm_risultati/e13_analisi_2026-09-14.txt: «kappa(A,B)  affidabilità totale    n=159», «kappa(A,A') solo campionamento     n=160», «kappa(A,loro) CONCORDANZA              n=160  kappa +0.0251»; WRITEUP.md §7.2, intestazione: «robust in draw A (of 164 problems; the 4 without accepted variants count as not robust)»; §7.5: «the old rule's kappas on all 159 problems»",
+    "gravita": "bassa",
+    "correzione": "**Table 3.** Agreement of regenerated labels (Cohen's kappa, 95% intervals in brackets). Robust rates are over all 164 problems (the 4 without accepted variants count as not robust); kappas are over the problems labeled in both series (159 for A and B, 160 for A′ and for the official labels); the main-phase column uses the problems labeled in both draws under the 0.10/0.25 thresholds."
+   },
+   {
+    "id": "B3-4",
+    "sezione": "5 Can the label be reproduced? (apertura)",
+    "citazione_bozza": "If the label could be regenerated from the rule its public labels follow, it could be learned for the three evaluated models without public labels.",
+    "problema": "Si è perso il qualificatore temporale. Dal 16 settembre il train set della fase principale etichetta tutti e cinque i modelli, come dice il §8 della bozza stessa: la frase quindi contraddice il §8. La fonte precisa che quel train set ha poi fornito un piccolo bersaglio etichettato.",
+    "fonte": "WRITEUP.md §7, apertura: «That made this the central question for the three evaluated models without public labels ... The main-phase train set (2.1) has since supplied a small labeled target under a different rule.»; bozza §8: «The main-phase train set labels all five models»",
+    "gravita": "bassa",
+    "correzione": "If the label could be regenerated from the rule its public labels follow, it could be learned for the three evaluated models that had no public labels before the main-phase train set."
+   },
+   {
+    "id": "B3-5",
+    "sezione": "5.1",
+    "citazione_bozza": "on the compared problems our DeepSeek labels are robust on 71 to 75% against the organizers' 28 to 30%",
+    "problema": "La frase non nomina la regola. Il 71-75% contro 28-30% vale solo con le soglie della fase principale. Con la congiunzione, la Tabella 3 dà 37,8% per DeepSeek, e la fonte 31-38% contro 24%: senza la regola, il lettore vede due tassi incompatibili. La v2.4 ha corretto esattamente questa omissione.",
+    "fonte": "WRITEUP.md Abstract: «(31 to 38% against 24% under the earlier rule; 71 to 75% against 28 to 30% of the compared problems under the new thresholds)»; Appendix D, item 43: «and the abstract's 71 to 75% did not name the rule it holds under»",
+    "gravita": "bassa",
+    "correzione": "The gap is not only one of severity: under the main-phase rule, on the compared problems our DeepSeek labels are robust on 71 to 75% against the organizers' 28 to 30%, but our robust rate is about the same whether their label is robust or not (77.5% and 74.2% in draw A), and the largest accuracy drops do not correlate (Spearman −0.09 and −0.01), so no stricter threshold on our side would recover theirs."
+   },
+   {
+    "id": "B3-6",
+    "sezione": "5.2",
+    "citazione_bozza": "On Olmo the seed alone accounts for about half of the instability under either rule.",
+    "problema": "Si è perso un qualificatore. Con la regola della fase principale la stima si regge su 5 e 9 disaccordi, e la fonte aggiunge che così pochi disaccordi non separano le due fonti di instabilità.",
+    "fonte": "WRITEUP.md §7.5: «on the 126 problems labeled in all three series it is 0.72 against 0.43, with 5 and 9 disagreements: the seed alone accounts for about half of the instability, as under the earlier rule, and so few disagreements do not separate the two sources.»",
+    "gravita": "bassa",
+    "correzione": "On Olmo the seed alone accounts for about half of the instability under either rule, although under the main-phase rule its 5 and 9 disagreements are too few to separate the two sources."
+   },
+   {
+    "id": "B3-7",
+    "sezione": "5.2 e References [6]",
+    "citazione_bozza": "Whether any process reproduces the label is open; the organizers have decided not to publish the code that reproduces their labeling.",
+    "problema": "La dichiarazione è attribuita agli organizzatori senza data, canale e citazione. Viene da Discord #qa del 22 settembre, una data che manca nell'elenco di [6].",
+    "fonte": "WRITEUP.md §7.3: «On 22 September the organizers added two facts (Discord #qa): ... they have decided not to publish the code that reproduces their labelling, in order to test the generalization of submitted methods.»; bozza [6]: «#announcements and #qa: 15 September, 9 October, 15 October, 16 October and 20 October 2026.»",
+    "gravita": "bassa",
+    "correzione": "Whether any process reproduces the label is open; on 22 September the organizers wrote that they have decided not to publish the code that reproduces their labeling, to test the generalization of submitted methods [6]. In [6]: \"AIMO Interpretability Challenge Discord, #announcements and #qa: 15 and 22 September, 9, 15, 16 and 20 October 2026.\""
+   },
+   {
+    "id": "B3-8",
+    "sezione": "6, v6",
+    "citazione_bozza": "with a gpt-oss threshold fitted at run time on the ten gpt-oss rows of `val-sample`",
+    "problema": "Torna un'omissione che la v2.4 ha corretto (voce 54). Tre delle dieci righe sono di un fine-tune (huikang-gpt-oss-120b-aimo3:low) e portano l'unica etichetta robust del gruppo, quindi la soglia gpt-oss è tarata con un solo positivo, e di un altro modello.",
+    "fonte": "WRITEUP.md §6.2: «on gpt-oss, a threshold fitted at runtime on the ten gpt-oss rows of the public `val-sample`: seven of gpt-oss-120b:low and three of `huikang-gpt-oss-120b-aimo3:low`, by its name a fine-tune of the same base ... The only robust label among them is the fine-tune's»; Appendix D, item 54: «described the gpt-oss calibration set as ten public items ... without saying that three of the rows are of a fine-tune and carry its only robust label (6.2)»",
+    "gravita": "bassa",
+    "correzione": "It loads each evaluated model, extracts the official features from the model's own greedy generation and applies the official regressor (with a gpt-oss threshold fitted at run time on the ten gpt-oss rows of `val-sample`, three of which are of a fine-tune and carry their only robust label)."
+   },
+   {
+    "id": "B3-9",
+    "sezione": "6, The evaluations requested for reports",
+    "citazione_bozza": "we resubmitted V8 unchanged, with an all-robust constant as control, on [TBD: date and scores].",
+    "problema": "Data e punteggi sono segnaposto, ma il verbo al passato afferma un'azione che le fonti non registrano. Alle 16:21 del 22/10 il ricaricamento era autorizzato ma non fatto: Codabench era irraggiungibile e non c'era una data di ripristino. Se non avviene prima della chiusura (1/11, 12:55), la frase è falsa. La fonte segnala anche che V8, con la firma vecchia, potrebbe fallire con il nuovo protocollo.",
+    "fonte": "PUNTO_2026-10-22.md, «Aggiunta delle 16:21»: «Daniel ha detto sì al ricaricamento di V8 e della costante» ... «Codabench non raggiungibile dalle 15:58 in poi.» ... «Al momento non c'è una data di ripristino.»; «Conseguenze per noi», punto 2: «Se la valutazione del 15/10 chiamasse la funzione con tre argomenti, V8 fallirebbe anche sul test.»",
+    "gravita": "bassa",
+    "correzione": "we resubmitted V8 unchanged, with an all-robust constant as control, on [TBD: date and scores; if Codabench, unreachable from 22 October, does not return before the close, replace with: \"an unchanged resubmission of V8, with an all-robust constant as control, was prepared on 22 October but could not be uploaded because Codabench was unreachable\"]."
+   },
+   {
+    "id": "B3-10",
+    "sezione": "7 Recommendations, R2",
+    "citazione_bozza": "With the re-execution standard deviation measured in the warmup (1.0 item on 17, from four runs), resolving a one-item gap needs about eight runs;",
+    "problema": "Si è perso un qualificatore: la fonte avverte che una deviazione standard stimata da quattro esecuzioni è incerta, e quindi lo è anche il numero di otto.",
+    "fonte": "WRITEUP.md §10, R2: «resolving a one-item gap needs about eight runs; an SD estimated from four runs is itself uncertain, and so is that number.»",
+    "gravita": "bassa",
+    "correzione": "With the re-execution standard deviation measured in the warmup (1.0 item on 17, from four runs), resolving a one-item gap needs about eight runs, a number as uncertain as an SD estimated from four runs; repeating only the entries near a prize boundary at the close costs a handful of runs rather than three times the field."
+   },
+   {
+    "id": "B3-11",
+    "sezione": "8 Limitations",
+    "citazione_bozza": "every probe and concordance in Sections 3 to 5 is measured on DeepSeek, 26 of whose 164 labels we derived",
+    "problema": "Nel §3 la concordanza di H2 è fra modelli e misurata sulle coppie pubbliche di tutti gli identificativi, non su DeepSeek; la bozza la chiama proprio «concordance». La fonte limita la frase alle sonde e alla concordanza con le etichette ufficiali (§7 e §8).",
+    "fonte": "WRITEUP.md §12: «Every probe and every concordance in Sections 7 and 8 is measured on DeepSeek and assumed, not shown, for the other four.»; §4, riga H2: «Robustness is a property of the problem (cross-model concordance)»; bozza Tabella 1: «(DeepSeek and the public pairs unless stated)» e §3: «counted once, its concordance falls below the per-model baseline»",
+    "gravita": "bassa",
+    "correzione": "Ground truth under the earlier rule exists for two evaluated models, and every probe and every concordance with the official labels in Sections 3 to 5 is measured on DeepSeek, 26 of whose 164 labels we derived; results are assumed, not shown, for the other models."
+   },
+   {
+    "id": "B3-12",
+    "sezione": "8 Limitations",
+    "citazione_bozza": "The main-phase train set labels all five models but has 3 to 37 labeled rows per model, and apart from the evaluation of V8 we do not use it.",
+    "problema": "La frase è incompleta come quella che la v2.4 ha corretto alla voce 33. Il train set è usato anche in un confronto descrittivo delle nostre etichette rigenerate sulle cinque righe che cadono sui nostri problemi e modelli.",
+    "fonte": "WRITEUP.md §12: «apart from the evaluation of our entry and the five-row comparison in 6.4 the analyses in this draft do not use it»; §6.4: «only the regenerated labels were compared with the train set, descriptively, on the five labeled rows that fall on our problems and models»",
+    "gravita": "bassa",
+    "correzione": "The main-phase train set labels all five models but has 3 to 37 labeled rows per model, and apart from the evaluation of V8 and a descriptive comparison with our regenerated labels on the five rows that fall on our problems and models, we do not use it."
+   },
+   {
+    "id": "B3-13",
+    "sezione": "8 Limitations",
+    "citazione_bozza": "the fourteen-state structure is established, its cause inferred, and the remedies were tested only in sequential runs on one card.",
+    "problema": "«On one card» lascia intendere che i due rimedi abbiano girato sulla stessa scheda. Ognuno ha girato su una sola scheda, ma su schede diverse: algoritmi deterministici sulla prima, compilazione disattivata sulla seconda. Quindi configurazione e scheda non sono separate; la v2.4 ha corretto questa omissione alla voce 44.",
+    "fonte": "WRITEUP.md §12: «The remedies were tested only in sequential runs, each on one card.»; §8.1: «They were also measured on different cards (the deterministic kernels on the first, the configuration without compilation on the second), so configuration and card are not separated»; vm_risultati/e14_tabella_2026-09-23.txt: «stato  6: C2_rep0_gpu0_a, ...» e «stato 13: C5_rep0_gpu1_a, ...»",
+    "gravita": "bassa",
+    "correzione": "the fourteen-state structure is established, its cause inferred, and the remedies were tested only in sequential runs, each on one card and the two on different cards, so configuration and card are not separated."
+   },
+   {
+    "id": "B3-14",
+    "sezione": "Appendix B, P-V8 e P-V8b",
+    "citazione_bozza": "each evaluation finished within about a minute of upload.",
+    "problema": "Si è perso un qualificatore: la piattaforma ha segnato le valutazioni come concluse entro circa un minuto, coda e punteggio compresi, e la fonte lo presenta come limite superiore del tempo di esecuzione. Inoltre la bozza elenca la parte di P-V8 sul tempo sotto i 60 secondi (P-V8c) senza dire che non fu valutata: il bundle non registra il tempo.",
+    "fonte": "WRITEUP.md Appendix C, P-V8b: «and each evaluation marked finished within about a minute of upload, queue and scoring included, an upper bound on the runtime»; P-V8: «P-V8c was not scored at the time: each valid evaluation had coverage 1.0 and no invalid predictions (the children evaluated on the other task were rejected before import, 6.3), and the bundle logs no runtime.»",
+    "gravita": "bassa",
+    "correzione": "P-V8b: \"Observed: coverage 1.0 and no invalid predictions; 10/21 and 7/14, inside the bands but degenerately, since the rule predicted robust for every item; each evaluation was marked finished within about a minute of upload, queue and scoring included, an upper bound on the runtime.\" At the end of P-V8 add: \"The runtime part was not scored at the time: each valid evaluation had coverage 1.0 and no invalid predictions, and the bundle logs no runtime.\""
+   }
+  ],
+  "frasi_controllate": 72,
+  "note": "Blocco controllato: righe 85-171 della bozza, da «## 5» ad «## Appendix C» esclusa, confrontate con WRITEUP.md (§6-§13, Appendici C e D), PUNTO_2026-10-22.md, PUNTO_2026-10-06.md, PREREG_E12, PREREG_V8, PREREG_V8b e i file in vm_risultati.\n\nIn una frase: due problemi seri e dodici minori.\n- Il più grave è B3-1. R6 dice che anche la nostra sonda ordina le etichette «mostly through problem length», cosa che la v2.4 ha ritirato.\n- Il secondo è B3-2. R4 è nuova e contiene una conclusione che la fonte non trae.\n\nIl resto torna. Numeri ricalcolati senza trovare errori:\n- 0,025/√0,413 = 0,039; 0,175/√0,413 ≈ 0,27.\n- Intervalli di Wilson 0,32-0,72 e 0,32-0,73.\n- 145/164 = 88%.\n- 46/71 = 0,648 e 52/71 = 0,732; accuratezza bilanciata 0,442 (veri positivi 46, falsi positivi 19, veri negativi 0, falsi negativi 6).\n- Errori standard 10,9 e 13,4 punti.\n- Deviazione standard 1,0 da {11, 9, 11, 11}, quindi circa 8 esecuzioni.\n- Costo dei rimedi +5,4% e +6,9%.\n- Sovrastima della simulazione per modello 0,37-0,46 (controlli_verifica2).\n- 71-75% contro 28-30%, 77,5% e 74,2%, Spearman −0,094 e −0,006.\n- Guadagno di regola 0,01-0,11 sugli stessi problemi.\n- 838 s = 14 min e 509 s = 8,5 min.\n- Hash dei bundle uguali a PUNTO 22/10.\n- L'URL di [4] compare nell'istantanea Codabench del 19/10.\n\nNessun em dash o en dash nel blocco, né nel resto della bozza.\n\nFuori dal blocco ma collegato, da sistemare insieme:\n1. L'Abstract (riga 9) ripete l'affermazione di B3-1: «the white-box probes we tested, ours and the organizers' published artifact, order the labels mostly through problem length».\n2. Nel §1, secondo punto elenco, «Regenerated from its declared rule» riprende una formula corretta nella v2.4 (voce 54). La congiunzione è una nostra lettura dei dati: il sito dice che il criterio esatto non è pubblicato. Il §5 della bozza usa correttamente «the rule its public labels follow».\n3. Il §4 omette che le due configurazioni deterministiche girarono su schede diverse (voce 44; vedi B3-13).\n\nDue osservazioni che non sono errori di frase:\n- La v2.4 §9 dichiara due cose che la versione da 9 pagine perde del tutto: la domanda del 7/9 sull'uso nel report delle misure fatte sulla VM non ha mai avuto risposta, e i risultati promessi agli organizzatori non sono stati condivisi. I Ringraziamenti ringraziano per la VM senza dirlo.\n- In [2] e [3] le iniziali «H.» e «J.» non sono nelle fonti locali: da controllare quando si completano gli elenchi degli autori."
+ },
+ "revisore B2": {
+  "findings": [
+   {
+    "id": "B2-1",
+    "sezione": "3, Table 1 (righe H1 e H3-H7) e paragrafo Length",
+    "citazione_bozza": "Problem text, 32 features, grouped 5-fold | H1 | 0.675 vs 0.761 (−8.7)",
+    "problema": "I valori di H1 (−8.7) e di H7 (−1.2) sono calcolati sulle 335 coppie pubblicate, quindi le 52 coppie DeepSeek duplicate contano due volte. Lo stesso vale per la 0.652 di V8 nel paragrafo Length ('the direction fixed on the public pairs (balanced accuracy 0.652)'). La bozza non lo dice. Eppure nella stessa tabella la riga H2 tratta il doppio conteggio come una trappola e mette in primo piano il valore con le righe contate una volta. La v2.4 riporta entrambe le cifre e la voce 29 tratta quelle contate una volta come la correzione. Nessun verdetto cambia.",
+    "fonte": "WRITEUP.md §4, riga H1: \"0.675 vs 0.761, −8.7 (0.682 vs 0.756, −7.4, with the duplicated rows counted once)\"; riga H7: \"(−1.2 against that; +0.0 and −1.4 with the duplicated rows counted once)\"; Appendice D voce 29: \"Counted once, H1 is −7.4 (not −8.7), H8 +1.8 against the global constant (not +1.5), T +7.1 pooled (not +6.0), and H7 stays at +0.0; no verdict changes.\"; §6.3: \"balanced accuracy 0.652 over the 335 published pairs and 0.631 over the 283 distinct ones\"; vm_risultati/warmup_ricalcoli_2026-09-23.txt: \"senza duplicati, CV raggruppata n=283 | modello 0.6820 | maggioranza 0.7562 | guadagno -7.4 punti\".",
+    "gravita": "bassa",
+    "correzione": "Add to the Table 1 caption: \"H1, H7 and T are computed on the 335 published pairs, counting the 52 duplicated DeepSeek pairs twice; counted once, H1 is −7.4, H7 −1.4 and T +7.1, and no verdict changes.\" In the Length paragraph: \"and the direction fixed on the public pairs (balanced accuracy 0.652 over the 335 published pairs, 0.631 over the 283 distinct ones).\""
+   },
+   {
+    "id": "B2-2",
+    "sezione": "3, Table 1 (riga H35)",
+    "citazione_bozza": "The organizers' published probe artifact | H35 | AUROC 0.709; 0.57 residualized on log character count; its shuffled-label controls 0.68",
+    "problema": "Il verdetto 'survives' di H35 è stato deciso con l'aggregazione pre-registrata, che dà AUROC 0.739 (0.62 dopo la residualizzazione, come la nostra sonda). Il valore 0.709 viene invece dall'aggregazione del codice di inferenza dell'artefatto, applicata dopo e non pre-registrata. La bozza riporta solo 0.709, quindi il lettore non vede né il numero pre-registrato su cui l'ipotesi sopravvive, né il fatto che con quell'aggregazione il residuo è uguale a quello della nostra sonda.",
+    "fonte": "WRITEUP.md §4, riga H35: \"0.709 with its own inference aggregation, mostly problem length (0.57 once residualized on log character count); 0.739 with the pre-registered one (0.62 once residualized, as for our probe)\"; vm_risultati/e15_valuta_2026-09-14.txt: \"H35 sonda LORO (ensemble ufficiale, system prompt loro) AUROC 0.7391 ... esito: SOPRAVVIVE\"; Abstract v2.4: \"Not pre-registered either: ... its other analyses of the organizers' artifact (its own inference aggregation, its control groups, ...)\".",
+    "gravita": "bassa",
+    "correzione": "| The organizers' published probe artifact | H35 | AUROC 0.739 with the pre-registered aggregation (0.62 residualized on log character count); 0.709 with its own inference aggregation (0.57 residualized); its shuffled-label controls 0.68 | survives, largely explained |"
+   },
+   {
+    "id": "B2-3",
+    "sezione": "3, Three traps",
+    "citazione_bozza": "H2, the only surviving warmup hypothesis about a property of the problem, came from one measurement published under two model names: counted once, its concordance falls below the per-model baseline",
+    "problema": "Due imprecisioni. (1) 'the only surviving' è al presente, ma la Table 1 dà H2 'dead'; la fonte dice 'that had survived'. (2) Contando le righe una volta sola, la concordanza non scende sotto il riferimento per modello: resta sopra il nullo per modello (32 concordi contro 29,6 attesi, z = 0.88, non significativo). A scendere sotto è l'accuratezza della previsione che se ne ricava, 1.3 punti sotto la maggioranza per modello. La frase contraddice anche lo z positivo riportato nella Table 1 (z = 0.88).",
+    "fonte": "WRITEUP.md Appendice D voce 6: \"H2, the only warmup hypothesis about a property of the problem that had survived, survived only because the same 52 measurements, published under two model identifiers, were counted as two models... With the identifiers merged it dies by its own criterion (z = 0.88; −1.3 points against the per-model majority; Section 4)\"; vm_risultati/controllo_h2_alias_2026-09-23.txt: \"concordi osservati: 32 (65%)\", \"attesi, nullo con tasso PER MODELLO: 29.6 (60%)\", \"eccesso sul nullo corretto: +2.4 problemi, z = 0.88\", \"maggioranza PER MODELLO: 0.7785 (differenza -1.3 punti)\".",
+    "gravita": "media",
+    "correzione": "And H2, the only warmup hypothesis about a property of the problem that had survived, survived only because one measurement was published under two model names and counted twice: counted once, its concordance no longer clears the per-model null (z = 0.88), and predicting from it scores 1.3 points below the per-model majority."
+   },
+   {
+    "id": "B2-4",
+    "sezione": "3, Probes",
+    "citazione_bozza": "Its score correlates with problem length at Spearman +0.55; in a second-level cross-validation over 20 splits, character count alone gives 0.696, the probe 0.697 and the two together 0.714",
+    "problema": "Il paragrafo presenta senza alcuna avvertenza analisi che non erano pre-registrate. Sono i controlli di lunghezza della nostra sonda (correlazione, CV di secondo livello, terzile, residui) e le analisi dell'artefatto (aggregazione del suo codice di inferenza, residualizzazione, gruppi di controllo, coseni delle direzioni). Il verdetto 'largely explained' della Table 1 poggia proprio su queste analisi. La v2.4 lo dichiara in più punti, e la bozza stessa lo dichiara per la misura della §4 ('not pre-registered and is exploratory'): così la §3 diventa incoerente con il metodo dichiarato. Manca anche la previsione fallita di E15 (che entrambe le sonde morissero), che la v2.4 riporta.",
+    "fonte": "WRITEUP.md Abstract: \"Not pre-registered either: the measurements of Sections 8.2 and 8.4, the length controls of Section 8.3 and its other analyses of the organizers' artifact (its own inference aggregation, its control groups, the directions of its probes and 500 random directions)\"; §8.3: \"It is then largely explained by a control we should have written into the pre-registration and did not.\", \"Applied after the fact (23 September, not pre-registered)\" e \"Our pre-registration predicted that both probes would die (PREREG_E15); both survived their null.\"; §4: \"in 8.3 the same separation needed a control we added only after seeing the data\".",
+    "gravita": "media",
+    "correzione": "Its score correlates with problem length at Spearman +0.55. These length controls, like our analyses of the artifact below (its own inference aggregation, its control groups and the directions of its probes), were not pre-registered: we added them after seeing the data, and our pre-registration had predicted that both probes would die. In a second-level cross-validation over 20 splits, character count alone gives 0.696, the probe 0.697 and the two together 0.714, a gain of about two points; inside the tercile of the longest prompts the probe is at 0.537, indistinguishable from chance."
+   },
+   {
+    "id": "B2-5",
+    "sezione": "3, Probes (frase finale); si riflette su Abstract e R6",
+    "citazione_bozza": "For both probes, what is read beyond length is small and not established.",
+    "problema": "Per la nostra sonda la fonte stabilisce solo una ridondanza come predittori: circa due punti di AUROC in più rispetto al conteggio dei caratteri. Dice anche che cosa la sonda legga non è stabilito, perché i due residui sono simmetrici (0.62 e 0.62). 'What is read beyond length is small' presuppone invece che la sonda legga la lunghezza più un piccolo resto, cioè la lettura che la v2.4 ha ritirato (voce 46). Per l'artefatto il guadagno sulla lunghezza non è mai stato misurato con una CV di secondo livello: la fonte dice solo che, con la sua aggregazione di inferenza, ordina le etichette per lo più attraverso la lunghezza. Fuori dal blocco, abstract e R6 rimandano alla §3 con la stessa forzatura su entrambe le sonde ('order the labels mostly through problem length'). La §1 della bozza invece è corretta ('for our own probe, proved largely redundant with one').",
+    "fonte": "WRITEUP.md §8.3: \"As a predictor of the label the probe is largely redundant with length: the two together gain about two points over either alone. What the probe reads is not established: residualized on log character count its score gives AUROC 0.62, and log character count residualized on the probe score gives 0.62 as well.\"; Appendice D voce 46: \"'The probe reads mostly, though not only, problem length' (v2.2, v2.3) claimed more than the control shows, which is redundancy as predictors.\"; §8.3: \"under its own inference aggregation the artifact orders our labels mostly through problem length\".",
+    "gravita": "media",
+    "correzione": "Section 3: \"Our probe is largely redundant with length as a predictor of the label (about two points of AUROC over character count), and what it reads is not established; the artifact, under its own inference aggregation, orders the labels mostly through length.\" For consistency, Abstract: \"the organizers' published probe artifact orders the labels mostly through problem length, and our own probe adds about two points of AUROC to it.\" R6: \"On DeepSeek, the organizers' artifact ordered the labels mostly through problem length, and our own probe added about two points of AUROC over it (Section 3); an ablation that removes the white-box component without controlling for length cannot separate the two.\""
+   },
+   {
+    "id": "B2-6",
+    "sezione": "4, titolo",
+    "citazione_bozza": "## 4 Re-execution noise on the evaluation hardware",
+    "problema": "Le misure non sono state fatte sull'hardware di valutazione, ma su una VM con GPU dello stesso modello dei worker; solo H18 girò nel container di valutazione. Il titolo afferma più di quanto dicano la prima frase della sezione e la §1 della bozza ('On the evaluation workers' GPU model'). La v2.4 ha già corretto la stessa forzatura (voce 20).",
+    "fonte": "WRITEUP.md Appendice D voce 20: \"Section 1 also described 8.1 and 8.2 as measured 'inside this benchmark's own evaluation environment', where only H18 ran inside the evaluation container, 8.1 and 8.2 ran on a VM with the workers' GPU model and image\"; §8: \"a dedicated VM with two RTX PRO 6000 Blackwell GPUs, the same model as the evaluation workers\".",
+    "gravita": "bassa",
+    "correzione": "## 4 Re-execution noise on the evaluation workers' GPU model"
+   },
+   {
+    "id": "B2-7",
+    "sezione": "4, Fourteen states",
+    "citazione_bozza": "different states share few: 61 of the 91 pairs of states share no generation and 28 share one or two.",
+    "problema": "Manca la coda della frase della fonte: le altre 2 coppie di stati condividono 9 generazioni (una coppia in contesa) e 38 su 40 (due esecuzioni con batch 1). Senza questa coda, 'share few' diventa una generalizzazione smentita dai dati. Il dato tolto serve anche a leggere il batch 1, perché due dei suoi tre stati sono quasi identici. È proprio il punto corretto dalla voce 7 della v2.4.",
+    "fonte": "WRITEUP.md §8.1: \"61 of the 91 pairs of states share none of the forty and 28 share one or two, while one contention pair shares 9 and two batch-1 runs share 38\"; Appendice D voce 7; vm_risultati/e14_tabella_2026-09-23.txt: \"coppie di stati 91: nessuna generazione comune 61, 1-2 comuni 28, fra 3 e 10 1, oltre 10 1 | valori sopra 2: [9, 38]\"; controlli_verifica3_2026-09-23.txt: \"stati ['C1_rep0_gpu0_a'] e ['C1_rep1_gpu0_a'] condividono 38 generazioni\".",
+    "gravita": "media",
+    "correzione": "different states share few: 61 of the 91 pairs of states share no generation and 28 share one or two, while one contention pair shares 9 and two batch-1 runs share 38."
+   },
+   {
+    "id": "B2-8",
+    "sezione": "4, Fourteen states (previsioni fallite)",
+    "citazione_bozza": "Two pre-registered predictions failed: batch size 1 did not make generation more repeatable (its three runs gave three states)",
+    "problema": "La giustificazione è più debole di quella della fonte, e la Table 2 sembra contraddirla. Il batch 1 ha 1/40 item byte-identici e il default 0/40; anche le cinque esecuzioni di default danno tre stati. La fonte regge il verdetto su un confronto che la bozza ha tolto: tre delle cinque esecuzioni di default sono byte-identiche fra loro. Inoltre la previsione sulla configurazione senza compilazione fu aggiunta durante l'esecuzione, prima di eseguire quella condizione: la v2.4 lo dice, la bozza no.",
+    "fonte": "WRITEUP.md §8.1: \"Batch size 1 was predicted to make generation more repeatable than batch 8 (P-E14d) and did not: its three runs gave three different states, with one of forty items byte-identical across them, while three of the five default runs were byte-identical to one another. The configuration without compilation, added during the run, was predicted to be byte-identical across its runs and to land in one of the default states (P-E14e)\"; PREREG_E14.md: \"Aggiunta dichiarata durante l'esecuzione, 8 settembre 2026 ore 14:00, PRIMA di eseguirla\"; e14_tabella: \"default (batch 8) 5 0/40\", \"batch 1 3 1/40\".",
+    "gravita": "media",
+    "correzione": "Two pre-registered predictions failed. Batch size 1 did not make generation more repeatable: its three runs gave three different states, with 1 of 40 items byte-identical across all three, while three of the five default runs were byte-identical to one another. The configuration without compilation, added during the run, was predicted to land in a default state and landed in a state of its own."
+   },
+   {
+    "id": "B2-9",
+    "sezione": "4, Fourteen states (accuratezza)",
+    "citazione_bozza": "accuracy moved much less than predictions (21 to 24 correct under the default configuration), always below the 33 of the majority constant",
+    "problema": "Il 21 viene dalla terza esecuzione sulla seconda scheda (24, 24, 21), non dalle cinque esecuzioni della riga 'Default (batch 8)' della Table 2, che fanno 24, 24, 24, 23 e 24. La fonte dice 'on either card'. Senza questo qualificatore il lettore attribuisce l'intervallo alla riga sbagliata. Manca anche l'intervallo in contesa (da 24 a 28), che è quello più vicino a 33.",
+    "fonte": "WRITEUP.md §8.1: \"from 21 to 24 correct under the default configuration on either card and from 24 to 28 under contention, always below the 33 of the majority constant\"; tabella 8.1: default \"24, 24, 24, 23, 24\", second physical card \"24, 24, 21\"; e14_tabella_2026-09-23.txt, stesse colonne.",
+    "gravita": "bassa",
+    "correzione": "accuracy moved much less than predictions (from 21 to 24 correct under the default configuration on either card, and from 24 to 28 under contention), always below the 33 of the majority constant."
+   },
+   {
+    "id": "B2-10",
+    "sezione": "4, Candidate remedies",
+    "citazione_bozza": "the two deterministic configurations settled on two different states, predicting 15 and 12 of 40 problems robust with the same prediction on only 21 of 40",
+    "problema": "Manca il confondimento che la fonte dichiara: le due configurazioni deterministiche girarono su schede diverse (algoritmi deterministici sulla prima, senza compilazione sulla seconda), quindi configurazione e scheda non sono separate. Così la frase successiva ('The published number under any deterministic setting depends on which setting was chosen') attribuisce la differenza alla sola configurazione. È esattamente la correzione della voce 44 della v2.4 e della nota 4 del 23/9 in PREREG_E14.",
+    "fonte": "WRITEUP.md §8.1: \"They were also measured on different cards (the deterministic kernels on the first, the configuration without compilation on the second), so configuration and card are not separated, although the default state did reproduce across cards.\"; Appendice D voce 44: \"'each configuration has its own fixed point' omitted that the two deterministic configurations ran on different cards\"; PREREG_E14.md, correzioni del 23/9, punto 4: \"I due punti fissi deterministici sono stati misurati su schede diverse (C2 su gpu0, C5 su gpu1): configurazione e scheda non sono separate\".",
+    "gravita": "media",
+    "correzione": "Determinism also does not buy correctness: the two deterministic configurations settled on two different states, predicting 15 and 12 of 40 problems robust, with no generation in common and the same prediction on only 21 of 40. They also ran on different cards (deterministic algorithms on the first, compilation disabled on the second), so configuration and card are not separated, although the default state did reproduce across cards. The published number under any deterministic setting depends on which setting was chosen."
+   }
+  ],
+  "frasi_controllate": 54,
+  "note": "In una frase: i numeri del blocco sono giusti; i problemi sono tutti qualificatori o confronti persi nella condensazione, più due affermazioni che dicono più della fonte (B2-3 e B2-5).\n\nEsito del controllo:\n- Tutti i numeri delle §3 e §4 (Table 1, Table 2, testo) coincidono con la v2.4 e con gli output salvati in vm_risultati: e14_tabella, e16_analisi, e15_controllo_lunghezza, e15_artefatto_controlli, e15_null_nidificato, e15_valuta, warmup_ricalcoli, controllo_h2_alias, esperimento_e8, e11_holm, dati_pubblici_controlli.\n- Aritmetica ricalcolata, senza errori: costo 5-7% (27,4/26,0 e 27,8/26,0), 42/164 = 25,6%, 55/164 = 33,5%, 40/164 = 24,4%, -8,7, guadagno +0,018, 61+28+2 = 91 coppie, 23 esecuzioni, 33/40 per la costante.\n- Caratteri: nessun trattino lungo o medio nel blocco. I 12 caratteri non ASCII sono tutti U+2212 davanti a numeri negativi.\n- Nessuna affermazione su metodi o condotta di altri partecipanti, nessuna attribuzione sbagliata.\n- Conteggio delle 54 unità fattuali: 26 nella §3 (incluse le 12 righe della Table 1 e le due frasi della didascalia) e 28 nella §4 (inclusi il titolo, la didascalia e le 6 righe della Table 2).\n\nFuori dal blocco, da passare a chi rivede la §1. La frase \"Every hypothesis was written down in a dated file before it ran, with a criterion that would kill it\" contraddice la frase che la segue (27 voci su 31) e la v2.4: T è stata trovata dopo i dati, H2 scritta dopo aver visto la concordanza, H6, H13 e H18 non hanno criterio. La v2.4 aveva già corretto questo punto (voce 21). Abstract e R6: vedi B2-5.\n\nOsservazione sulla fonte, che riguarda P-E14d (B2-8):\n- La misura pre-registrata m1 (item byte-identici in tutte le esecuzioni) dà alla lettera 1/40 al batch 1 contro 0/40 al default, ma su un numero diverso di esecuzioni (3 contro 5).\n- Ricalcolata dagli output salvati, a parità di tre esecuzioni il default fa in media 4,0/40 contro 1/40. L'identità media a coppie invece è 12,0/40 per il default e 13,3/40 per il batch 1, perché due esecuzioni con batch 1 condividono 38 generazioni.\n- Il verdetto \"fallita\" regge sul confronto della v2.4, ma dipende dalla misura scelta. Consiglio di tenere la giustificazione della v2.4 e, se c'è spazio, scrivere \"did not make generation clearly more repeatable\".\n- Script e dati: C:\\Users\\Utente\\AppData\\Local\\Temp\\claude\\C--Users-Utente-MODELLIPERSONALIZZATI-DC2026\\afb9b121-13de-4913-8c95-f4be3c1f36db\\scratchpad\\e14_pairs.py, eseguito su C:\\Users\\Utente\\MODELLIPERSONALIZZATI\\DC2026\\AIMO\\vm_risultati\\e14\\out.\n\nMinore, non segnalato come finding: la riga deterministica della Table 2 non cita \"deterministic cuDNN\". Lo script lo imposta (C:\\Users\\Utente\\MODELLIPERSONALIZZATI\\DC2026\\AIMO\\vm\\e14_run.py, righe 35-36) e la v2.4 lo riporta; serve se R1 deve essere riproducibile.\n\nNon segnalato perché il rimando all'Appendice A lo copre: la frase sulla validazione raggruppata omette che i test fra modelli tengono fuori il modello ma non il problema (voce 28 della v2.4)."
+ },
+ "revisore B1": {
+  "findings": [
+   {
+    "id": "B1-1",
+    "sezione": "1 Introduction, secondo paragrafo",
+    "citazione_bozza": "Every hypothesis was written down in a dated file before it ran, with a criterion that would kill it, and every kill is reported.",
+    "problema": "Affermazione universale falsa, e contraddetta dalla frase successiva della bozza stessa e dall'abstract (\"twenty-seven carried a kill criterion\"). Quattro voci su 31 non hanno alcun criterio di morte: H6 e H13 (tetti oracolo), T (regola trovata dopo i dati) e H18 (misura ripetuta). Per H2, inoltre, il criterio fu scritto dopo aver osservato la concordanza. È esattamente l'affermazione corretta nella voce 21 dell'Appendice D della v2.4: la regressione rimette nel testo una correzione già fatta.",
+    "fonte": "WRITEUP.md §1: \"Every hypothesis in the table of Section 4 is recorded in a dated file, and twenty-seven carried a kill criterion fixed before execution. The exceptions are marked as such in Section 4: the trap rule T, found after the data; the oracle ceilings H6 and H13; the repeat-run measurement H18\"; App. D voce 21: \"draft v2.1 that all twenty-eight of its entries, T, H6, H13 and H18 included, were written down with a kill criterion\"; §4: \"The other four entries have no kill criterion of their own\".",
+    "gravita": "alta",
+    "correzione": "We approached the task as a falsification campaign. Every hypothesis was recorded in a dated file, and every kill is reported. Of thirty-one entries, twenty-seven carried a kill criterion fixed before they ran (for H2 it was written after its concordance had been observed): twenty-one died by it, five survived it and one is not established; the other four (two oracle ceilings, a rule found after the data and a repeat-run measurement) have none and are marked as such (Appendix A)."
+   },
+   {
+    "id": "B1-2",
+    "sezione": "1 Introduction, secondo punto dell'elenco",
+    "citazione_bozza": "Regenerated from its declared rule with our own process, the label agrees with itself at kappa 0.18 to 0.44 and with the official label at about zero",
+    "problema": "La regola non è dichiarata. Le righe etichettate non la identificano in modo univoco (anche una regola di maggioranza le riproduce 379 su 379). Il sito dice che il criterio esatto differisce dalla bozza della proposta e non è pubblicato apposta. La congiunzione è una lettura degli autori. La v2.4 ha corretto proprio questa formulazione (voce 54). C'è anche un'incoerenza interna (g): la §2 della bozza dice \"the exact criterion differs from that outline and is not published\".",
+    "fonte": "WRITEUP.md §2.1: \"These rows do not identify the rule uniquely\" e \"the website ... has stated that the exact criterion differs from that outline and is deliberately not published\"; App. D voce 54: \"Drafts v2.1 to v2.3 called the regenerated rule the label's stated definition (abstract, Section 7)\" e \"while the conjunction is our reading of the data (abstract)\".",
+    "gravita": "alta",
+    "correzione": "Regenerated with our own process under the rule the earlier public labels follow (the exact criterion is not published), the label agrees with itself at kappa 0.18 to 0.44 and with the official label at about zero; a simulation of the organizers' process is optimistic by construction."
+   },
+   {
+    "id": "B1-3",
+    "sezione": "1 Introduction, quarto paragrafo (dichiarazioni degli organizzatori)",
+    "citazione_bozza": "\"really do not generalize\", most of them falling below random guessing, because many separated the labels by features of the problems rather than by model internals",
+    "problema": "Nessuna delle fonti verificate contiene questi tre elementi: la citazione testuale, \"most of them falling below random guessing\" e la proposizione causale. La v2.4 riporta solo che i punteggi migliori non generalizzavano su problemi nuovi e che la validazione sarebbe stata ricostruita. Il PUNTO del 22/10 ha letto #announcements solo dal 22/9. La proposizione causale riguarda i metodi di altri partecipanti (criterio e) e senza una fonte verificabile non si può attribuire agli organizzatori. Contesto, non fonte ammessa: l'unica traccia sul disco è una nota di memoria automatica del 21/9. Lì c'è la citazione, ma la parte finale è resa come \"separano le etichette con feature del problema e non del modello\": senza \"because\", senza \"many\", e \"del modello\" non \"model internals\". Va riletta su Discord prima di reintrodurla.",
+    "fonte": "WRITEUP.md §6.1: \"On 15 September they announced in Discord #announcements that the best leaderboard scores did not generalize to unseen problems and that the validation set would be rebuilt, balanced per problem and per model.\" PUNTO_2026-10-22.md, aggiunta delle 16:09: \"Letti #announcements dal 22/9\".",
+    "gravita": "alta",
+    "correzione": "On 15 September they announced that the best leaderboard scores did not generalize to unseen problems and that the validation set would be rebuilt, balanced per problem and per model; (restore a verbatim quotation only after re-reading the 15 September message on Discord, and render its reason in the organizers' own words)"
+   },
+   {
+    "id": "B1-4",
+    "sezione": "Abstract, penultima frase",
+    "citazione_bozza": "the white-box probes we tested, ours and the organizers' published artifact, order the labels mostly through problem length.",
+    "problema": "Per la nostra sonda la v2.4 mostra solo ridondanza come predittore: circa +2 punti di AUROC sul conteggio dei caratteri, e residuo 0,62 in entrambe le direzioni. Dice esplicitamente che cosa legga la sonda non è stabilito. La voce 46 ha ritirato proprio \"The probe reads mostly, though not only, problem length\" come affermazione più forte del controllo. Per l'artefatto, \"mostly through problem length\" vale solo con la sua aggregazione d'inferenza: con quella pre-registrata il residuo è 0,62, come per la nostra. C'è anche un'incoerenza interna (g) con la §1 (\"for our own probe, proved largely redundant with one\") e con la §3 (\"what is read beyond length is small and not established\"). La stessa affermazione eccessiva ritorna in R6 (§7, fuori da questo blocco).",
+    "fonte": "WRITEUP.md Abstract: \"our probe adds about two points of AUROC to the character count; and the organizers' probe artifact orders our labels at AUROC 0.71 mostly through problem length (0.57 once residualized on log character count)\"; §8.3: \"What the probe reads is not established\" e \"Under the pre-registered aggregation the residual is 0.62, the same as our probe's\"; App. D voce 46: \"'The probe reads mostly, though not only, problem length' (v2.2, v2.3) claimed more than the control shows, which is redundancy as predictors.\"",
+    "gravita": "alta",
+    "correzione": "Apart from a rule that exploits a subpopulation absent from the public validation sample, no channel we scored in accuracy beats the majority constant by more than about one standard error on public ground truth; our own white-box probe adds about two points of AUROC to the character count of the problem, and the organizers' published probe artifact orders the labels mostly through problem length under its own inference aggregation."
+   },
+   {
+    "id": "B1-5",
+    "sezione": "Abstract, seconda frase",
+    "citazione_bozza": "twenty-seven carried a kill criterion fixed before they ran (three of them in a written plan rather than a frozen pre-registration): twenty-one died, five survived and one is not established.",
+    "problema": "Manca il qualificatore su H2, che l'abstract della v2.4 riporta: il criterio di H2 fu scritto dopo averne osservato la concordanza, e il nullo per modello e la soglia furono aggiunti in E3, dopo il primo run. La mancata dichiarazione è una delle correzioni della voce 21. La §1 della bozza lo riporta, l'abstract no.",
+    "fonte": "WRITEUP.md Abstract: \"Twenty-seven of them carried a kill criterion fixed before they ran (for H29 to H31 in the written plan of E11 rather than in a frozen pre-registration; H2 was written down after its concordance had been observed)\"; App. D voce 21: \"H2 was not declared as written after its concordance had been observed (all drafts)\".",
+    "gravita": "media",
+    "correzione": "Thirty-one hypotheses are recorded in dated files; twenty-seven carried a kill criterion fixed before they ran (three of them in a written plan rather than a frozen pre-registration; for H2 it was written after its concordance had been observed): twenty-one died, five survived and one is not established."
+   },
+   {
+    "id": "B1-6",
+    "sezione": "Abstract, terza frase e risultato \"Third\"",
+    "citazione_bozza": "Three results are new for this benchmark. [...] Third, an answer-format line that the benchmark does not specify moves the share",
+    "problema": "Caduti \"to our knowledge\" e l'inciso che il nondeterminismo dell'inferenza è già documentato in generale: la priorità diventa più forte della fonte. Inoltre i tre risultati \"nuovi\" non sono quelli della v2.4. Lì erano (1) il rumore di riesecuzione, (2) la deriva del canale di punteggio, (3) la rigenerazione dell'etichetta; il formato della risposta era introdotto a parte (\"We also show\"). La bozza fonde (1) e (2) e attribuisce una novità al risultato sul formato che la fonte non rivendica.",
+    "fonte": "WRITEUP.md Abstract: \"Three results are, to our knowledge, new for this benchmark (nondeterminism of LLM inference across batch sizes and hardware configurations is documented in general; Section 1).\" e \"We also show that, for Qwen3.5-4B, a prompt choice the benchmark does not specify moves the share of problems passing the base condition of the label from 0 to 145 of 164 (88%)\".",
+    "gravita": "media",
+    "correzione": "Three results are, to our knowledge, new for this benchmark (nondeterminism of LLM inference is documented in general [2, 3]). [If the v2.4 structure is kept: split \"First\" into First (re-execution noise) and Second (score channel), renumber the label result as Third, and introduce the format result as: \"We also show that an answer-format line that the benchmark does not specify moves the share of problems passing the label's base condition for Qwen3.5-4B from 0 to 88%.\"]"
+   },
+   {
+    "id": "B1-7",
+    "sezione": "Abstract, risultato \"First\"",
+    "citazione_bozza": "and the official score channel's ordering does not reproduce between identical runs (Spearman 0.24; AUROC 0.487 and 0.602, a difference that is not significant on 164 problems).",
+    "problema": "Persi due qualificatori che l'abstract della v2.4 riporta. Primo, \"exploratory\": la misura non era pre-registrata. Secondo, la maggior parte dei 164 problemi (137) sta nel training del regressore, quindi le AUROC sono in gran parte in-sample. La §4 della bozza dice \"exploratory\", l'abstract no.",
+    "fonte": "WRITEUP.md Abstract: \"on problems most of which are in the regressor's own training set. On 164 problems the difference between the two is not significant (paired bootstrap 95% interval −0.015 to 0.246), so this exploratory measurement shows an ordering that does not reproduce between runs, not a demonstrated change of signal.\"",
+    "gravita": "media",
+    "correzione": "and, in an exploratory measurement, the official score channel's ordering does not reproduce between identical runs (Spearman 0.24; AUROC 0.487 and 0.602, a difference that is not significant on 164 problems, most of them in the regressor's own training set)."
+   },
+   {
+    "id": "B1-8",
+    "sezione": "Abstract, risultato \"Second\"",
+    "citazione_bozza": "a plug-in simulation that suggests a reliability of 0.94 for the official process overstates the measured reliability of our own by about 0.4.",
+    "problema": "Il soggetto della sovrastima è sbagliato. I circa 0,4 sono lo scarto della stessa procedura applicata alle nostre etichette: 0,64-0,84 contro 0,18-0,44 misurati, cioè 0,640-0,178=0,46; 0,839-0,439=0,40; 0,768-0,378=0,39; 0,785-0,413=0,37. Non è lo scarto dello 0,94. Letta alla lettera, la frase dice che 0,94 supera di 0,4 la nostra affidabilità misurata, il che è falso (lo scarto è 0,50-0,76). Si perde anche la conclusione della fonte: lo 0,94 dice poco sull'etichetta ufficiale, la cui affidabilità resta non misurata.",
+    "fonte": "WRITEUP.md Abstract: \"A plug-in simulation of the organizers' process gives about 0.94 (median 0.93) for their reliability, but the same procedure gives 0.64 to 0.84 on our own labels, whose measured test-retest is 0.18 to 0.44, so it says little about theirs\"; §7.3: \"It overstates that agreement by about 0.4 on every model\"; vm_risultati/controlli_verifica2_2026-09-23.txt (simulato 0.640, 0.839, 0.768, 0.785; kappa(A,B) 0.178, 0.439, 0.378, 0.413).",
+    "gravita": "media",
+    "correzione": "a plug-in simulation of the organizers' process gives about 0.94 for their reliability, but the same procedure, run on our own labels, overstates their measured reliability by about 0.4, so the reliability of the official label remains unmeasured."
+   },
+   {
+    "id": "B1-9",
+    "sezione": "1 Introduction, titolo del secondo punto dell'elenco",
+    "citazione_bozza": "The label is hard to reproduce and its reliability is unmeasured (Section 5).",
+    "problema": "Generalizza dal fallimento di un solo processo, il nostro, a una proprietà dell'etichetta. La v2.4 dice che i dati mostrano qualcosa di più ristretto di un verdetto sull'etichetta, e che resta aperto se un altro processo possa riprodurla. La voce 54 ha già ritirato una generalizzazione analoga.",
+    "fonte": "WRITEUP.md §7.3: \"What the data show is narrower than a verdict on the label: variants of the declared families produced by our process ... measure something else. For a participant this closes the route of generating labels with a process like ours; whether any process reproduces the label is open.\"; App. D voce 54: \"and that no other process could regenerate the declared families to useful agreement (7.3, R4)\".",
+    "gravita": "media",
+    "correzione": "**Our regeneration does not reproduce the label, and the label's reliability is unmeasured (Section 5).**"
+   },
+   {
+    "id": "B1-10",
+    "sezione": "1 Introduction, primo punto dell'elenco",
+    "citazione_bozza": "the official pipeline lands in one of many byte-reproducible numerical states, apparently fixed when the process starts",
+    "problema": "La riproducibilità al byte è mostrata solo per 3 dei 14 stati: lo stato di default (6 esecuzioni) e i due punti fissi deterministici (3 esecuzioni ciascuno). Gli altri 11 stati compaiono in una sola esecuzione. La v2.4 dice solo che le generazioni sono identiche al byte dentro uno stato, non che gli stati siano riproducibili.",
+    "fonte": "vm_risultati/e14_tabella_2026-09-23.txt: \"stati numerici distinti: 14\"; solo gli stati 0, 6 e 13 contengono piu' di un'esecuzione. WRITEUP.md §8.1: \"Fourteen distinct numerical states in twenty-three executions. Within a state all forty generations are byte-identical\".",
+    "gravita": "bassa",
+    "correzione": "the official pipeline lands in one of many numerical states (fourteen in twenty-three executions, byte-identical within a state), apparently fixed when the process starts;"
+   },
+   {
+    "id": "B1-11",
+    "sezione": "1 Introduction, terzo punto dell'elenco",
+    "citazione_bozza": "Each apparent signal we examined traced back, wholly or mostly, to something other than the model's internals, or, for our own probe, proved largely redundant with one (Section 3):",
+    "problema": "Rimando interno impreciso (g). Il primo elemento dell'elenco, il campo `permutation_type` che rivela l'etichetta, è trattato nella §2 della bozza; la §3 e la Tabella 1 non lo menzionano.",
+    "fonte": "Bozza §2 (Public data): \"In the three aggregated datasets, the field `permutation_type` is a JSON list if and only if the item is robust\"; nessuna voce corrispondente nella Tabella 1 della §3. WRITEUP.md §1: \"a field that leaks the label in the aggregated public data (2.3a)\".",
+    "gravita": "bassa",
+    "correzione": "Each apparent signal we examined traced back, wholly or mostly, to something other than the model's internals, or, for our own probe, proved largely redundant with one (Sections 2 and 3):"
+   },
+   {
+    "id": "B1-12",
+    "sezione": "2 The task, the labels and the public data, Task",
+    "citazione_bozza": "it runs offline in the organizers' container on a single GPU, with a time limit of one hour",
+    "problema": "\"on a single GPU\" non ha fonte nei file verificati. I file descrivono i worker come 8 schede RTX PRO 6000 condivise, e la v2.4 dice che non si poteva osservare se due invii condividessero una scheda. \"offline\" invece è sostenuto (OSSERVATO.md: Dockerfile con rete disabilitata), come il limite di 3.600 s.",
+    "fonte": "PREREG_E14.md, intestazione: \"la stessa GPU del container di valutazione (8 × RTX PRO 6000 condivise)\"; WRITEUP.md §8.1: \"the evaluation workers are shared, but whether two submissions ever run on the same card there is not something we could observe.\"; OSSERVATO.md: \"Il `Dockerfile.competition` imposta `HF_HUB_OFFLINE=1` e `TRANSFORMERS_OFFLINE=1`, con la rete disabilitata.\"",
+    "gravita": "bassa",
+    "correzione": "it runs offline in the organizers' container on shared GPU workers, with a time limit of one hour (one hour and ten minutes since 15 October, when evaluation moved to one call per problem) [4, 6]."
+   },
+   {
+    "id": "B1-13",
+    "sezione": "2 The task, the labels and the public data, Public data",
+    "citazione_bozza": "For DeepSeek, the only evaluated model with substantial ground truth, 164 pairs are labeled [...] Ground truth for the earlier rule exists otherwise only for 10 gpt-oss-120b pairs.",
+    "problema": "Due qualificatori persi. (i) \"the only evaluated model with substantial ground truth\" vale solo per la regola precedente: nel train set della fase principale gpt-oss-120b ha 37 righe etichettate, DeepSeek 10. (ii) Delle 10 coppie gpt-oss-120b (a reasoning effort low) solo cinque hanno un'etichetta dichiarata, tutte non robuste; le quattro robuste hanno base accuracy 0 e nessuna etichetta dichiarata. La bozza distingue dichiarate e derivate per DeepSeek ma non qui.",
+    "fonte": "WRITEUP.md §12: \"Ground truth under the earlier labeling rule exists for two evaluated models: 164 pairs for DeepSeek, 26 of whose labels we derived (2.2), and 10 for gpt-oss-120b at low reasoning effort, five of them with a declared label.\"; §2.2: \"gpt-oss-120b:low 0.40 (n=10; the four robust pairs all have base accuracy 0 and no declared label, while the five declared labels are all non-robust)\"; vm_risultati/v8_train_main_v2_2026-09-23.txt: DeepSeek n=10, gpt-oss-120b n=15+7+15.",
+    "gravita": "bassa",
+    "correzione": "For DeepSeek, the only evaluated model with substantial ground truth under the earlier rule, 164 pairs are labeled: 138 declared and 26 derived by us under the conjunction (...). Ground truth for the earlier rule exists otherwise only for 10 gpt-oss-120b pairs at low reasoning effort, five of them with a declared label."
+   },
+   {
+    "id": "B1-14",
+    "sezione": "2 The task, the labels and the public data, Public data",
+    "citazione_bozza": "while 20 of the 80 robust pairs in the aggregated data have base accuracy 0 and are robust only trivially under the conjunction.",
+    "problema": "Ambiguità interna (g) nello stesso paragrafo. Poco prima \"the three aggregated datasets\" indica tre file: fra questi c'è val-sample, con 56 righe robuste etichettate. Qui \"the aggregated data\" indica invece le 335 coppie dei sei dataset. Le 20 coppie banalmente robuste stanno tutte in `aimo-interp-challenge-sample-full`, un file per famiglia, non aggregato. Il lettore può collocarle nei file aggregati, che includono proprio val-sample.",
+    "fonte": "WRITEUP.md §2.4: \"while 20 of the 80 robust pairs in the aggregated public data have base accuracy 0, all of them in `aimo-interp-challenge-sample-full`\"; §2.3: \"In the three aggregated datasets (223 labeled rows, 56 of them robust)\"; §7.3: \"the two per-family files, `aimo-interp-challenge-sample-full` and `augmented-sample-math-full-filtered`\".",
+    "gravita": "bassa",
+    "correzione": "while 20 of the 80 robust pairs among the 335 published pairs, all of them in `aimo-interp-challenge-sample-full`, have base accuracy 0 and are robust only trivially under the conjunction."
+   }
+  ],
+  "frasi_controllate": 37,
+  "note": "Blocco: dall'Abstract alla §2, righe 7-33 di C:\\Users\\Utente\\MODELLIPERSONALIZZATI\\DC2026\\AIMO\\report_9p\\REPORT_9P_bozza_2026-10-22.md. Il testo è tutto ASCII, quindi nessun em dash né en dash (criterio f pulito). L'aritmetica ricalcolata torna in ogni punto: 24/40=60%, 145/164=88,4%, 335-52=283, 138+26=164, 21+5+1=27, 27+4=31, 14+35+1=50 (più 4 fa 54), SE sqrt(0,25/21)=10,9 e sqrt(0,25/14)=13,4, 1/21=4,8 e 1/14=7,1 punti. I numeri dell'abstract coincidono con le Tabelle 2-3 e con le §4-5 della bozza.\n\nIl problema principale: tre findings alti (B1-1, B1-2, B1-4) rimettono nel testo affermazioni che la v2.4 aveva già corretto, voci 21, 54 e 46. Il quarto (B1-3) è una citazione degli organizzatori senza fonte verificata.\n\nControllato e non segnalato:\n- \\\"this benchmark's hardware\\\" (§1) è in linea con il titolo della §8 della v2.4 (\\\"on its own hardware\\\").\n- I fatti del 9/10 e del 20/10 corrispondono al PUNTO del 22/10 e sono attribuiti agli organizzatori.\n- \\\"offline\\\", il limite di un'ora e 1h10m dal 15/10, i 21 e 14 item dal 16/9 e gpt-oss solo nel Main (v2.4 6.1: (5, 0); OSSERVATO_MAIN_2026-09-02) hanno riscontro.\n\nDa tenere d'occhio, senza finding:\n- \\\"30 to 50 new problems\\\": le fonti dicono \\\"30-50 domande\\\" (GitHub #6, 17/10) e \\\"circa 30-50 domande\\\" (#qa, 11/10). I file non chiariscono se le domande siano problemi o item (modello, problema).\n- \\\"it remains in the datasets\\\" è verificato solo al 23/9.\n- R6 (§7, fuori blocco) ripete l'affermazione eccessiva sulle sonde di B1-4.\n- Per B1-3 ho letto, solo come contesto, una nota di memoria automatica del 21/9 fuori dalle fonti ammesse. Discord è di nuovo accessibile (PUNTO del 22/10, aggiunta delle 16:09): il messaggio del 15/9 si può rileggere prima di reintrodurre la citazione."
+ },
+ "scettico B3": {
+  "verdetti": [
+   {
+    "id": "B3-1",
+    "esito": "confermato",
+    "motivo": "Verificato sulle fonti. In v2.4 §8.3 la nostra sonda è «largely redundant with length» come predittore e «What the probe reads is not established»; l'Appendix D, voce 46, ritira proprio «reads mostly, though not only, problem length». «Mostly through problem length» vale solo per l'artefatto, e solo con la sua aggregazione d'inferenza: con quella pre-registrata il residuo è 0,62, lo stesso della nostra sonda (§8.3). Numeri ricontrollati: sonda 0,710 OOF, residuo su log caratteri 0,62, caratteri da soli 0,696, sonda da sola 0,697, insieme 0,714. La frase contraddice anche il §3 della bozza. Due ritocchi alla correzione. Primo: «about two points of AUROC over character count» si può leggere come se la sonda da sola superasse i caratteri, mentre da sola li pareggia (0,697 contro 0,696) e sono le due insieme a guadagnare circa due punti; uso quindi la formula dell'abstract v2.4. Secondo: aggiungo «under its own inference aggregation» per coerenza con il §3. Fuori dal blocco: l'abstract della bozza (riga 9) ripete lo stesso eccesso («the white-box probes we tested, ours and the organizers' published artifact, order the labels mostly through problem length») e va corretto allo stesso modo.",
+    "correzione_finale": "On DeepSeek, the organizers' artifact, under its own inference aggregation, ordered the labels mostly through problem length, and our own probe was largely redundant with length as a predictor, adding about two points of AUROC to the character count, with what it reads not established (Section 3); an ablation that removes the white-box component without controlling for length cannot separate the two."
+   },
+   {
+    "id": "B3-2",
+    "esito": "confermato",
+    "motivo": "Verificato. Nella v2.4 R4 è «Enlarge the labeled training split». Nessun passo dice che le differenze di punteggio sotto l'instabilità dell'etichetta non siano interpretabili: ho cercato, e le sole occorrenze di «instability» riguardano E13 ed E13b. La §7.3 chiude con «the reliability of the official label, which remains unmeasured», quindi la soglia evocata dalla bozza non esiste. Il revisore ha ragione anche nel merito: punteggi calcolati sulle stesse etichette fisse restano confrontabili; l'inaffidabilità abbassa il tetto e la validità, ma non rende illeggibile ogni differenza. È poi un'inferenza della stessa specie di quella ritirata alla voce 4 (usare un'affidabilità per dire che cosa i punteggi possono mostrare). La prima frase di R4 segue invece dalla §7.3 (la simulazione ricampiona le stesse varianti) e può restare. La correzione regge.",
+    "correzione_finale": "**R4. Measure the label's reliability directly.** Two independent draws of variants, labeled with the official process, would give the test-retest agreement that the plug-in simulation cannot (Section 5.2); until then, the reliability of the official label remains unmeasured."
+   },
+   {
+    "id": "B3-3",
+    "esito": "confermato",
+    "motivo": "Verificato su vm_risultati/e13_analisi_2026-09-14.txt: kappa(A,B) ha n=159 su tutti i modelli, kappa(A,A′) n=160, kappa(A,loro) n=160 (+0,0251); gli stessi n tornano nel controllo di integrità di e13b_regola_nuova_2026-09-21.txt. I tassi robust sono invece su 164: DeepSeek 37,8% = 62/164 (sui 160 definiti sarebbe 38,8%), e controlli_verifica3 dà per Olmo 65,9% su 164 contro 67,5% sui 160 definiti. La v2.4 intesta la colonna «of 164 problems; the 4 without accepted variants count as not robust». La colonna della fase principale e la concordanza ufficiale con la regola nuova (133) hanno già il loro n nelle celle. I valori della tabella sono giusti, l'n della didascalia no. La correzione regge.",
+    "correzione_finale": "**Table 3.** Agreement of regenerated labels (Cohen's kappa, 95% intervals in brackets). Robust rates are over all 164 problems (the 4 without accepted variants count as not robust); kappas are over the problems labeled in both series (159 for A and B, 160 for A′ and for the official labels); the main-phase column uses the problems labeled in both draws under the 0.10/0.25 thresholds."
+   },
+   {
+    "id": "B3-4",
+    "esito": "confermato",
+    "motivo": "Verificato. La v2.4 §7 dice «the three evaluated models without public labels» e subito dopo «The main-phase train set (2.1) has since supplied a small labeled target under a different rule»; la bozza ha perso la seconda frase. Così il §5 dice che tre modelli valutati non hanno etichette pubbliche, mentre il §8 della bozza dice che il train set della fase principale etichetta tutti e cinque i modelli (da 3 righe etichettate per Skywork a 37 per gpt-oss, v2.4 R4). Gravità bassa, ma la contraddizione interna è reale. La correzione è fedele e breve.",
+    "correzione_finale": "If the label could be regenerated from the rule its public labels follow, it could be learned for the three evaluated models that had no public labels before the main-phase train set."
+   },
+   {
+    "id": "B3-5",
+    "esito": "confermato",
+    "motivo": "Numeri verificati. Con la regola nuova, e13b_regola_nuova_2026-09-21.txt dà 75,2% contro 30,1% (A, n=133) e 71,4% contro 27,7% (B, n=112); controlli_verifica2 dà 0,775 e 0,742 e Spearman −0,094 e −0,006. Il problema è più piccolo di come lo descrive il revisore, perché la regola è nominata due frasi prima («Under the main-phase rule (E13b, ...)»). Però la frase appena precedente parla di «both rules», la nuova riparte con «The gap» e la Tabella 3 mostra 37,8% per DeepSeek con la congiunzione: l'attribuzione resta ambigua. È proprio l'omissione che la voce 43 ha corretto nell'abstract. Quattro parole la tolgono senza costi, quindi la correzione vale.",
+    "correzione_finale": "The gap is not only one of severity: under the main-phase rule, on the compared problems our DeepSeek labels are robust on 71 to 75% against the organizers' 28 to 30%, but our robust rate is about the same whether their label is robust or not (77.5% and 74.2% in draw A), and the largest accuracy drops do not correlate (Spearman −0.09 and −0.01), so no stricter threshold on our side would recover theirs."
+   },
+   {
+    "id": "B3-6",
+    "esito": "confermato",
+    "motivo": "Verificato su controlli_verifica4_2026-09-23.txt. Per Olmo, sugli stessi 126 problemi: kappa(A,B) 0,434 con 9 disaccordi, kappa(A,A′) 0,715 con 5, quota del seme 0,50. Con la regola vecchia: 0,35 contro 0,62, cioè 0,56. La v2.4 §7.5 aggiunge che così pochi disaccordi non separano le due fonti. L'abstract v2.4 omette la riserva, ma il §5.2 della bozza condensa il corpo (§7.2 e §7.5), dove la riserva c'è. Con «under either rule» la bozza tratta le due stime come se valessero allo stesso modo. Ritocco solo la forma, perché in «its 5 and 9 disagreements» il referente non è chiaro.",
+    "correzione_finale": "On Olmo the seed alone accounts for about half of the instability under either rule, although under the main-phase rule this rests on 5 and 9 disagreements, too few to separate the two sources."
+   },
+   {
+    "id": "B3-7",
+    "esito": "confermato",
+    "motivo": "Verificato. La v2.4 §7.3 data e attribuisce la decisione: «On 22 September the organizers added two facts (Discord #qa): ... they have decided not to publish the code that reproduces their labelling, in order to test the generalization of submitted methods» (lo ripete R4). Nella bozza la frase non ha né data né rimando. La voce [6] elenca solo 15 settembre e 9, 15, 16 e 20 ottobre: il 22 settembre manca. La correzione è fedele e la grafia «labeling» è coerente con il resto della bozza.",
+    "correzione_finale": "Whether any process reproduces the label is open; on 22 September the organizers wrote that they have decided not to publish the code that reproduces their labeling, to test the generalization of submitted methods [6]. In [6]: \"AIMO Interpretability Challenge Discord, #announcements and #qa: 15 and 22 September, 9, 15, 16 and 20 October 2026.\""
+   },
+   {
+    "id": "B3-8",
+    "esito": "confermato",
+    "motivo": "Verificato su controlli_verifica4_2026-09-23.txt (punto 5, calibrazione_gptoss.json dentro solution-v6-main.zip). Le righe sono 10: 7 di gpt-oss-120b:low e 3 di huikang-gpt-oss-120b-aimo3:low, su 5 problemi distinti. L'unica robust è di huikang (problema 282), dove la riga di gpt-oss-120b:low è non robust. La voce 54 corregge proprio la descrizione dei dieci elementi senza il fine-tune e la sua unica etichetta robust, e la bozza la ripete. Nota: la v2.4 stessa, nella riga H17 e nel §13, usa la forma breve «one of them robust»; il minimo fedele è dire che c'è un solo positivo, e la §6.2 dice di chi è. Ritocco la correzione: aggiungo il nome del modello e la cautela «by its name» della §6.2, e tolgo l'ambiguità di «carry their only robust label».",
+    "correzione_finale": "It loads each evaluated model, extracts the official features from the model's own greedy generation and applies the official regressor (with a gpt-oss threshold fitted at run time on the ten gpt-oss rows of `val-sample`, whose only robust label is on one of three rows of `huikang-gpt-oss-120b-aimo3:low`, by its name a fine-tune of gpt-oss-120b)."
+   },
+   {
+    "id": "B3-9",
+    "esito": "parziale",
+    "motivo": "Fatti verificati. Alle 16:21 del 22/10 il ricaricamento era autorizzato ma non fatto: Codabench era irraggiungibile dalle 15:58 e non c'era una data di ripristino (PUNTO_2026-10-22, aggiunta delle 16:21). In cartella non c'è traccia di caricamenti successivi (sonde/ è ferma alle 16:17, la bozza è salvata alle 16:27). Il problema però è latente, non un errore di fedeltà: la bozza dichiara in testa che i posti [TBD] si riempiono dopo la chiusura, e la frase è un modello. La correzione regge come promemoria ma copre un solo esito. La stessa fonte («Conseguenze per noi», punto 2) avverte che V8 ha la firma legacy are_robust(model_id, problems) e potrebbe fallire con la valutazione per problema singolo; in quel caso la frase al passato con «scores» resterebbe sbagliata. Estendo la nota a tutti e due i casi.",
+    "correzione_finale": "we resubmitted V8 unchanged, with an all-robust constant as control, on [TBD: date and scores. If Codabench, unreachable since 22 October, does not return before the close, replace with: \"an unchanged resubmission of V8, with an all-robust constant as control, was prepared on 22 October but could not be uploaded because Codabench was unreachable\"; if the per-problem evaluation rejects V8's legacy signature `are_robust(model_id, problems)`, report that failure and the constant's score instead]."
+   },
+   {
+    "id": "B3-10",
+    "esito": "parziale",
+    "motivo": "Il problema esiste. La v2.4 R2 dice «an SD estimated from four runs is itself uncertain, and so is that number» e la bozza l'ha tolto, tenendo solo «from four runs»; ha tolto anche «at the close». Numeri verificati: le quattro esecuzioni 11, 9, 11 e 11 danno una deviazione standard campionaria di 1,0, e con 2·√(2/n) ≤ 1 servono n ≥ 8 esecuzioni. La formula del revisore, «a number as uncertain as an SD estimated from four runs», afferma però una cosa nuova e inesatta. Il numero di esecuzioni cresce col quadrato della deviazione standard, quindi è più incerto della stima da cui viene, non altrettanto. Uso la formula della v2.4.",
+    "correzione_finale": "With the re-execution standard deviation measured in the warmup (1.0 item on 17, from four runs), resolving a one-item gap needs about eight runs, though a standard deviation estimated from four runs is itself uncertain, and so is that number; repeating only the entries near a prize boundary at the close costs a handful of runs rather than three times the field."
+   },
+   {
+    "id": "B3-11",
+    "esito": "confermato",
+    "motivo": "Verificato. Nella v2.4 la frase vale per «Sections 7 and 8» (rigenerazione, hardware e sonde), che nella bozza diventano §3 (sonde), §4 e §5. Il §3 della bozza però contiene anche H2, la cui concordanza è fra modelli, sulle coppie pubbliche di più identificativi (56 su 73, tabella del §4 della v2.4). La bozza stessa la chiama «concordance» («counted once, its concordance falls below the per-model baseline»). Le concordanze con le etichette ufficiali (H19, H22, H32, E13, E13b) e le sonde (H35, H36) sono tutte su DeepSeek. La correzione restringe la frase nel modo giusto. Aggiungo solo «these» davanti a «results», perché il §5 mostra la test-retest su quattro modelli e il §5.3 l'effetto del prompt su Qwen.",
+    "correzione_finale": "Ground truth under the earlier rule exists for two evaluated models, and every probe and every concordance with the official labels in Sections 3 to 5 is measured on DeepSeek, 26 of whose 164 labels we derived; these results are assumed, not shown, for the other models."
+   },
+   {
+    "id": "B3-12",
+    "esito": "parziale",
+    "motivo": "Il problema esiste. La v2.4 §12 dice «apart from the evaluation of our entry and the five-row comparison in 6.4 the analyses in this draft do not use it», e la bozza omette il confronto, che resta nel report di riferimento. Un numero della correzione però è inesatto. e13b_regola_nuova_2026-09-21.txt dà «righe del train set sui nostri problemi e modelli: 6 (con etichetta: 5)»: le righe che cadono sui nostri problemi e modelli sono sei, di cui cinque etichettate (la v2.4 §6.4 dice «the five labeled rows»). Correggo «the five rows» in «the five labeled rows».",
+    "correzione_finale": "The main-phase train set labels all five models but has 3 to 37 labeled rows per model, and apart from the evaluation of V8 and a descriptive comparison with our regenerated labels on the five labeled rows that fall on our problems and models, we do not use it."
+   },
+   {
+    "id": "B3-13",
+    "esito": "confermato",
+    "motivo": "Verificato su vm_risultati/e14_tabella_2026-09-23.txt. Lo stato 6 raccoglie C2_rep0..2_gpu0 (flag deterministici, 15 robust) e lo stato 13 C5_rep0..2_gpu1 (senza compilazione, 12 robust): «punti fissi C2 e C5: robust 15 e 12». La v2.4 §8.1 lo dice («They were also measured on different cards ... so configuration and card are not separated»), la §12 scrive «each on one card», e la voce 44 ha corretto proprio questa omissione. La correzione è fedele. Fuori dal blocco: anche il §4 della bozza («Determinism also does not buy correctness») omette che le due configurazioni hanno girato su schede diverse. Conviene aggiungerlo anche lì, perché è il punto in cui il lettore confronta i due stati.",
+    "correzione_finale": "the fourteen-state structure is established, its cause inferred, and the remedies were tested only in sequential runs, each on one card and the two on different cards, so configuration and card are not separated."
+   },
+   {
+    "id": "B3-14",
+    "esito": "parziale",
+    "motivo": "Il problema esiste. Per P-V8b la v2.4 (Appendix C) scrive «each evaluation marked finished within about a minute of upload, queue and scoring included, an upper bound on the runtime». La bozza non è falsa, ma perde che il minuto comprende coda e punteggio ed è solo un limite superiore; conta, perché la previsione era «under 60 seconds». Per P-V8 la bozza elenca la clausola su copertura, previsioni non valide e tempo senza dirne l'esito, mentre la v2.4 dice «P-V8c was not scored at the time»; la voce 52 riguarda proprio l'omissione di P-V8c. La seconda frase del revisore però sbaglia l'etichetta. Non è «the runtime part» a non essere stata valutata, ma l'intera clausola P-V8c, e la spiegazione che segue parla di copertura. Inoltre «each valid evaluation» presuppone i figli respinti, che la bozza non menziona. Riformulo.",
+    "correzione_finale": "P-V8b: \"Observed: coverage 1.0 and no invalid predictions; 10/21 and 7/14, inside the bands but degenerately, since the rule predicted robust for every item; each evaluation was marked finished within about a minute of upload, queue and scoring included, an upper bound on the runtime.\" At the end of P-V8 add: \"The clause on coverage, invalid predictions and runtime was not scored at the time: each evaluation on the task the bundle was built for had coverage 1.0 and no invalid predictions, and the bundle logs no runtime.\""
+   }
+  ]
+ },
+ "scettico B2": {
+  "verdetti": [
+   {
+    "id": "B2-1",
+    "esito": "confermato",
+    "motivo": "Verificato sui file. warmup_ricalcoli_2026-09-23: H1 con n=335 dà −8.7, con n=283 dà −7.4. controlli_verifica4, punto 3: H7 contro la maggioranza per modello dà −1.2 su 335 e −1.4 su 283. T passa da +6.0 a +7.1. dati_pubblici_controlli, punto 6: V8 ha accuratezza bilanciata 0.65245 su 335 e 0.63057 su 283. La v2.4 dà entrambe le cifre nelle righe della tabella e nel §4 («H1, H7, H8 and T were computed on all 335 published pairs...»), più la voce 29. La bozza perde questa avvertenza, mentre nella stessa Table 1 la riga H2 presenta il doppio conteggio come una trappola. Il lettore lo vede quindi solo per H2, e il rimando all'Appendice A non basta. Gravità bassa, nessun verdetto cambia. Tutti i numeri della correzione sono esatti.",
+    "correzione_finale": "[Table 1 caption, append at the end] H1, H7 and T are computed on the 335 published pairs, counting the 52 duplicated DeepSeek pairs twice; counted once, H1 is −7.4, H7 −1.4 and T +7.1, and no verdict changes. [Length paragraph, replace the final parenthesis] and the direction fixed on the public pairs (balanced accuracy 0.652 over the 335 published pairs, 0.631 over the 283 distinct ones)."
+   },
+   {
+    "id": "B2-2",
+    "esito": "confermato",
+    "motivo": "Verificato. L'esito del 14/9 in PREREG_E15 ed e15_valuta_2026-09-14 danno per H35 AUROC 0.7391 e «sopravvive», con l'aggregazione del disegno pre-registrato (gruppi NONE ciascuno al proprio layer). Lo 0.709 dell'aggregazione del codice di inferenza arriva dalla nota del 23/9, e l'abstract della v2.4 lo mette fra le analisi non pre-registrate. Da e15_artefatto_controlli: pre-registrata 0.739 con residuo su log(n_char) 0.619; inferenza 0.709 con residuo 0.566; gruppi di controllo 0.683. La bozza affianca al verdetto pre-registrato solo il numero non pre-registrato. Nasconde anche che con l'aggregazione pre-registrata il residuo è uguale a quello della nostra sonda (v2.4 §8.3). Il verdetto non cambia, perché anche 0.709 supera il p95 di 0.602. I numeri della correzione sono esatti. Per coerenza va aggiornata anche la chiusa del paragrafo Probes (vedi B2-5).",
+    "correzione_finale": "| The organizers' published probe artifact | H35 | AUROC 0.739 with the pre-registered aggregation (0.62 residualized on log character count); 0.709 with its own inference aggregation (0.57 residualized); its shuffled-label controls 0.68 | survives, largely explained |"
+   },
+   {
+    "id": "B2-3",
+    "esito": "confermato",
+    "motivo": "Verificato su controllo_h2_alias_2026-09-23.txt. Contando le righe una volta sola, i concordi sono 32 contro 29,6 attesi con il nullo a tasso per modello (eccesso +2,4, z = 0.88). Il voto degli altri modelli fa 0.7658 contro 0.7785 della maggioranza per modello, cioè −1.3 punti. La concordanza resta dunque sopra il nullo per modello, senza essere significativa. La frase della bozza («its concordance falls below the per-model baseline») è sbagliata e contraddice lo z = 0.88 positivo della sua stessa Table 1. Anche «the only surviving» al presente stride con il «dead» della tabella: la voce 6 dice «that had survived». La correzione regge. La riformulo solo per evitare «survived, survived» e per dire che cos'è il nullo per modello.",
+    "correzione_finale": "And H2, the only warmup hypothesis about a property of the problem that had survived, owed its survival to one measurement published under two model names and counted twice: counted once, its concordance is no longer significant against a null with per-model robust rates (z = 0.88), and predicting from it scores 1.3 points below the per-model majority."
+   },
+   {
+    "id": "B2-4",
+    "esito": "confermato",
+    "motivo": "Verificato. PREREG_E15 prevedeva «che entrambe muoiano» e non conteneva controlli di lunghezza: l'esito scrive che il confronto con n_char «andava incluso anche qui fin dall'inizio. Registro l'omissione». La v2.4 mette fra le analisi non pre-registrate, nell'abstract e nel §1, i controlli di lunghezza del §8.3 e le altre analisi dell'artefatto. La voce 46 tratta come errore l'omissione della previsione fallita di E15. La bozza scrive «not pre-registered» per la misura del §4 ma non qui, dove poggia il verdetto «largely explained». Il contenuto della correzione è esatto. La riordino per due motivi: «These length controls» anticipa controlli non ancora descritti, e la previsione fallita è attaccata con «and» al momento dei controlli. Nel mio testo la previsione fallita sta accanto alla sopravvivenza delle due sonde. Il testo sostituisce le prime tre frasi del paragrafo Probes.",
+    "correzione_finale": "**Probes.** Our logistic probe on last-token hidden states of DeepSeek, with layer and regularization chosen in an inner cross-validation, reaches AUROC 0.710 out of fold and survives its permutation null (p95 0.574, with 60 permutations where 500 were pre-registered; 0.570 with the full regularization grid). The organizers' artifact survives its null as well (Table 1), although our pre-registration predicted that both probes would die. The length controls that follow, like our analyses of the artifact (its own inference aggregation, its control groups and the directions of its probes), were not pre-registered: we added them after seeing the data. The probe's score correlates with problem length at Spearman +0.55; in a second-level cross-validation over 20 splits, character count alone gives 0.696, the probe 0.697 and the two together 0.714, a gain of about two points; inside the tercile of the longest prompts the probe is at 0.537, indistinguishable from chance."
+   },
+   {
+    "id": "B2-5",
+    "esito": "parziale",
+    "motivo": "Il problema c'è. Per la nostra sonda la v2.4 stabilisce solo che è ridondante con la lunghezza come predittore: insieme guadagnano circa due punti su ciascuna presa da sola. Dice anche che non si sa che cosa la sonda legga (residui 0.62 e 0.62). «What is read beyond length is small» presuppone invece che legga la lunghezza più un piccolo resto, cioè la lettura ritirata dalla voce 46. Per l'artefatto nessuna CV di secondo livello ha misurato il guadagno sulla lunghezza. La v2.4 dice «mostly through problem length» solo per l'aggregazione di inferenza; con quella pre-registrata il residuo è 0.62 come il nostro (e15_artefatto_controlli). Abstract e R6 della bozza ripetono la forzatura su entrambe le sonde, mentre la v2.4 scrive «our probe adds about two points of AUROC to the character count». La correzione proposta però va cambiata. Nel §3 ripete frasi già presenti nel paragrafo e tace il residuo pre-registrato dell'artefatto, il che la rende incoerente con B2-2. Nell'abstract «adds about two points of AUROC to it» e in R6 «over it» hanno un pronome ambiguo (lunghezza o artefatto?). In R6, dopo la riscrittura, «cannot separate the two» può riferirsi alle due sonde invece che a segnale e lunghezza.",
+    "correzione_finale": "[Section 3, replaces the last sentence of the Probes paragraph] Under its own inference aggregation, then, the artifact orders the labels mostly through problem length; under the aggregation we pre-registered (AUROC 0.739) its residual on log character count is 0.62, as for our probe, which is largely redundant with length as a predictor of the label. [Abstract, replaces the clause after 'on public ground truth'] on public ground truth; the organizers' published probe artifact, under its own inference aggregation, orders the labels mostly through problem length, and our own probe adds about two points of AUROC to the character count. [R6, replaces the sentence beginning 'On DeepSeek'] On DeepSeek, the organizers' artifact, under its own inference aggregation, ordered the labels mostly through problem length, and our own probe added about two points of AUROC to the character count (Section 3); an ablation that removes the white-box component without controlling for length cannot separate the white-box signal from length."
+   },
+   {
+    "id": "B2-6",
+    "esito": "confermato",
+    "motivo": "Verificato. Le misure del §4 sono state fatte sulla VM, con GPU dello stesso modello dei worker (v2.4 §8, PREREG_E14); nel container di valutazione girò solo H18. La voce 20 della v2.4 ha corretto proprio questa forzatura. La prima frase della sezione e il §1 della bozza («On the evaluation workers' GPU model») sono corretti, il titolo dice di più. Anche il titolo del §8 della v2.4 («on its own hardware») è vago, per cui la gravità è bassa. La correzione è innocua e allinea il titolo al §1. Fuori dal blocco andrebbe allineata anche la frase del §1 della bozza «its measurement on this benchmark's hardware and pipeline».",
+    "correzione_finale": "## 4 Re-execution noise on the evaluation workers' GPU model"
+   },
+   {
+    "id": "B2-7",
+    "esito": "confermato",
+    "motivo": "Verificato su e14_tabella_2026-09-23.txt: «nessuna generazione comune 61, 1-2 comuni 28, fra 3 e 10 1, oltre 10 1 | valori sopra 2: [9, 38]». Verificato anche su controlli_verifica3: C1_rep0 e C1_rep1 condividono 38 generazioni, mentre lo stato 0 e C3_rep1_gpu0_b ne condividono 9. La bozza taglia la coda della frase del §8.1 della v2.4, che è proprio la correzione della voce 7. 38 su 40 non è «few», e la coda serve a leggere i tre stati del batch 1. La correzione è il testo della v2.4.",
+    "correzione_finale": "different states share few: 61 of the 91 pairs of states share no generation and 28 share one or two, while one contention pair shares 9 and two batch-1 runs share 38."
+   },
+   {
+    "id": "B2-8",
+    "esito": "confermato",
+    "motivo": "Verificato, e il problema è più serio di quanto dica il revisore. PREREG_E14 formula P-E14d come «C1 (batch 1) ha (m1) più alta di C0», dove m1 è la frazione di item byte-identici in tutte le ripetizioni. Nella Table 2 della bozza m1 vale 1/40 per il batch 1 e 0/40 per il default: alla lettera la previsione sembrerebbe riuscita. Il verdetto «fallita» regge solo con il confronto a parità di esecuzioni che dà la v2.4 («three of the five default runs were byte-identical») e che la bozza ha tolto. Anche le cinque esecuzioni di default cadono in tre stati (e14_tabella: stati 0, 1 e 2), quindi «its three runs gave three states» da solo non distingue i due casi. P-E14e fu aggiunta l'8/9 alle 14:00, durante l'esecuzione ma PRIMA di eseguire C5. La correzione regge. Aggiungo «but before it was executed», perché «added during the run» da solo può far pensare a una previsione scritta dopo aver visto il dato.",
+    "correzione_finale": "Two pre-registered predictions failed. Batch size 1 did not make generation more repeatable: its three runs gave three different states, with 1 of 40 items byte-identical across all three, while three of the five default runs were byte-identical to one another. The configuration without compilation, added during the run but before it was executed, was predicted to land in a default state and landed in a state of its own."
+   },
+   {
+    "id": "B2-9",
+    "esito": "confermato",
+    "motivo": "Verificato su e14_tabella: le esecuzioni di default danno 24, 24, 24, 23 e 24; quelle sulla seconda scheda 24, 24 e 21; quelle in contesa 26, 27, 24, 28, 25 e 25. La Table 2 della bozza conta la seconda scheda come una delle sei configurazioni, separata da «Default (batch 8)». Nella cornice della bozza «under the default configuration» rimanda quindi alla prima riga, che non scende sotto 23. Senza «on either card» il 21 finisce sulla riga sbagliata. La frase non è falsa per la v2.4, ma lo diventa nella cornice della bozza. Gravità bassa. La correzione è il testo del §8.1 della v2.4.",
+    "correzione_finale": "accuracy moved much less than predictions (from 21 to 24 correct under the default configuration on either card, and from 24 to 28 under contention), always below the 33 of the majority constant."
+   },
+   {
+    "id": "B2-10",
+    "esito": "confermato",
+    "motivo": "Verificato. e14_tabella riporta «punti fissi C2 e C5: robust 15 e 12; generazioni comuni 0/40; stessa predizione 21/40», con C2 su gpu0 e C5 su gpu1. Le correzioni del 23/9 a PREREG_E14 (punto 4), il §8.1 della v2.4 e la voce 44 dicono che configurazione e scheda non sono separate. La bozza omette questo confondimento, che la v2.4 ha introdotto come correzione, e omette anche «no generation in common». La frase finale sulla scelta dell'impostazione resta com'è nella v2.4. La correzione è esatta.",
+    "correzione_finale": "Determinism also does not buy correctness: the two deterministic configurations settled on two different states, predicting 15 and 12 of 40 problems robust, with no generation in common and the same prediction on only 21 of 40. They also ran on different cards (deterministic algorithms on the first, compilation disabled on the second), so configuration and card are not separated, although the default state did reproduce across cards. The published number under any deterministic setting depends on which setting was chosen."
+   }
+  ]
+ },
+ "scettico B1": {
+  "verdetti": [
+   {
+    "id": "B1-1",
+    "esito": "confermato",
+    "motivo": "Verificato. La prima frase ('Every hypothesis was written down in a dated file before it ran, with a criterion that would kill it') è falsa per quattro voci che, secondo la v2.4 §4, non hanno un criterio di morte: H6 e H13 (tetti oracolo), T (regola trovata dopo i dati) e H18 (misura ripetuta). Per H2 la PREREG_E1 fu scritta dopo aver già osservato la concordanza (56 su 73); il nullo per modello e la soglia furono aggiunti in E3, dopo il primo run. La frase contraddice la frase successiva della bozza e l'abstract (27 su 31). È l'affermazione ritirata dalla voce 21 dell'Appendice D. Ho ricontrollato conteggi ed eccezioni: 31 voci, 27 con criterio (21 morte, 5 sopravvissute, 1 non stabilita), e le quattro eccezioni sono quelle. La correzione è fedele alla v2.4 §1 e §4.",
+    "correzione_finale": "We approached the task as a falsification campaign. Every hypothesis was recorded in a dated file, and every kill is reported. Of thirty-one entries, twenty-seven carried a kill criterion fixed before they ran (for H2 it was written after its concordance had been observed): twenty-one died by it, five survived it and one is not established; the other four (two oracle ceilings, a rule found after the data and a repeat-run measurement) have none and are marked as such (Appendix A)."
+   },
+   {
+    "id": "B1-2",
+    "esito": "confermato",
+    "motivo": "Verificato. Secondo la v2.4 §2.1 le righe etichettate non identificano la regola (anche una regola di maggioranza dà 379 su 379). Il sito dichiara che il criterio esatto differisce dalla bozza della proposta e non è pubblicato: FAQ 7, ancora così oggi. La voce 54 ritira proprio 'the label's stated definition' e precisa che la congiunzione è una nostra lettura dei dati. La frase è sbagliata in qualunque lettura. Se 'declared rule' fosse la regola 0,10/0,25, che è l'unica dichiarata, i kappa sarebbero da 0,34 a 0,56 e non da 0,18 a 0,44. Contraddice anche la §2 della bozza ('is not published'). La correzione riprende la formula della v2.4 ('the rule its public labels follow').",
+    "correzione_finale": "Regenerated with our own process under the rule the earlier public labels follow (the exact criterion is not published), the label agrees with itself at kappa 0.18 to 0.44 and with the official label at about zero; a simulation of the organizers' process is optimistic by construction."
+   },
+   {
+    "id": "B1-3",
+    "esito": "confermato",
+    "motivo": "Verificato, e il caso è più grave di quanto scrive il revisore. La stessa proposizione era già nella v2.1 (versioni_writeup/WRITEUP_v2.1_2026-09-21.md, §6.1: 'most of them falling below random guessing, because they separated labels by features of the problems rather than model internals') e la prima verifica avversaria l'ha tolta. Dalla v2.2 in poi, v2.4 compresa, resta solo che i punteggi migliori non generalizzavano e che la validazione sarebbe stata ricostruita: la bozza reintroduce una frase già rimossa. Sul disco c'è una sola traccia, la memoria automatica del 21/9 (aimo-challenge-stato.md, righe 290-292). Lì la citazione è tra virgolette ('really do not generalize, most of them falling below the random guessing'), mentre la causa è in parafrasi ('separano le etichette con feature del problema e non del modello'), senza 'because', 'many' o 'internals'. Il PUNTO del 22/10 ha letto #announcements solo dal 22/9. La citazione è probabilmente autentica ma va riletta su Discord prima di usarla. La proposizione causale riguarda i metodi di altri partecipanti e non va reintrodotta senza il testo originale. Come correzione finale tengo il testo della v2.4 §6.1, senza la nota editoriale del revisore.",
+    "correzione_finale": "On 15 September they announced that the best leaderboard scores did not generalize to unseen problems and that the validation set would be rebuilt, balanced per problem and per model;"
+   },
+   {
+    "id": "B1-4",
+    "esito": "confermato",
+    "motivo": "Verificato. Per la nostra sonda la v2.4 dice solo che aggiunge circa due punti di AUROC al conteggio dei caratteri (0,696 da solo, 0,697 la sonda, 0,714 insieme) e che 'what the probe reads is not established': il residuo è 0,62 in entrambe le direzioni. La voce 46 ritira 'reads mostly, though not only, problem length'. Quindi 'order the labels mostly through problem length' riferito alla nostra sonda va oltre la fonte. Per l'artefatto la formula regge solo con la sua aggregazione d'inferenza (0,709, residuo 0,57); con quella pre-registrata il residuo è 0,62, come per la nostra (riga H35, §8.3). L'incoerenza con la §1 della bozza ('largely redundant') è reale. Quella con la §3 è debole, perché anche la §3 parla di poco oltre la lunghezza. Lo stesso eccesso torna in R6, fuori da questo blocco. La correzione è fedele all'abstract e alla §8.3 della v2.4.",
+    "correzione_finale": "Apart from a rule that exploits a subpopulation absent from the public validation sample, no channel we scored in accuracy beats the majority constant by more than about one standard error on public ground truth; our own white-box probe adds about two points of AUROC to the character count of the problem, and the organizers' published probe artifact orders the labels mostly through problem length under its own inference aggregation."
+   },
+   {
+    "id": "B1-5",
+    "esito": "confermato",
+    "motivo": "Verificato. L'abstract della v2.4 porta il qualificatore su H2 ('H2 was written down after its concordance had been observed'), e la voce 21 corregge proprio la sua omissione in tutte le bozze. La §1 della bozza lo riporta, l'abstract no, e così 'twenty-seven ... fixed before they ran' include H2 senza avvertenza. Il testo proposto è corretto: 'it' è il criterio, e per la v2.4 §4 la PREREG_E1 fu scritta dopo aver visto la concordanza.",
+    "correzione_finale": "Thirty-one hypotheses are recorded in dated files; twenty-seven carried a kill criterion fixed before they ran (three of them in a written plan rather than a frozen pre-registration; for H2 it was written after its concordance had been observed): twenty-one died, five survived and one is not established."
+   },
+   {
+    "id": "B1-6",
+    "esito": "parziale",
+    "motivo": "Il problema esiste. L'abstract della bozza toglie 'to our knowledge' e l'inciso secondo cui il nondeterminismo dell'inferenza è già documentato in generale. Inoltre cambia i tre risultati nuovi. Nella v2.4 erano (1) il rumore di riesecuzione, (2) la deriva del canale di punteggio e (3) la rigenerazione dell'etichetta, mentre il formato era introdotto da 'We also show'. La bozza fonde (1) e (2) e promuove a nuovo il risultato sul formato, che la v2.4 non rivendica; il repository baselines degli organizzatori, tra l'altro, ha già un prompt con una riga di risposta (R3). La correzione del revisore però non è testo usabile: contiene un'istruzione condizionale tra parentesi quadre e le citazioni [2, 3] dentro l'abstract. Il testo finale riprende per intero la struttura della v2.4, con il rimando alla Section 1 al posto delle citazioni, e include le correzioni di B1-7 e B1-8, così i tre finding si compongono in un solo passo. Ho ricontrollato i numeri: 24 su 40 item; 14 stati in 23 esecuzioni; Spearman 0,24; AUROC 0,487 e 0,602, con intervallo bootstrap da -0,015 a 0,246; 137 problemi su 164 nel training del regressore; kappa 0,178, 0,439, 0,378, 0,413 (regola vecchia) e 0,342, 0,491, 0,406, 0,564 (regola nuova); 0,025 e 0,02 con le etichette ufficiali; simulazione 0,938, e sulle nostre etichette 0,640, 0,839, 0,768, 0,785; 145 su 164, cioè 88%.",
+    "correzione_finale": "Three results are, to our knowledge, new for this benchmark (nondeterminism of LLM inference across batch sizes and hardware configurations is documented in general; Section 1). First, on hardware of the same model as the evaluation workers, inside the official runtime image and through the official extraction and regressor, 24 of 40 items change side of the decision threshold across five executions of the same pipeline on the same inputs; twenty-three executions fall into fourteen numerical states, byte-identical within a state, that appear to be fixed when the process starts. Second, in an exploratory measurement, the official score channel's ordering does not reproduce between identical runs (Spearman 0.24; AUROC 0.487 and 0.602, a difference that is not significant on 164 problems, most of them in the regressor's own training set). Third, the robustness label, regenerated from the rule its public labels follow with a language-model rewriter and our own prompts, decoding and answer key, agrees with itself at Cohen's kappa 0.18 to 0.44 across four models (0.34 to 0.56 under the main-phase thresholds) and with the official DeepSeek labels at 0.03 (0.02); a plug-in simulation of the organizers' process gives about 0.94 for the reliability of their labels, but on our own labels the same procedure overstates the measured value by about 0.4, so the reliability of the official label remains unmeasured. We also show that an answer-format line that the benchmark does not specify moves the share of problems passing the label's base condition for Qwen3.5-4B from 0 to 88%."
+   },
+   {
+    "id": "B1-7",
+    "esito": "confermato",
+    "motivo": "Verificato. L'abstract della v2.4 dice 'this exploratory measurement' e 'on problems most of which are in the regressor's own training set' (137 su 164, §8.2); la bozza lo dice solo nella §4. Il qualificatore conta perché l'abstract della bozza non elenca più le misure non pre-registrate, e E16 non lo era. Il testo proposto regge nella struttura attuale dell'abstract. Se si adotta il passo di B1-6, la stessa frase diventa il 'Second' di quel passo.",
+    "correzione_finale": "and, in an exploratory measurement, the official score channel's ordering does not reproduce between identical runs (Spearman 0.24; AUROC 0.487 and 0.602, a difference that is not significant on 164 problems, most of them in the regressor's own training set)."
+   },
+   {
+    "id": "B1-8",
+    "esito": "parziale",
+    "motivo": "Qui il revisore legge male la frase. Il soggetto è la procedura di simulazione, e lo 0,94 è attribuito al processo ufficiale, non confrontato con la nostra affidabilità. Letta così la frase è vera: sulle nostre etichette la procedura dà 0,640, 0,839, 0,768 e 0,785, contro kappa(A,B) misurati di 0,178, 0,439, 0,378 e 0,413. Lo scarto va da 0,37 a 0,46, cioè circa 0,4 (controlli_verifica2_2026-09-23.txt). Resta però ambigua, perché non dice che la procedura è stata applicata alle nostre etichette, e perde la conclusione della v2.4 §7.3 ('0.94 says little about the reliability of the official label, which remains unmeasured'). Nella sostanza la correzione proposta va bene, ma usa 'their' due volte con due referenti diversi: prima gli organizzatori, poi le nostre etichette. Il testo finale toglie questa ambiguità.",
+    "correzione_finale": "a plug-in simulation of the organizers' process gives about 0.94 for the reliability of their labels, but on our own labels the same procedure overstates the measured value by about 0.4, so the reliability of the official label remains unmeasured."
+   },
+   {
+    "id": "B1-9",
+    "esito": "confermato",
+    "motivo": "Verificato. 'The label is hard to reproduce' è un verdetto sull'etichetta tratto dal fallimento del solo nostro processo. La v2.4 §7.3 dice che quanto mostrano i dati è 'narrower than a verdict on the label' e che resta aperto se un processo qualsiasi possa riprodurla; la voce 54 ritira una generalizzazione dello stesso tipo. Il titolo contraddice anche la §5.2 della bozza stessa. Il testo proposto riprende l'abstract della v2.4 ('our regeneration ... does not reproduce their label') e la §7.3 ('remains unmeasured').",
+    "correzione_finale": "**Our regeneration does not reproduce the label, and the label's reliability is unmeasured (Section 5).**"
+   },
+   {
+    "id": "B1-10",
+    "esito": "confermato",
+    "motivo": "Verificato su vm_risultati/e14_tabella_2026-09-23.txt. Gli stati sono 14 e solo tre contengono più di un'esecuzione: lo stato 0 ne ha 6 (tre default, una di contesa C3_rep1, due sulla seconda scheda), lo stato 6 ne ha 3 (flag deterministici) e lo stato 13 ne ha 3 (senza compilazione). Gli altri 11 stati compaiono in una sola esecuzione. Che uno stato si riproduca identico al byte è quindi mostrato per 3 stati su 14; la v2.4 dice solo 'byte-identical within a state'. La correzione riprende la v2.4 e aggiunge numeri corretti.",
+    "correzione_finale": "the official pipeline lands in one of many numerical states (fourteen in twenty-three executions, byte-identical within a state), apparently fixed when the process starts;"
+   },
+   {
+    "id": "B1-11",
+    "esito": "confermato",
+    "motivo": "Verificato. Nella bozza il campo permutation_type compare solo nella §2 (Public data); la §3 e la Tabella 1 non lo citano. Gli altri elementi dell'elenco sono nella §3: H13, H2, T e la lunghezza, con T anche nella §2. La v2.4 §1 rimanda per questo elemento a 2.3a. Il rimando giusto è quindi 'Sections 2 and 3'.",
+    "correzione_finale": "Each apparent signal we examined traced back, wholly or mostly, to something other than the model's internals, or, for our own probe, proved largely redundant with one (Sections 2 and 3):"
+   },
+   {
+    "id": "B1-12",
+    "esito": "parziale",
+    "motivo": "Il fatto è giusto e documentato, ma non nelle fonti che la frase cita. Il README di aimo-interp/getting-started, che è il riferimento [5] della bozza, lo dice dal commit 1e52bfd78c del 12/9, e così resta nell'ultimo commit (7e05b26143, 14/9): 'one NVIDIA RTX PRO 6000 ... with 96 GB of VRAM. A single card is exposed to the evaluation container, so torch.cuda.device_count() returns 1'. La fonte del revisore, l'intestazione della PREREG_E14 dell'8/9 ('8 × RTX PRO 6000 condivise'), riflette il README del 30/8, che diceva 'eight NVIDIA RTX PRO 6000' ed è stato superato. 'Shared GPU workers' non è falso: il README aggiunge che le submission condividono l'ambiente. Ma togliere 'single GPU' perderebbe il vincolo che conta per chi partecipa, quindi la correzione proposta peggiorerebbe la fedeltà. La frase cita [4, 6]: il sito conferma l'esecuzione offline e i 3600 secondi (FAQ 5 e 8) e rimanda al repository per l'ambiente, e Discord del 15/10 dà 1h10m. La scheda singola invece sta in [5]. Va tenuto il testo, aggiungendo [5] alla citazione.",
+    "correzione_finale": "it runs offline in the organizers' container on a single GPU, with a time limit of one hour (one hour and ten minutes since 15 October, when evaluation moved to one call per problem) [4, 5, 6]."
+   },
+   {
+    "id": "B1-13",
+    "esito": "confermato",
+    "motivo": "Verificato, in due punti. (i) Nel train set della fase principale (v8_train_main_v2_2026-09-23.txt) gpt-oss-120b ha 37 righe etichettate (15 high, 7 low, 15 medium) e DeepSeek solo 10. 'The only evaluated model with substantial ground truth' vale quindi per la regola precedente, e il qualificatore costa tre parole. (ii) Secondo la v2.4 §2.2 e §12, delle 10 coppie gpt-oss-120b:low solo cinque hanno un'etichetta dichiarata, tutte non robuste; le quattro robuste hanno base 0 e nessuna etichetta dichiarata. La bozza distingue tra etichette dichiarate e derivate per DeepSeek, ma non qui. Nel testo finale l'ellissi del revisore è sostituita con la parentesi originale della bozza.",
+    "correzione_finale": "For DeepSeek, the only evaluated model with substantial ground truth under the earlier rule, 164 pairs are labeled: 138 declared and 26 derived by us under the conjunction (a majority rule would call 21 of these 26 robust rather than 4); every analysis on these labels inherits that choice. Ground truth for the earlier rule exists otherwise only for 10 gpt-oss-120b pairs at low reasoning effort, five of them with a declared label."
+   },
+   {
+    "id": "B1-14",
+    "esito": "confermato",
+    "motivo": "Verificato. I 'three aggregated datasets' sono augmented-sample-math-agg, augmented-sample-math-agg-filtered e val-sample: 141+54+28 = 223 righe, di cui 56 robust. I 20 robust con base 0, su 80, si riferiscono invece alle 335 coppie dei sei dataset e stanno tutti in aimo-interp-challenge-sample-full, che è un file per famiglia. Lo confermano controlli_verifica3_2026-09-23.txt (provenienza: aimo-interp-challenge-sample-full 20) e dati_pubblici_controlli (335 coppie, 80 robust, 20 con base 0). Nello stesso paragrafo 'aggregated' indica quindi due insiemi diversi, e uno dei due contiene val-sample. La v2.4 §2.4 scioglie l'ambiguità con 'all of them in aimo-interp-challenge-sample-full', che la bozza ha perso. La correzione è fedele.",
+    "correzione_finale": "while 20 of the 80 robust pairs among the 335 published pairs, all of them in `aimo-interp-challenge-sample-full`, have base accuracy 0 and are robust only trivially under the conjunction."
+   }
+  ]
+ }
+}

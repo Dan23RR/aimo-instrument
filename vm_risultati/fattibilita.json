@@ -1,0 +1,26 @@
+{
+ "Qwen/Qwen3.5-4B": {
+  "quota_base_ok": 0.8,
+  "esito": "ENTRA",
+  "n": 30,
+  "risposta_estratta_media": 0.7533333333333333,
+  "satura": 0.3,
+  "tok_medio": 7846.619999999999
+ },
+ "Skywork/Skywork-OR1-Math-7B": {
+  "quota_base_ok": 0.9333333333333333,
+  "esito": "ENTRA",
+  "n": 30,
+  "risposta_estratta_media": 0.9666666666666666,
+  "satura": 0.03333333333333333,
+  "tok_medio": 3858.773333333333
+ },
+ "allenai/Olmo-3-7B-Think": {
+  "quota_base_ok": 0.8666666666666667,
+  "esito": "ENTRA",
+  "n": 30,
+  "risposta_estratta_media": 0.9133333333333333,
+  "satura": 0.10666666666666667,
+  "tok_medio": 4975.6
+ }
+}

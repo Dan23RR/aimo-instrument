@@ -1,0 +1,98 @@
+{
+ "n": 164,
+ "robust": 40,
+ "null_p95": 0.6036290322580645,
+ "soglia_morte": 0.65,
+ "risultati": {
+  "accordo": {
+   "auroc": 0.5017137096774194,
+   "orientamento": 1,
+   "sopra_null": false,
+   "acc_bilanciata_cv": 0.49435483870967745,
+   "acc_cv": 0.2865853658536585,
+   "soglie_cv": [
+    0.75,
+    0.75,
+    0.75,
+    0.875,
+    0.75
+   ],
+   "esito": "MORTA"
+  },
+  "risposte": {
+   "auroc": 0.5380040322580646,
+   "orientamento": -1,
+   "sopra_null": false,
+   "acc_bilanciata_cv": 0.5157258064516129,
+   "acc_cv": 0.6646341463414634,
+   "soglie_cv": [
+    -0.25,
+    -0.25,
+    -0.25,
+    -0.875,
+    -0.25
+   ],
+   "esito": "secondaria"
+  },
+  "accordo_pesato": {
+   "auroc": 0.5325604838709677,
+   "orientamento": -1,
+   "sopra_null": false,
+   "acc_bilanciata_cv": 0.5116935483870968,
+   "acc_cv": 0.6585365853658537,
+   "soglie_cv": [
+    -0.1875,
+    -0.1875,
+    -0.1875,
+    -0.765625,
+    -0.1875
+   ],
+   "esito": "secondaria"
+  },
+  "n_distinte": {
+   "auroc": 0.5,
+   "orientamento": 1,
+   "sopra_null": false,
+   "acc_bilanciata_cv": 0.48346774193548386,
+   "acc_cv": 0.3597560975609756,
+   "soglie_cv": [
+    1.0,
+    1.0,
+    1.0,
+    2.0,
+    2.0
+   ],
+   "esito": "secondaria"
+  },
+  "tok_medio": {
+   "auroc": 0.652016129032258,
+   "orientamento": 1,
+   "sopra_null": true,
+   "acc_bilanciata_cv": 0.617741935483871,
+   "acc_cv": 0.524390243902439,
+   "soglie_cv": [
+    2323.375,
+    2778.0,
+    2778.0,
+    2778.0,
+    1990.625
+   ],
+   "esito": "secondaria"
+  },
+  "n_char": {
+   "auroc": 0.7039314516129033,
+   "orientamento": 1,
+   "sopra_null": true,
+   "acc_bilanciata_cv": 0.6512096774193549,
+   "acc_cv": 0.5365853658536586,
+   "soglie_cv": [
+    73.0,
+    71.0,
+    71.0,
+    71.0,
+    102.0
+   ],
+   "esito": "secondaria"
+  }
+ }
+}

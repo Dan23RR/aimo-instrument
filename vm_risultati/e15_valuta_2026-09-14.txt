@@ -1,0 +1,34 @@
+============================================================================
+E15 — VERDETTO
+============================================================================
+n=164 problemi con etichetta | robust 24.4% | layer 37 | hidden 4096
+null permutazionale AUROC (20000, orientamento libero): p95 = 0.6022
+
+H35  sonda LORO (ensemble ufficiale, system prompt loro)
+     AUROC 0.7391 (orientato 0.7391) | acc. bilanciata regola margine>=0: 0.5000 | predice robust 0.0%
+     esito: SOPRAVVIVE
+
+H36  sonda NOSTRA, CV nidificata, con system prompt
+     AUROC OOF 0.7097 | acc. bilanciata OOF (soglia 0) 0.6456 | layer/C scelti per fold: [(4, 0.001, 0.798), (4, 0.001, 0.743), (20, 0.001, 0.699), (20, 0.001, 0.761), (7, 0.001, 0.694)]
+Traceback (most recent call last):
+  File "/work/aimo/vm/e15_valuta.py", line 161, in <module>
+    main()
+  File "/work/aimo/vm/e15_valuta.py", line 140, in main
+    nulls = np.array(nulls); p95n = float(np.percentile(nulls, 95))
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 4292, in percentile
+    return _quantile_unchecked(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/work/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 4569, in _quantile_unchecked
+    return _ureduce(a,
+           ^^^^^^^^^^^
+  File "/work/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 3914, in _ureduce
+    r = func(a, **kwargs)
+        ^^^^^^^^^^^^^^^^^
+  File "/work/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 4744, in _quantile_ureduce_func
+    result = _quantile(arr,
+             ^^^^^^^^^^^^^^
+  File "/work/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py", line 4866, in _quantile
+    slices_having_nans = np.isnan(arr[-1, ...])
+                                  ~~~^^^^^^^^^
+IndexError: index -1 is out of bounds for axis 0 with size 0

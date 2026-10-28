@@ -1,0 +1,11 @@
+train-main-v2: righe 82, etichettate 71 (robust 52, non robust 19), testi di problema distinti 36
+n_char: min 80, mediana 296.5, max 1566; righe sotto 98 caratteri: 6 su 82
+V8 sulle righe etichettate: predice robust 65 | corrette 46/71 = 0.6479 | accuratezza bilanciata 0.4423
+costante sempre robust: 52/71 = 0.7324 | costante mai robust: 0.2676
+   Qwen/Qwen3.5-4B                          default n=12 robust  8 | V8 corrette  7
+   Skywork/Skywork-OR1-Math-7B              default n= 3 robust  2 | V8 corrette  2
+   allenai/Olmo-3-7B-Think                  default n= 9 robust  7 | V8 corrette  6
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    default n=10 robust  7 | V8 corrette  6
+   openai/gpt-oss-120b                      high    n=15 robust 13 | V8 corrette 12
+   openai/gpt-oss-120b                      low     n= 7 robust  5 | V8 corrette  4
+   openai/gpt-oss-120b                      medium  n=15 robust 10 | V8 corrette  9

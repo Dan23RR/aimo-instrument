@@ -1,0 +1,8 @@
+verdetto salvato: {'n': 164, 'robust': 40, 'null_p95': 0.6036290322580645, 'M0_TESTO': 0.7046370967741935}
+   Z_C1: AUROC 0.6147, orientamento 1, vs null True
+   Z_C1b: AUROC 0.5552, orientamento -1, vs null False
+null ricostruito: p95 0.6036 (salvato 0.6036)
+   Z_C1: p permutazionale 0.0299
+   Z_C1b: p permutazionale 0.2931
+Holm su 2 test (alfa 0,05):
+   Z_C1: p 0.0299 contro 0.0250 -> NON supera

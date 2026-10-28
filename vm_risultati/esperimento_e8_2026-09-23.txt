@@ -1,0 +1,17 @@
+==========================================================================
+E8 — la calibrazione realizzabile
+==========================================================================
+
+--------------------------------------------------------------------------
+TUTTI i modelli (quello che conta)
+--------------------------------------------------------------------------
+  H14  prior pubblico del bersaglio        0.7431 vs 0.7706  (-2.8 punti, soglia 4.8)  >>> MORTA
+  H15  prior globale per tutti             0.6697 vs 0.7706  (-10.1 punti, soglia 4.8)  >>> MORTA
+       tetto (oracolo, non utilizzabile)   0.7431 vs 0.7706  (-2.8 punti, soglia 4.8)
+
+--------------------------------------------------------------------------
+SENZA Llama (controllo)
+--------------------------------------------------------------------------
+  H14  prior pubblico del bersaglio        0.6571 vs 0.6429  (+1.4 punti, soglia 6.0)  >>> MORTA
+  H15  prior globale per tutti             0.6429 vs 0.6429  (+0.0 punti, soglia 6.0)  >>> MORTA
+       tetto (oracolo, non utilizzabile)   0.6571 vs 0.6429  (+1.4 punti, soglia 6.0)

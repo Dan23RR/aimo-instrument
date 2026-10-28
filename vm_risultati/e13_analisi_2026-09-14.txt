@@ -1,0 +1,54 @@
+==============================================================================
+E13 — AFFIDABILITÀ TEST-RETEST DELL'ETICHETTA  (base_ok = 6/10 campioni corretti)
+==============================================================================
+
+### Qwen/Qwen3.5-4B   condizioni presenti: A, B
+   A   problemi 164, definiti 160 | base_ok  88.4% | robust   9.1% | varianti per problema 39.6
+   B   problemi 164, definiti 159 | base_ok  89.0% | robust   6.1% | varianti per problema 39.1
+   kappa(A,B)  affidabilità totale    n=159  kappa +0.1780  IC95 [-0.0581, +0.3924]  accordo grezzo 0.881
+   kappa(A,DS-loro) controllo x-modello   n=160  kappa -0.1138  IC95 [-0.1915, -0.0093]  robust loro 24.4%
+   kappa(B,DS-loro) controllo x-modello   n=159  kappa -0.1106  IC95 [-0.1643, -0.0555]  robust loro 23.9%
+   per famiglia, kappa(A,B): reph +0.083  rena +0.297  doma +0.233  dist +0.100  typo +0.316  
+
+### Skywork/Skywork-OR1-Math-7B   condizioni presenti: A, Ap, B
+   A   problemi 164, definiti 160 | base_ok  95.7% | robust  72.6% | varianti per problema 39.6
+   Ap  problemi 164, definiti 160 | base_ok  95.7% | robust  72.0% | varianti per problema 39.6
+   B   problemi 164, definiti 159 | base_ok  95.1% | robust  69.5% | varianti per problema 39.1
+   kappa(A,B)  affidabilità totale    n=159  kappa +0.4387  IC95 [+0.2808, +0.5916]  accordo grezzo 0.780
+   kappa(A,A') solo campionamento     n=160  kappa +0.7885  IC95 [+0.6696, +0.8911]  accordo grezzo 0.919
+   kappa(A,DS-loro) controllo x-modello   n=160  kappa -0.0601  IC95 [-0.1597, +0.0325]  robust loro 24.4%
+   kappa(Ap,DS-loro) controllo x-modello  n=160  kappa -0.0756  IC95 [-0.1797, +0.0258]  robust loro 24.4%
+   kappa(B,DS-loro) controllo x-modello   n=159  kappa -0.0255  IC95 [-0.1290, +0.0721]  robust loro 23.9%
+   per famiglia, kappa(A,B): reph +0.496  rena +0.480  doma +0.248  dist +0.268  typo +0.671  
+
+### allenai/Olmo-3-7B-Think   condizioni presenti: A, Ap, B
+   A   problemi 164, definiti 160 | base_ok  93.9% | robust  65.9% | varianti per problema 39.6
+   Ap  problemi 164, definiti 160 | base_ok  93.9% | robust  72.6% | varianti per problema 39.6
+   B   problemi 164, definiti 159 | base_ok  93.9% | robust  74.4% | varianti per problema 39.1
+   kappa(A,B)  affidabilità totale    n=159  kappa +0.3776  IC95 [+0.2094, +0.5373]  accordo grezzo 0.748
+   kappa(A,A') solo campionamento     n=160  kappa +0.6534  IC95 [+0.5210, +0.7780]  accordo grezzo 0.856
+   kappa(A,DS-loro) controllo x-modello   n=160  kappa -0.0917  IC95 [-0.2043, +0.0273]  robust loro 24.4%
+   kappa(Ap,DS-loro) controllo x-modello  n=160  kappa -0.1001  IC95 [-0.2001, +0.0011]  robust loro 24.4%
+   kappa(B,DS-loro) controllo x-modello   n=159  kappa -0.0031  IC95 [-0.0940, +0.0800]  robust loro 23.9%
+   per famiglia, kappa(A,B): reph +0.176  rena +0.538  doma +0.312  dist +0.328  typo +0.336  
+
+### deepseek-ai/DeepSeek-R1-0528-Qwen3-8B   condizioni presenti: A, Ap, B
+   A   problemi 164, definiti 160 | base_ok  89.6% | robust  37.8% | varianti per problema 39.6
+   Ap  problemi 164, definiti 160 | base_ok  89.6% | robust  49.4% | varianti per problema 39.6
+   B   problemi 164, definiti 159 | base_ok  89.6% | robust  31.1% | varianti per problema 39.1
+   kappa(A,B)  affidabilità totale    n=159  kappa +0.4128  IC95 [+0.2617, +0.5547]  accordo grezzo 0.730
+   kappa(A,A') solo campionamento     n=160  kappa +0.4640  IC95 [+0.3337, +0.5898]  accordo grezzo 0.731
+   kappa(A,loro) CONCORDANZA              n=160  kappa +0.0251  IC95 [-0.1192, +0.1751]  robust loro 24.4%
+   kappa(Ap,loro) CONCORDANZA             n=160  kappa -0.0433  IC95 [-0.1750, +0.0935]  robust loro 24.4%
+   kappa(B,loro) CONCORDANZA              n=159  kappa +0.0251  IC95 [-0.1211, +0.1818]  robust loro 23.9%
+   per famiglia, kappa(A,B): reph +0.602  rena +0.343  doma +0.394  dist +0.545  typo +0.491  
+
+==============================================================================
+GRIGLIA DI LETTURA (PREREG_E13.md, scritta prima)
+  nota: la colonna kappa(A,loro) esiste solo per DeepSeek, l'unico modello di cui
+  possediamo le etichette ufficiali. Per gli altri la griglia usa il solo kappa(A,B).
+  Qwen/Qwen3.5-4B                               kappa(A,B) +0.1780 -> (i) etichetta INSTABILE PER COSTRUZIONE: nessun metodo la predice oltre il caso
+  Skywork/Skywork-OR1-Math-7B                   kappa(A,B) +0.4387 -> zona grigia: si riporta la curva e non si conclude oltre
+  allenai/Olmo-3-7B-Think                       kappa(A,B) +0.3776 -> zona grigia: si riporta la curva e non si conclude oltre
+  deepseek-ai/DeepSeek-R1-0528-Qwen3-8B         kappa(A,B) +0.4128 -> zona grigia: si riporta la curva e non si conclude oltre
+==============================================================================

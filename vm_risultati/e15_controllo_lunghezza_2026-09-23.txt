@@ -1,0 +1,18 @@
+n=164 | robust 40 | token del prompt: mediana 81
+sonda nostra, AUROC OOF 0.7097 (atteso 0,7097) | layer/C per fold [(4, 0.001, 0.798), (4, 0.001, 0.743), (20, 0.001, 0.699), (20, 0.001, 0.761), (7, 0.001, 0.694)]
+Spearman(sonda, n_char) +0.551 | Spearman(sonda, n_token) +0.444
+AUROC del residuo della sonda su log(n_token): 0.6669
+terzili per rango di n_token (55/55/54, pareggi spezzati dall'ordine dei dati):
+   terzile corti  n= 55 robust  5 | AUROC sonda 0.848 | AUROC n_char 0.868
+   terzile medi   n= 55 robust 15 | AUROC sonda 0.742 | AUROC n_char 0.588
+   terzile lunghi n= 54 robust 20 | AUROC sonda 0.521 | AUROC n_char 0.507
+terzili per soglia sui quantili di n_token (74.0, 92.0; i pareggi alla soglia vanno nel terzile superiore):
+   terzile corti  n= 52 robust  4 | AUROC sonda 0.917 | AUROC n_char 0.870
+   terzile medi   n= 56 robust 15 | AUROC sonda 0.693 | AUROC n_char 0.558
+   terzile lunghi n= 56 robust 21 | AUROC sonda 0.537 | AUROC n_char 0.507
+AUROC diretto di n_char (nessun adattamento): 0.7039
+CV di secondo livello, seme 20260915: n_char 0.6892 | sonda 0.6909 | entrambi 0.7135
+   20 semi, n_char   media 0.6956  min 0.6864  max 0.7039
+   20 semi, sonda    media 0.6967  min 0.6821  max 0.7054
+   20 semi, entrambi media 0.7138  min 0.6984  max 0.7290
+   guadagno di 'entrambi' su n_char: media +0.0183  min +0.0057  max +0.0321

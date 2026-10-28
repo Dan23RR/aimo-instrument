@@ -1,0 +1,16 @@
+================================================================================================
+1. SIMULAZIONE PLUG-IN SULLE NOSTRE ETICHETTE (regola vecchia, estrazione A, 2000 coppie di repliche)
+   Qwen/Qwen3.5-4B                          simulato media 0.640 (IC90 0.539-0.746) | misurato kappa(A,A') non c'e' | kappa(A,B) 0.178
+   Skywork/Skywork-OR1-Math-7B              simulato media 0.839 (IC90 0.766-0.911) | misurato kappa(A,A') 0.789 | kappa(A,B) 0.439
+   allenai/Olmo-3-7B-Think                  simulato media 0.768 (IC90 0.686-0.846) | misurato kappa(A,A') 0.653 | kappa(A,B) 0.378
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    simulato media 0.785 (IC90 0.724-0.849) | misurato kappa(A,A') 0.464 | kappa(A,B) 0.413
+================================================================================================
+2. REGOLA NUOVA CONTRO REGOLA VECCHIA SUGLI STESSI PROBLEMI (kappa(A,B))
+   Qwen/Qwen3.5-4B                          n= 86 | nuova 0.342 | vecchia sugli stessi 0.233 (guadagno +0.109) | vecchia su tutti 0.178 (n=159)
+   Skywork/Skywork-OR1-Math-7B              n=132 | nuova 0.491 | vecchia sugli stessi 0.400 (guadagno +0.090) | vecchia su tutti 0.439 (n=159)
+   allenai/Olmo-3-7B-Think                  n=133 | nuova 0.406 | vecchia sugli stessi 0.398 (guadagno +0.008) | vecchia su tutti 0.378 (n=159)
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    n=100 | nuova 0.564 | vecchia sugli stessi 0.460 (guadagno +0.104) | vecchia su tutti 0.413 (n=159)
+================================================================================================
+3. DEEPSEEK: NOSTRE ETICHETTE NUOVE CONTRO UFFICIALI NUOVE
+   serie A: n=133 | nostra quota robust dove l'ufficiale e' robust 0.775 (n=40), dove non lo e' 0.742 (n=93) | Spearman max_drop -0.094 (n=160)
+   serie B: n=112 | nostra quota robust dove l'ufficiale e' robust 0.742 (n=31), dove non lo e' 0.704 (n=81) | Spearman max_drop -0.006 (n=159)

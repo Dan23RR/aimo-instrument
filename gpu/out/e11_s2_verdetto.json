@@ -1,0 +1,37 @@
+{
+ "n": 164,
+ "robust": 40,
+ "null_p95": 0.6036290322580645,
+ "M0_TESTO": 0.7046370967741935,
+ "risultati": {
+  "Z_C1": {
+   "auroc": 0.6147177419354839,
+   "orientamento": 1,
+   "vs_null": true,
+   "delta_M0": -0.08991935483870961,
+   "esito": "MORTA"
+  },
+  "Z_C1b": {
+   "auroc": 0.5552419354838709,
+   "orientamento": -1,
+   "vs_null": false,
+   "delta_M0": -0.1493951612903226,
+   "esito": "MORTA"
+  },
+  "Z_C1_grezza": {
+   "auroc": 0.5770161290322581,
+   "orientamento": 1,
+   "vs_null": false,
+   "delta_M0": -0.12762096774193543,
+   "esito": "secondaria"
+  },
+  "d_pad_long": {
+   "auroc": 0.5165322580645162,
+   "orientamento": -1,
+   "vs_null": false,
+   "delta_M0": -0.1881048387096773,
+   "esito": "secondaria"
+  }
+ },
+ "vivi": []
+}

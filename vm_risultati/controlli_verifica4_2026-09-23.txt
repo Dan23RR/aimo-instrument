@@ -1,0 +1,43 @@
+1. COPPIE DEEPSEEK PER FAMIGLIA PEGGIORE (righe per famiglia, non a lista)
+   dichiarate (138): {('1', 'robust'): 11, ('<= 0,5', 'non robust'): 102, ('solo righe a lista', 'robust'): 25}
+   dichiarate con almeno una famiglia in (0,5; 1): 16 (non robuste 16; file di quelle famiglie {'augmented-sample-math-full-filtered': 25})
+   derivate (26): {('(0,5; 1)', 'AIMO'): 4, ('(0,5; 1)', 'MATH'): 16, ('1', 'MATH'): 1, ('<= 0,5', 'AIMO'): 5}
+   righe etichettate (tutti i modelli) con accuratezza perturbata in (0,5; 1): 0
+
+2. AGGREGAZIONE: augmented-sample-math-agg CONTRO augmented-sample-math-full-filtered
+   coppie non robuste dell'aggregato presenti anche nel file non aggregato: 41 | tipo tenuto = tipo (o tipi) ad accuratezza minima: 41 | con almeno un altro tipo dannoso scartato: 16
+
+3. H7 CONTRO LA MAGGIORANZA PER MODELLO (baseline di PREREG_E4) E CONTRO IL PRIOR GLOBALE (script originale)
+   335 coppie pubblicate    n=335 | H7 0.7612 | prior globale 0.7612 (+0.0 punti) | maggioranza per modello 0.7731 (-1.2 punti)
+   alias unito              n=283 | H7 0.7562 | prior globale 0.7562 (+0.0 punti) | maggioranza per modello 0.7703 (-1.4 punti)
+
+4. E13, REGOLA NUOVA: SEME CONTRO VARIANTI SUGLI STESSI PROBLEMI (A, B, A')
+   Skywork-OR1-Math-7B    insiemi propri: kappa(A,B) 0.491 (n=132, 9 disaccordi), kappa(A,A') 0.956 (n=143, 1 disaccordi) | stessi 127 problemi: kappa(A,B) 0.467 (8 disaccordi), kappa(A,A') 0.937 (1 disaccordi), quota del seme 0.12
+   Olmo-3-7B-Think        insiemi propri: kappa(A,B) 0.406 (n=133, 10 disaccordi), kappa(A,A') 0.763 (n=137, 5 disaccordi) | stessi 126 problemi: kappa(A,B) 0.434 (9 disaccordi), kappa(A,A') 0.715 (5 disaccordi), quota del seme 0.50
+
+5. v6: RIGHE GPT-OSS DELLA TARATURA (sonde/solution-v6-main.zip, calibrazione_gptoss.json)
+   righe 10 | per identificativo {'huikang-gpt-oss-120b-aimo3:low': 3, 'gpt-oss-120b:low': 7} | problemi distinti 5 | robust [('huikang-gpt-oss-120b-aimo3:low', 282)]
+   etichette sul problema dell'unica riga robust: [[('huikang-gpt-oss-120b-aimo3:low', True), ('gpt-oss-120b:low', False)]]
+
+6. REGIME DI CAMPIONAMENTO DELLE 164 COPPIE DEEPSEEK
+   problemi MATH 154: predizioni sulla base per problema (massimo fra le righe) [(1, 13), (2, 3), (3, 3), (4, 2), (5, 4), (6, 2), (7, 2), (8, 1), (9, 6), (10, 90), (12, 1), (14, 1), (15, 1), (20, 11), (30, 4), (40, 6), (50, 3), (60, 1)] | valori da 1 a 60 | problemi con base 10: 90, con base 1: 13
+   problemi AIMO 10: predizioni sulla base [4, 5, 6, 10, 10, 11, 11, 12, 13, 14] | predizioni perturbate per riga di famiglia da 1 a 10 ({1: 1, 2: 4, 3: 2, 4: 13, 5: 7, 6: 6, 7: 8, 8: 4, 9: 3, 10: 16}) | varianti elencate per numero di risposte {1: 48, 10: 4, 2: 1, 9: 1}
+
+7. DATI DELLA SIMULAZIONE DEGLI ORGANIZZATORI
+   coppie 116: DeepSeek 56 (MATH 49, AIMO 7), altri identificativi {'lukealonso/GLM-5.1-NVFP4:low': 10, 'gpt-5.2-2025-12-11:low': 10, 'gpt-oss-120b:low': 10, 'huikang-gpt-oss-120b-aimo3:low': 10, 'Qwen/Qwen3.5-397B-A17B-FP8:low': 10, 'gemini-3.1-pro-preview:low': 10}
+   righe delle famiglie esperte: {'expert_no_solution': 59, 'expert_perturbations': 49}, piu' 9 righe a lista che le includono | righe con 50 predizioni perturbate: 118 (di DeepSeek 118)
+
+8. INTERVALLI DI WILSON AL 95%
+   11/21 = 0.524: da 0.324 a 0.717
+   10/19 = 0.526: da 0.317 a 0.727
+   10/21 = 0.476: da 0.283 a 0.676
+   7/14 = 0.500: da 0.268 a 0.732
+   46/71 = 0.648: da 0.532 a 0.749
+
+9. QWEN3.5-4B COL PROMPT NUDO (esecuzioni scartate)
+   serie A: problemi 164, campioni di base 1640, con risposta estraibile (\boxed{}) 5 | token per problema: mediana 8271, media 8803
+   serie B: problemi 164, campioni di base 1640, con risposta estraibile (\boxed{}) 8 | token per problema: mediana 8250, media 8705
+
+10. VARIANTI D'ESEMPIO DELLE FAMIGLIE NEI DUE FILE PER FAMIGLIA, E POOL FEW-SHOT
+   record distinti (problema, famiglia, testo): 638 | per famiglia {'domain': 203, 'distract': 134, 'rephrase': 113, 'typos': 100, 'rename': 74, 'expert_no_solution': 7, 'expert_perturbations': 4, 'paraphrase': 3} | nelle cinque famiglie 624
+   pool few-shot (gpu/e12_fewshot.json): {'domain': 201, 'rename': 74, 'typos': 100, 'rephrase': 113, 'distract': 133}, totale 621

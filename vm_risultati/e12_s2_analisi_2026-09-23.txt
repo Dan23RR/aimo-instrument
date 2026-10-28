@@ -1,0 +1,27 @@
+==========================================================================
+E12 / STADIO 2 — VERDETTO H32
+==========================================================================
+  varianti generate 2449, accettate 1852 (75.6%); motivi di scarto: {'lunghezza': 326, 'risposta_diversa': 250, 'identica': 21}
+  tasso di accettazione per famiglia: {'rephrase': 0.898, 'rename': 0.785, 'domain': 0.504, 'distract': 0.697, 'typos': 0.899}
+  famiglie ESCLUSE dal primario (accettazione < 60%): ['domain']
+
+  problemi: 164 totali, 157 definiti; esclusi: {'senza_riferimento': 6, 'nessuna_variante_accettata': 1}
+  originale corretto (DeepSeek == riferimento gpt-oss): 130/157
+
+  robust LORO 23.6% | robust E12 54.1%
+  H32  kappa = -0.0008   (morte se < 0.30)   accuratezza 0.4777 contro maggioranza 0.7643 (-28.7 punti)
+  tavola: E12=1&loro=1 20 | E12=1&loro=0 65 | E12=0&loro=1 17 | E12=0&loro=0 55
+
+  secondarie:
+    con TUTTE le famiglie (anche ['domain']): n=157, kappa -0.0295, robust E12 49.0%
+    sottoinsieme con riferimento confermato dalla modale S1: n=134, kappa 0.0252
+    famiglia rephrase  n=128  stabile 85.2%  kappa vs loro -0.0124
+    famiglia rename    n=116  stabile 86.2%  kappa vs loro -0.0703
+    famiglia domain    n= 78  stabile 76.9%  kappa vs loro -0.0435
+    famiglia distract  n=100  stabile 81.0%  kappa vs loro -0.0096
+    famiglia typos     n=128  stabile 89.1%  kappa vs loro -0.0136
+    varianti corrette fra i problemi robust loro: 84.4% ; fra gli spurious loro: 83.3%
+
+==========================================================================
+VERDETTO H32: MORTA  (kappa -0.0008 contro soglia 0.30, n=157)
+==========================================================================

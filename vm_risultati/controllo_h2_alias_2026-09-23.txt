@@ -1,0 +1,23 @@
+==============================================================================
+CONTROLLO AVVERSARIO SU H2
+==============================================================================
+  problemi visti da >=2 modelli: 49
+
+  concordi osservati                    : 32 (65%)
+  attesi, nullo con tasso GLOBALE       : 25.5 (52%)   <- quello che avevo usato
+  attesi, nullo con tasso PER MODELLO   : 29.6 (60%)   <- quello corretto
+
+  eccesso sul nullo corretto            : +2.4 problemi, z = 0.88
+  >>> H2 MORTA sul nullo corretto
+
+------------------------------------------------------------------------------
+IL GUADAGNO DEL CANALE-PROBLEMA, contro la baseline CORRETTA
+------------------------------------------------------------------------------
+  La baseline giusta non e' la maggioranza globale: e' la maggioranza
+  DEL MODELLO BERSAGLIO, che a runtime si conosce dal solo model_id.
+  voto degli altri modelli sul problema : 0.7658
+  maggioranza globale                   : 0.7532   (differenza +1.3 punti)
+  maggioranza PER MODELLO               : 0.7785   (differenza -1.3 punti)
+
+  soglia di significativita' su n=158   : 4.0 punti
+  >>> il canale-problema NON SOPRAVVIVE una volta tolto cio' che il solo model_id gia' da'

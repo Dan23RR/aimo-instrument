@@ -1,0 +1,12 @@
+E13b, controllo NON pre-registrato: etichette ufficiali separate per model_id
+-- righe ufficiali con model_id deepseek-ai/DeepSeek-R1-0528-Qwen3-8B: 52 problemi | robust 21.2% | non robust 78.8% | fascia 0.0%
+   kappa(A, ufficiale nuova deepseek)       n= 47 (esclusi   5 su  52)  kappa +0.0874  IC95 [-0.0430, +0.2295]  accordo 0.404  robust 76.6% / 21.3%
+   kappa(B, ufficiale nuova deepseek)       n= 41 (esclusi  11 su  52)  kappa +0.0148  IC95 [-0.1596, +0.1823]  accordo 0.366  robust 78.0% / 24.4%
+   kappa(Ap, ufficiale nuova deepseek)      n= 42 (esclusi  10 su  52)  kappa +0.0047  IC95 [-0.1226, +0.1117]  accordo 0.286  robust 88.1% / 21.4%
+-- righe ufficiali con model_id qwen3-8b:low: 164 problemi | robust 29.3% | non robust 64.6% | fascia 6.1%
+   kappa(A, ufficiale nuova qwen3-8b)       n=133 (esclusi  31 su 164)  kappa +0.0232  IC95 [-0.0879, +0.1350]  accordo 0.414  robust 75.2% / 30.1%
+   kappa(B, ufficiale nuova qwen3-8b)       n=112 (esclusi  52 su 164)  kappa +0.0257  IC95 [-0.1036, +0.1543]  accordo 0.420  robust 71.4% / 27.7%
+   kappa(Ap, ufficiale nuova qwen3-8b)      n=124 (esclusi  40 su 164)  kappa -0.0059  IC95 [-0.1129, +0.0906]  accordo 0.379  robust 83.1% / 32.3%
+-- ufficiale contro ufficiale sugli stessi problemi: 52 in comune
+   max_drop identico in 52 su 52 | correlazione di Spearman dei max_drop +1.000
+   kappa(ufficiale deepseek, ufficiale qwen3-8b) n= 52 (esclusi   0 su  52)  kappa +1.0000  IC95 [+1.0000, +1.0000]  accordo 1.000  robust 21.2% / 21.2%

@@ -1,0 +1,72 @@
+[
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "bbd91e",
+  "robust": true,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "71beb6",
+  "robust": false,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "a1d40b",
+  "robust": false,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "a1d40b",
+  "robust": false,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "bbd91e",
+  "robust": false,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "a1d40b",
+  "robust": false,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ },
+ {
+  "model_id": "huikang-gpt-oss-120b-aimo3:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "1fce4b",
+  "robust": false,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "1fce4b",
+  "robust": false,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "a1d40b",
+  "robust": false,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ },
+ {
+  "model_id": "gpt-oss-120b:low",
+  "dataset_id": "aimo-2025-reference",
+  "problem_id": "1acac0",
+  "robust": false,
+  "problema": "[removed: take original_problem of this problem_id from aimo-interp/val-sample]"
+ }
+]

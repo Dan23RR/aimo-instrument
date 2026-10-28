@@ -1,0 +1,83 @@
+====================================================================================================
+E13b: ETICHETTA DI E13 RILETTA CON LA REGOLA NUOVA (robust se max_drop <= 0,10; non robust se >= 0,25)
+Protocollo: PREREG_E13b.md, scritto prima. Nessuna GPU, stessi dati di E13.
+====================================================================================================
+serie caricate: Qwen3.5-4B A, Qwen3.5-4B B, Skywork-OR1-Math-7B A, Skywork-OR1-Math-7B B, Skywork-OR1-Math-7B Ap, Olmo-3-7B-Think A, Olmo-3-7B-Think B, Olmo-3-7B-Think Ap, DeepSeek-R1-0528-Qwen3-8B A, DeepSeek-R1-0528-Qwen3-8B B, DeepSeek-R1-0528-Qwen3-8B Ap
+
+### CONTROLLO DI INTEGRITA' (regola vecchia, base >= 6 su 10): 10 kappa attesi da e13_analisi_2026-09-14.txt
+   Qwen/Qwen3.5-4B                          kappa(A,B)     atteso n=159 +0.1780 | ricalcolato n=159 +0.1780  OK
+   Skywork/Skywork-OR1-Math-7B              kappa(A,A')    atteso n=160 +0.7885 | ricalcolato n=160 +0.7885  OK
+   Skywork/Skywork-OR1-Math-7B              kappa(A,B)     atteso n=159 +0.4387 | ricalcolato n=159 +0.4387  OK
+   allenai/Olmo-3-7B-Think                  kappa(A,A')    atteso n=160 +0.6534 | ricalcolato n=160 +0.6534  OK
+   allenai/Olmo-3-7B-Think                  kappa(A,B)     atteso n=159 +0.3776 | ricalcolato n=159 +0.3776  OK
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    kappa(A,A')    atteso n=160 +0.4640 | ricalcolato n=160 +0.4640  OK
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    kappa(A,B)     atteso n=159 +0.4128 | ricalcolato n=159 +0.4128  OK
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    kappa(A,loro)  atteso n=160 +0.0251 | ricalcolato n=160 +0.0251  OK
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    kappa(Ap,loro) atteso n=160 -0.0433 | ricalcolato n=160 -0.0433  OK
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    kappa(B,loro)  atteso n=159 +0.0251 | ricalcolato n=159 +0.0251  OK
+   tutti coincidono: si procede.
+
+### QUOTE PER SERIE (regola nuova, primaria)
+   Qwen/Qwen3.5-4B                          A   problemi 164 | robust  43.9% | non robust  25.6% | fascia  28.0% | senza varianti 4 | base_acc < 0,5:  10.4%
+   Qwen/Qwen3.5-4B                          B   problemi 164 | robust  37.2% | non robust  34.8% | fascia  25.0% | senza varianti 5 | base_acc < 0,5:  10.4%
+   Skywork/Skywork-OR1-Math-7B              A   problemi 164 | robust  81.1% | non robust   9.8% | fascia   6.7% | senza varianti 4 | base_acc < 0,5:   4.3%
+   Skywork/Skywork-OR1-Math-7B              B   problemi 164 | robust  79.3% | non robust   6.7% | fascia  11.0% | senza varianti 5 | base_acc < 0,5:   4.9%
+   Skywork/Skywork-OR1-Math-7B              Ap  problemi 164 | robust  82.3% | non robust   9.1% | fascia   6.1% | senza varianti 4 | base_acc < 0,5:   4.3%
+   allenai/Olmo-3-7B-Think                  A   problemi 164 | robust  80.5% | non robust   7.9% | fascia   9.1% | senza varianti 4 | base_acc < 0,5:   6.1%
+   allenai/Olmo-3-7B-Think                  B   problemi 164 | robust  84.8% | non robust   4.3% | fascia   7.9% | senza varianti 5 | base_acc < 0,5:   6.1%
+   allenai/Olmo-3-7B-Think                  Ap  problemi 164 | robust  81.7% | non robust   7.9% | fascia   7.9% | senza varianti 4 | base_acc < 0,5:   5.5%
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    A   problemi 164 | robust  64.0% | non robust  21.3% | fascia  12.2% | senza varianti 4 | base_acc < 0,5:   9.1%
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    B   problemi 164 | robust  50.0% | non robust  21.3% | fascia  25.6% | senza varianti 5 | base_acc < 0,5:   9.8%
+   deepseek-ai/DeepSeek-R1-0528-Qwen3-8B    Ap  problemi 164 | robust  65.9% | non robust  13.4% | fascia  18.3% | senza varianti 4 | base_acc < 0,5:   9.8%
+
+### AFFIDABILITA' TEST-RETEST
+-- Qwen/Qwen3.5-4B
+   kappa(A,B)  NUOVA, primaria              n= 86 (esclusi  78 su 164)  kappa +0.3422  IC95 [+0.1265, +0.5336]  accordo 0.686  robust 64.0% / 58.1%
+   kappa(A,B)  nuova, S1 base_acc >= 0,5    n= 76 (esclusi  69 su 145)  kappa +0.3081  IC95 [+0.0996, +0.5121]  accordo 0.658  robust 60.5% / 52.6%
+   kappa(A,B)  nuova, S2 famiglie >= 5 varianti n= 79 (esclusi  85 su 164)  kappa +0.4285  IC95 [+0.2117, +0.6197]  accordo 0.734  robust 68.4% / 59.5%
+   kappa(A,B)  VECCHIA (E13)                n=159  kappa +0.1780
+-- Skywork/Skywork-OR1-Math-7B
+   kappa(A,B)  NUOVA, primaria              n=132 (esclusi  32 su 164)  kappa +0.4906  IC95 [+0.1682, +0.7574]  accordo 0.932  robust 91.7% / 93.9%
+   kappa(A,B)  nuova, S1 base_acc >= 0,5    n=128 (esclusi  27 su 155)  kappa +0.5237  IC95 [+0.1603, +0.7876]  accordo 0.938  robust 91.4% / 94.5%
+   kappa(A,B)  nuova, S2 famiglie >= 5 varianti n=129 (esclusi  35 su 164)  kappa +0.4819  IC95 [+0.0000, +0.7962]  accordo 0.953  robust 93.0% / 97.7%
+   kappa(A,B)  VECCHIA (E13)                n=159  kappa +0.4387
+   kappa(A,A') nuova, primaria (descrittivo) n=143 (esclusi  21 su 164)  kappa +0.9562  IC95 [+0.8312, +1.0000]  accordo 0.993  robust 90.9% / 91.6%
+-- allenai/Olmo-3-7B-Think
+   kappa(A,B)  NUOVA, primaria              n=133 (esclusi  31 su 164)  kappa +0.4063  IC95 [+0.0895, +0.6865]  accordo 0.925  robust 91.7% / 94.7%
+   kappa(A,B)  nuova, S1 base_acc >= 0,5    n=128 (esclusi  25 su 153)  kappa +0.4047  IC95 [+0.0816, +0.6902]  accordo 0.922  robust 91.4% / 94.5%
+   kappa(A,B)  nuova, S2 famiglie >= 5 varianti n=131 (esclusi  33 su 164)  kappa +0.2771  IC95 [-0.0345, +0.5984]  accordo 0.931  robust 93.1% / 96.9%
+   kappa(A,B)  VECCHIA (E13)                n=159  kappa +0.3776
+   kappa(A,A') nuova, primaria (descrittivo) n=137 (esclusi  27 su 164)  kappa +0.7627  IC95 [+0.4859, +0.9375]  accordo 0.964  robust 91.2% / 92.0%
+-- deepseek-ai/DeepSeek-R1-0528-Qwen3-8B
+   kappa(A,B)  NUOVA, primaria              n=100 (esclusi  64 su 164)  kappa +0.5637  IC95 [+0.3605, +0.7339]  accordo 0.830  robust 73.0% / 74.0%
+   kappa(A,B)  nuova, S1 base_acc >= 0,5    n= 92 (esclusi  55 su 147)  kappa +0.5495  IC95 [+0.3616, +0.7256]  accordo 0.815  robust 70.7% / 71.7%
+   kappa(A,B)  nuova, S2 famiglie >= 5 varianti n= 98 (esclusi  66 su 164)  kappa +0.5243  IC95 [+0.3143, +0.7123]  accordo 0.827  robust 76.5% / 75.5%
+   kappa(A,B)  VECCHIA (E13)                n=159  kappa +0.4128
+   kappa(A,A') nuova, primaria (descrittivo) n=117 (esclusi  47 su 164)  kappa +0.7538  IC95 [+0.5722, +0.8953]  accordo 0.923  robust 77.8% / 83.8%
+
+### VALIDITA': DEEPSEEK CONTRO LE ETICHETTE UFFICIALI RILETTE CON LA REGOLA NUOVA
+   righe ufficiali usate: 504 (per file: {'aimo-interp-challenge-sample-full.json': np.int64(50), 'augmented-sample-math-agg-filtered.json': np.int64(54), 'augmented-sample-math-agg.json': np.int64(141), 'augmented-sample-math-full-filtered.json': np.int64(259)}) | model_id: ['deepseek-ai/DeepSeek-R1-0528-Qwen3-8B', 'qwen3-8b:low']
+   problemi con max_drop ufficiale: 164 su 164 | robust 29.3% | non robust 64.6% | fascia 6.1%
+   etichette ufficiali, vecchia contro nuova:
+      label               nuova in fascia  nuova non robust  nuova robust
+      robust                                                             
+      vecchia non robust               10               106             8
+      vecchia robust                    0                 0            40
+   kappa(A, ufficiale nuova) primaria       n=133 (esclusi  31 su 164)  kappa +0.0232  IC95 [-0.0879, +0.1350]  accordo 0.414  robust 75.2% / 30.1%
+   kappa(B, ufficiale nuova) primaria       n=112 (esclusi  52 su 164)  kappa +0.0257  IC95 [-0.1036, +0.1543]  accordo 0.420  robust 71.4% / 27.7%
+   kappa(Ap, ufficiale nuova) primaria      n=124 (esclusi  40 su 164)  kappa -0.0059  IC95 [-0.1129, +0.0906]  accordo 0.379  robust 83.1% / 32.3%
+   kappa(A, ufficiale nuova) S1 base >= 0,5 n=125 (esclusi  24 su 149)  kappa +0.0064  IC95 [-0.1137, +0.1168]  accordo 0.400  robust 73.6% / 28.0%
+   kappa(A, ufficiale nuova) S2 fam >= 5    n=131 (esclusi  33 su 164)  kappa -0.0267  IC95 [-0.1288, +0.0754]  accordo 0.359  robust 78.6% / 28.2%
+   kappa(A, ufficiale nuova) S3 con esperti n=132 (esclusi  32 su 164)  kappa +0.0375  IC95 [-0.0750, +0.1447]  accordo 0.417  robust 75.0% / 28.8%
+
+### DESCRITTIVO: I 5 PROBLEMI IN COMUNE CON IL TRAIN SET UFFICIALE (regola nuova da entrambe le parti)
+   righe del train set sui nostri problemi e modelli: 6 (con etichetta: 5)
+   serie A: concordi 2, discordi 2, nostra etichetta in fascia o assente 1
+   serie B: concordi 3, discordi 2, nostra etichetta in fascia o assente 0
+
+====================================================================================================
+VERDETTI (criteri di PREREG_E13b.md)
+H-E13b-1 affidabilita': kappa(A,B) nuova Qwen3.5-4B +0.342, Skywork-OR1- +0.491, Olmo-3-7B-Th +0.406, DeepSeek-R1- +0.564 -> modelli sotto 0,60: 4 -> MORTA
+H-E13b-2 validita': kappa(A, ufficiale nuova) +0.023 IC95 [-0.088, +0.135] -> MORTA
+H-E13b-3 peso della regola: nuova meno vecchia Qwen3.5-4B +0.164, Skywork-OR1- +0.052, Olmo-3-7B-Th +0.029, DeepSeek-R1- +0.151 -> modelli con +0,15 o piu': 2 -> MORTA
+====================================================================================================

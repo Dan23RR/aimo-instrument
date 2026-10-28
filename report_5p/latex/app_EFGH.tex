@@ -1,0 +1,97 @@
+\section{Section map between the full report and this report}\label{app:E}
+The full report (draft v2.4, 23 September 2026) is released with this report. Its sections correspond to this report as follows; the sections marked as not reproduced are only in the full report. Sections 2 to 7 of this report are condensed from the nine-page text given in Appendix J under the same numbers.
+
+\begin{center}\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{L{7.4cm}L{5.8cm}}
+\toprule
+\textbf{Full report (draft v2.4)} & \textbf{This report} \\
+\midrule
+Abstract; 1. Stance and contributions & Abstract; Section 1 \\
+2. The instrument from the outside: public data & Section 2 (condensed; 2.3(b), the withdrawn regressor defect, is not reproduced) \\
+3. The instrument from the inside: warmup measurements & Not reproduced; H16 to H18 in Appendix A \\
+4. The falsification campaign & Section 3 (condensed) and Appendix A (verbatim) \\
+5. GPU-scale replication (warmup) & Section 3 and Appendix A (H10, H13) \\
+6. The main phase: the entry that measures, and the entry that does nothing & Section 6; predictions in Appendix B \\
+7. Can the label be regenerated from its definition? (introduction) & Section 5, first paragraph; the rule on training data in Appendix H \\
+7.1 Our families, translation, self-consistency: three dead ends with ground truth & Section 3 (Table 1) \\
+7.2 The organizers' own families, regenerated; 7.3 What this does and does not show & Section 5 (Table 3), 5.1 and 5.2; the first run of 7.2 (E12, H32) in Section 3 (Table 1) \\
+7.4 The answer-format dependence & Section 5.3 \\
+7.5 The same data under the main-phase rule (E13b) & Section 5 (Table 3), 5.1 and 5.2 \\
+8. The instrument on its own hardware (introduction) & Section 4, first paragraph; compute in Appendix D \\
+8.1 The structure of re-execution noise & Section 4 \\
+8.2 The official score channel does not reproduce its ordering between identical runs & Section 4, last paragraph (the comparison with our A100 features is not reproduced) \\
+8.3 Linear probes on the residual stream, ours and theirs & Section 3, Length and probes \\
+8.4 Per-model score distributions on this hardware & Not reproduced \\
+9. Correspondence with the organizers, and the compute grant & Not reproduced, except the thanks (Acknowledgments), the question about measurements on the organizers' machine (Limitations and Appendix K) and the rule on training data (Appendix H) \\
+10. Recommendations & Section 7, renumbered: R1 to R3 keep their numbers, R5 is R7 and R6 is R5; R4 (enlarge the labeled training split) is not reproduced; R4 and R6 of this report are new \\
+11. Corrections since draft v1.0 & Appendix C \\
+12. Limitations & Limitations (after Section 7) and Appendix D \\
+13. Reproducibility and disclosure & Appendix D and Appendix K; the use of AI assistants also in the AI usage statement \\
+Appendix A. Floor algebra & Appendix F \\
+Appendix B. The allocation episode & Appendix G \\
+Appendix C. Pre-registered predictions to be scored against the final evaluation & Appendix B \\
+Appendix D. Corrections to our earlier statements & Appendix C \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Floor algebra}\label{app:F}
+\emph{Carried over verbatim from the full report (draft v2.4, 23 September 2026), which is released with this report. Section and appendix numbers in this appendix refer to that report; Appendix~E maps them to this one.}
+
+With floor f, raw score s maps to capability $\kappa$ = (s $-$ f)/(1 $-$ f) and raw error is amplified by 1/(1 $-$ f). Knowing $\kappa$ to within $\varepsilon$ needs n $\geq$ 0.25/($\varepsilon$(1 $-$ f))$^2$ items.
+
+\section{The allocation episode}\label{app:G}
+\emph{Carried over verbatim from the full report (draft v2.4, 23 September 2026), which is released with this report. Section and appendix numbers in this appendix refer to that report; Appendix~E maps them to this one.}
+
+Corrected from v1.0, which reported the review's conclusion but not that our pre-registration made a refutation a reason not to submit, nor that the author overrode that rule, and which presented the exclusion from the leaderboard as the review's consequence; draft v2.1 did not state the verdict at all (Appendix D, item 18). One aggregate-informed entry (909843) was pre-registered with the rule that it would not be submitted if our adversarial compliance review refuted it. The review refuted it: all of its expected advantage came from observed statistics of the evaluation set. The author overrode the rule and submitted it once, as a measurement, kept off the leaderboard. It tied the entry it modified, which its own algebra ruled out unless the model path on the DeepSeek items failed. Of the three explanations recorded at the time (numerical drift on the DeepSeek items, a change in the evaluation set with the container update the organizers reported on 31 August, a changed label total), none was verified then; the cache update had preceded both entries, since the getting-started README listed all four models as cached from 30 August. The measurement of re-execution drift (H18; Section 8) was prompted by the drift of regressor scores between the logs of v5 and v6, at equal code and inputs, noticed on 31 August, after the tie (PREREG\_V6), which is the reason the pre-registration of the repeated runs gives (PREREG\_V7); drafts v1.0, v2.2 and v2.3 attributed it to the tie (Appendix D, item 31).
+
+\section{Assets and licenses}\label{app:H}
+\emph{New in this report; licenses as stated on the Hugging Face and GitHub pages on 23 October 2026.}
+
+\paragraph{Models.} gpt-oss-120b (OpenAI, Apache-2.0); Olmo-3-7B-Think (Allen Institute for AI, Apache-2.0); DeepSeek-R1-0528-Qwen3-8B (DeepSeek, MIT); Qwen3.5-4B (Qwen, Apache-2.0); Skywork-OR1-Math-7B (Skywork; no license is stated on its model card); phi-4 (Microsoft, MIT), used only for the translations of H22; and gemma-3-27b-it (Google, Gemma Terms of Use) and Olmo-3-7B-Instruct (Allen Institute for AI, Apache-2.0), which our warmup entries loaded in the organizers' container for H16 to H18. The model revisions on the organizers' virtual machine were Qwen3.5-4B 851bf6e, Skywork-OR1-Math-7B fcef970, Olmo-3-7B-Think d97e442, DeepSeek-R1-0528-Qwen3-8B 6e8885a and gpt-oss-120b b5c939d (as recorded on 17 September).
+
+\paragraph{Data.} The organizers' datasets published under \texttt{aimo-interp} on Hugging Face: \texttt{val-sample}, \texttt{augmented-sample-math}, \texttt{augmented-sample-math-full-filtered}, \texttt{augmented-sample-math-agg-filtered}, \texttt{aimo-interp-challenge-sample-full} and \texttt{augmented-sample-math-agg}, whose cards state no license, and the main-phase train set \texttt{train-main-v2}, whose card states the license as ``other'' without further detail; we used its revision 23791d9 of 17 September 2026 (82 rows, 71 labeled), which the organizers extended to 94 rows on 15 October. The problems of the six earlier datasets come from the MATH dataset [7] (MIT license) and from the AIMO 2025 reference problems, as their \texttt{dataset\_id} field records (\texttt{hendrycks-math-train-reference-500}, \texttt{hendrycks-math-test-reference-100}, \texttt{aimo-2025-reference}). The website's rule against extra labeled data was commented out on 25 August (the Codabench Terms kept it until at least 16 September) and retired explicitly on 19 September [4]; on 5 September the organizers wrote in Discord \#qa that participants can use the perturbations and labels they generate themselves ``for anything'' [6]. On 2 October, answering a question in repository issue \#10, they allowed the publication of self-generated prompts, labels and output-level metrics, and of per-example rows derived from \texttt{augmented-sample-math-agg} without the problem text or the models' raw outputs; the perturbed problem texts we would release go beyond that exchange, and we will release them only with the organizers' agreement [5].
+
+\paragraph{Code.} The organizers' repositories on GitHub. \texttt{aimo-interp/getting-started} (no license stated) contains the evaluation harness, the official uncertainty-feature extraction (\texttt{uncertainty\_profile}) with the shipped DeepSeek regressor, and the DeepSeek probe artifact with its inference code; we used the last three [5]. Our model-running bundles include the extraction code and the regressor unchanged, so we will release them without these files, with instructions to fetch them, unless the organizers allow their redistribution. \texttt{aimo-interp/baselines} (Apache-2.0) contains the organizers' encoding and probe training code; we used three of its files, \texttt{scripts/probe.py}, \texttt{prompts/solve.txt} and \texttt{data/math-robust-agg.csv}. vLLM [8] (Apache-2.0) ran the generation, gating and labeling of Section 5 (version 0.28.0 on the organizers' virtual machine, as recorded on 17 September).
+
+
+\section{Prompts}\label{app:I}
+\emph{New in this report; taken verbatim from our scripts \texttt{vm/e13\_varianti.py} and \texttt{vm/e13\_etichetta.py}, with the placeholders in angle brackets.}
+
+\paragraph{Generator.} gpt-oss-120b at low reasoning effort, temperature 1.0, top\_p 1.0, at most 4,096 tokens, one request per problem and family. For each draw, problem and family, five examples of that family are drawn reproducibly from the public examples (Section 5), excluding the problem itself. Lines in parentheses describe the prompt rather than quote it.
+
+\begin{quote}\footnotesize\ttfamily
+You create variants of mathematics competition problems for a robustness benchmark. \\
+Perturbation type: <family>. <family instruction> \\
+The variant must be a complete, self-contained problem with exactly the same final answer as the original. Do not solve the problem. Do not add hints or solutions. \\
+~ \\
+Here are 5 examples of this perturbation type: \\
+~ \\
+Example 1 \\
+Original: <public original> \\
+Variant: <public variant> \\
+~ \\
+(Examples 2 to 5 in the same form) \\
+~ \\
+Now write 10 different variants of the following problem. Make them genuinely different from each other. Output each variant between <variant> and </variant> tags, and nothing else. \\
+~ \\
+Original: <problem>
+\end{quote}
+
+The family instructions:
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item \texttt{rephrase}: Rewrite the problem in different words while preserving exactly its mathematical content and its final answer.
+\item \texttt{rename}: Rename the variables, people, objects or entities in the problem while preserving its mathematical structure and its final answer.
+\item \texttt{domain}: Transfer the problem to a different real-world surface domain (a different story, setting and objects) while preserving exactly the same mathematical structure and the same final answer.
+\item \texttt{distract}: Insert irrelevant but plausible additional information (extra facts, numbers or context) that does not change the problem or its final answer.
+\item \texttt{typos}: Introduce harmless typographical or formatting noise (misspellings, spacing, punctuation, capitalisation) without changing the meaning of the problem or its final answer.
+\end{itemize}
+
+\paragraph{Gate and reference answers.} gpt-oss-120b at medium reasoning effort, temperature 1.0, top\_p 1.0, at most 8,192 tokens, with this instruction line followed by a blank line and the problem or the variant:
+
+\begin{quote}\footnotesize\ttfamily
+Solve the following problem. Reason step by step, then give only the final answer inside \textbackslash{}boxed\{\}.
+\end{quote}
+
+\paragraph{Labeling.} The same instruction line, followed by a blank line and the problem or the variant, was given to Qwen3.5-4B, Skywork-OR1-Math-7B and Olmo-3-7B-Think in all their series and to DeepSeek in A$'$; DeepSeek received the bare text in A and B. Sampling: temperature 0.6, top\_p 0.95, at most 16,384 tokens; ten samples on the base problem and one on each variant.
+
