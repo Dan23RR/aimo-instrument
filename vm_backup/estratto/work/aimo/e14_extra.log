@@ -1,0 +1,14 @@
+=== E14 extra gpu=1 [C5 C4] N=40 inizio Tue Sep  8 15:12:50 UTC 2026 ===
+[15:12:50] avvio C5 rep0 gpu1 a
+[15:31:32] fine  C5 rep0 a -> gen 1111s = 27.8 s/item | soglia 0.5760 | robust_pred 12/40
+[15:31:32] avvio C5 rep1 gpu1 a
+[15:50:11] fine  C5 rep1 a -> gen 1112s = 27.8 s/item | soglia 0.5760 | robust_pred 12/40
+[15:50:11] avvio C5 rep2 gpu1 a
+[16:08:55] fine  C5 rep2 a -> gen 1112s = 27.8 s/item | soglia 0.5760 | robust_pred 12/40
+[16:08:55] avvio C4 rep0 gpu1 a
+[16:26:25] fine  C4 rep0 a -> gen 1039s = 26.0 s/item | soglia 0.5760 | robust_pred 19/40
+[16:26:25] avvio C4 rep1 gpu1 a
+[16:43:54] fine  C4 rep1 a -> gen 1038s = 26.0 s/item | soglia 0.5760 | robust_pred 19/40
+[16:43:54] avvio C4 rep2 gpu1 a
+[17:01:24] fine  C4 rep2 a -> gen 1040s = 26.0 s/item | soglia 0.5760 | robust_pred 12/40
+=== E14 extra fine Tue Sep  8 17:01:24 UTC 2026 ===

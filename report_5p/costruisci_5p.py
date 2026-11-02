@@ -40,6 +40,12 @@ def escape(t):
 
 
 def inline(t):
+    """Come _inline, piu' le note a pie' di pagina scritte fra ⟦ e ⟧ (2/11/2026)."""
+    pezzi = re.split(r"⟦(.+?)⟧", t, flags=re.S)
+    return "".join("\\footnote{" + _inline(p) + "}" if k % 2 else _inline(p) for k, p in enumerate(pezzi))
+
+
+def _inline(t):
     """Marcatura in linea: `codice`, **grassetto**, virgolette, caratteri unicode."""
     pezzi = re.split(r"(`[^`]*`)", t)
     out = []
@@ -115,6 +121,14 @@ i = 1
 while i < len(blocchi):
     b = blocchi[i].strip()
     i += 1
+    if b.startswith("```latex"):
+        # blocco LaTeX scritto a mano (riquadro, tabelle, figura), copiato com'e'; senza righe vuote
+        assert b.endswith("```"), "blocco LaTeX non chiuso (o con una riga vuota dentro)"
+        grezzo = b[len("```latex"):-3].strip()
+        for a, c in UNICODE.items():
+            grezzo = grezzo.replace(a, c)
+        corpo.append(grezzo)
+        continue
     if b.startswith("**Daniel Culotta**") or (b.startswith("*Five-page version") and b.endswith("*")):
         continue
     if b == "---":
@@ -196,6 +210,10 @@ PREAMBOLO = r"""\documentclass{article}
 \usepackage{amsfonts}
 \usepackage{microtype}
 \usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em, itemsep=2pt, topsep=4pt, parsep=0pt}
+\renewcommand{\arraystretch}{1.15}
 \raggedbottom
 
 \title{TITOLO}
@@ -244,13 +262,49 @@ parte9 = parte9.replace(FINALE, "For the final test we nominated V8 (1016713) an
 PRE ="and the change of rule adds only 0.01 to 0.11 when both rules are read on the same problems"
 assert parte9.count(PRE) == 1, "frase del par. 5.1 non trovata una volta sola"
 parte9 = parte9.replace(PRE, "and, post hoc, the change of rule adds only 0.01 to 0.11 when both rules are read on the same problems")
-DOVE = {"1": "Section 3", "2": "Section 4", "3": "Section 5"}
+# 2/11: gli altri tre confronti che WRITEUP.md (par. 7.5) dichiara non pre-registrati
+for prima, dopo in (("but our robust rate is about the same whether their label is robust or not",
+                     "but, in comparisons made post hoc, our robust rate is about the same whether their label is robust or not"),
+                    ("under the main-phase rule 0.94 against 0.47 on the problems labeled in all three series",
+                     "under the main-phase rule and post hoc, 0.94 against 0.47 on the problems labeled in all three series")):
+    assert parte9.count(prima) == 1, prima
+    parte9 = parte9.replace(prima, dopo)
+# Dal 2/11 il testo principale condensa le tre tabelle in Table 1, Figure 1 e Table 2: le versioni verificate
+# fino al 2/11 (tabelle_dettaglio_5p.md) vanno qui per intero, al posto di quelle della bozza da 9 pagine.
+DETTAGLIO = {}
+bd = [x.strip() for x in re.split(r"\n\s*\n", io.open(os.path.join(QUI, "tabelle_dettaglio_5p.md"), encoding="utf-8").read())]
+for q, x in enumerate(bd):
+    m = re.match(r"^\*\*Table (\d)\.\*\* (.+)$", x, flags=re.S)
+    if m:
+        nota = bd[q + 2][2:].strip() if q + 2 < len(bd) and bd[q + 2].startswith("\\*") else None
+        DETTAGLIO[m.group(1)] = (m.group(2).strip(), bd[q + 1].splitlines(), nota)
+assert sorted(DETTAGLIO) == ["1", "2", "3"]
+
+
+def tabella_J(n):
+    didasc, righe_t, nota = DETTAGLIO[n]
+    celle = [[c.strip() for c in r.strip().strip("|").split("|")] for r in righe_t]
+    intest, corpo_t = celle[0], celle[2:]
+    assert all(len(r) == len(intest) for r in corpo_t)
+    s = ["\\begin{center}\\begin{minipage}{\\linewidth}",
+         "\\noindent\\textbf{Table J." + n + ".} " + inline(didasc) + "\\par\\smallskip",
+         "{\\footnotesize\\setlength{\\tabcolsep}{4pt}", "\\begin{tabular}{" + COLONNE[ETICHETTE[n]] + "}", "\\toprule",
+         " & ".join("\\textbf{" + inline(c) + "}" for c in intest) + " \\\\", "\\midrule"]
+    s += [" & ".join(inline(c) for c in r) + " \\\\" for r in corpo_t]
+    s += ["\\bottomrule", "\\end{tabular}"]
+    if nota:
+        s.append("\\par\\smallskip\\noindent (*) " + inline(nota))
+    s += ["}", "\\end{minipage}\\end{center}"]
+    return "\n".join(s)
+
+
+parte9 = re.sub(r"\bTable ([123])\b", r"Table J.\1", parte9)
 J = ["\\section{Extended version of Sections 2 to 7}\\label{app:J}",
      "\\emph{This appendix gives Sections 2 to 7 in the longer form of our nine-page draft of 22 October 2026, which the "
-     "main text condenses; section numbers and references are those of the main text. Tables 1 to 3 are not "
-     "repeated: they are in Sections 3, 4 and 5, slightly condensed (Appendix A gives every entry of Table 1). Two "
-     "changes from the nine-page draft: in Section 6 the resubmission of 28 October and our nominations for the final "
-     "test replace two placeholders, and in Section 5.1 a comparison that was not pre-registered is marked post hoc.}"]
+     "main text condenses; section numbers are those of the main text. Tables J.1 to J.3 give in detail what the main "
+     "text condenses into Table 1, Figure 1 and Table 2 (Appendix A gives every entry of Table J.1). Two changes from "
+     "the nine-page draft: in Section 6 the resubmission of 28 October and our nominations for the final test replace "
+     "two placeholders, and in Sections 5.1 and 5.2 the comparisons that were not pre-registered are marked post hoc.}"]
 bl = [x.strip() for x in re.split(r"\n\s*\n", parte9.strip()) if x.strip()]
 k = 0
 tabelle_saltate = 0
@@ -261,13 +315,13 @@ while k < len(bl):
     if m:
         J.append("\\subsection*{J." + m.group(1) + "\\quad " + inline(m.group(2)) + "}")
         continue
-    m = re.match(r"^\*\*Table (\d)\.\*\* ", b)
+    m = re.match(r"^\*\*Table J\.(\d)\.\*\* ", b)
     if m:
         assert bl[k].startswith("| "), "manca la tabella dopo la didascalia"
         k += 1
         if k < len(bl) and bl[k].startswith("\\*"):
             k += 1
-        J.append("\\emph{(Table " + m.group(1) + " is in " + DOVE[m.group(1)] + ".)}")
+        J.append(tabella_J(m.group(1)))
         tabelle_saltate += 1
         continue
     assert not b.startswith("| "), "tabella senza didascalia"

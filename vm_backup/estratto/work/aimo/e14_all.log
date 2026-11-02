@@ -1,0 +1,61 @@
+=== E14 N=40 condizioni [C0 C1 C2 C3] inizio Tue Sep  8 12:37:42 UTC 2026 ===
+[12:37:42] avvio C0 rep0 gpu0 a
+[12:55:47] fine  C0 rep0 a -> gen 1041s = 26.0 s/item | soglia 0.5760 | robust_pred 19/40
+[12:55:47] avvio C0 rep1 gpu0 a
+[13:13:50] fine  C0 rep1 a -> gen 1040s = 26.0 s/item | soglia 0.5760 | robust_pred 19/40
+[13:13:50] avvio C0 rep2 gpu0 a
+[13:31:19] fine  C0 rep2 a -> gen 1039s = 26.0 s/item | soglia 0.5760 | robust_pred 19/40
+[13:31:19] avvio C0 rep3 gpu0 a
+[13:48:54] fine  C0 rep3 a -> gen 1041s = 26.0 s/item | soglia 0.5760 | robust_pred 14/40
+[13:48:54] avvio C0 rep4 gpu0 a
+[14:06:25] fine  C0 rep4 a -> gen 1038s = 26.0 s/item | soglia 0.5760 | robust_pred 17/40
+[14:06:25] avvio C1 rep0 gpu0 a
+[14:55:58] fine  C1 rep0 a -> gen 2930s = 73.3 s/item | soglia 0.5760 | robust_pred 19/40
+[14:55:58] avvio C1 rep1 gpu0 a
+[15:44:48] fine  C1 rep1 a -> gen 2917s = 72.9 s/item | soglia 0.5760 | robust_pred 18/40
+[15:44:48] avvio C1 rep2 gpu0 a
+[16:32:03] fine  C1 rep2 a -> gen 2824s = 70.6 s/item | soglia 0.5760 | robust_pred 11/40
+[16:32:03] avvio C2 rep0 gpu0 a
+[16:50:33] fine  C2 rep0 a -> gen 1096s = 27.4 s/item | soglia 0.5760 | robust_pred 15/40
+[16:50:33] avvio C2 rep1 gpu0 a
+[17:08:59] fine  C2 rep1 a -> gen 1096s = 27.4 s/item | soglia 0.5760 | robust_pred 15/40
+[17:08:59] avvio C2 rep2 gpu0 a
+[17:27:31] fine  C2 rep2 a -> gen 1097s = 27.4 s/item | soglia 0.5760 | robust_pred 15/40
+[17:27:31] avvio C3 rep0 gpu0 a
+[17:27:31] avvio C3 rep0 gpu0 b
+[18:04:11] fine  C3 rep0 b -> gen 2189s = 54.7 s/item | soglia 0.5760 | robust_pred 12/40
+[18:04:12] fine  C3 rep0 a -> gen 2190s = 54.8 s/item | soglia 0.5760 | robust_pred 11/40
+[18:04:12] avvio C3 rep1 gpu0 b
+[18:04:12] avvio C3 rep1 gpu0 a
+[18:40:47] fine  C3 rep1 a -> gen 2184s = 54.6 s/item | soglia 0.5760 | robust_pred 19/40
+[18:40:48] fine  C3 rep1 b -> gen 2185s = 54.6 s/item | soglia 0.5760 | robust_pred 13/40
+[18:40:48] avvio C3 rep2 gpu0 a
+[18:40:48] avvio C3 rep2 gpu0 b
+[19:17:23] fine  C3 rep2 a -> gen 2184s = 54.6 s/item | soglia 0.5760 | robust_pred 18/40
+[19:17:24] fine  C3 rep2 b -> gen 2185s = 54.6 s/item | soglia 0.5760 | robust_pred 16/40
+=== E14 fine Tue Sep  8 19:17:24 UTC 2026 ===
+drwxr-xr-x 2 root root  4096 Sep  8 19:17 .
+drwxr-xr-x 5 root root  4096 Sep  8 12:30 ..
+-rw-r--r-- 1 root root 34735 Sep  8 12:55 e14_C0_rep0_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34735 Sep  8 13:13 e14_C0_rep1_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34735 Sep  8 13:31 e14_C0_rep2_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34756 Sep  8 13:48 e14_C0_rep3_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34764 Sep  8 14:06 e14_C0_rep4_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34774 Sep  8 14:55 e14_C1_rep0_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34783 Sep  8 15:44 e14_C1_rep1_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34791 Sep  8 16:32 e14_C1_rep2_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34785 Sep  8 16:50 e14_C2_rep0_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34785 Sep  8 17:08 e14_C2_rep1_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34785 Sep  8 17:27 e14_C2_rep2_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34796 Sep  8 18:04 e14_C3_rep0_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34761 Sep  8 18:04 e14_C3_rep0_gpu0_b.jsonl
+-rw-r--r-- 1 root root 34735 Sep  8 18:40 e14_C3_rep1_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34801 Sep  8 18:40 e14_C3_rep1_gpu0_b.jsonl
+-rw-r--r-- 1 root root 34789 Sep  8 19:17 e14_C3_rep2_gpu0_a.jsonl
+-rw-r--r-- 1 root root 34762 Sep  8 19:17 e14_C3_rep2_gpu0_b.jsonl
+-rw-r--r-- 1 root root 34735 Sep  8 16:26 e14_C4_rep0_gpu1_a.jsonl
+-rw-r--r-- 1 root root 34735 Sep  8 16:43 e14_C4_rep1_gpu1_a.jsonl
+-rw-r--r-- 1 root root 34819 Sep  8 17:01 e14_C4_rep2_gpu1_a.jsonl
+-rw-r--r-- 1 root root 34805 Sep  8 15:31 e14_C5_rep0_gpu1_a.jsonl
+-rw-r--r-- 1 root root 34805 Sep  8 15:50 e14_C5_rep1_gpu1_a.jsonl
+-rw-r--r-- 1 root root 34805 Sep  8 16:08 e14_C5_rep2_gpu1_a.jsonl

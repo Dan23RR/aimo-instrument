@@ -15,6 +15,8 @@ cinque = io.open(os.path.join(QUI, "REPORT_5P_bozza_2026-10-28.md"), encoding="u
 nove = io.open(os.path.join(QUI, "..", "report_9p", "REPORT_9P_bozza_2026-10-22.md"), encoding="utf-8").read()
 
 testo = cinque[cinque.index("## Abstract"):cinque.index("## Acknowledgments")]
+# dal 2/11 il testo contiene blocchi LaTeX: via le misure di impaginazione, e \% torna %
+testo = re.sub(r"\d+(?:\.\d+)?(?:cm|pt|em|ex|in)(?![a-z])", "", testo).replace("\%", "%")
 NUM = re.compile(r"(?<![\w.])[−+]?\d[\d,]*(?:\.\d+)?%?")
 
 

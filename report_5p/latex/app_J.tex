@@ -1,6 +1,6 @@
 \section{Extended version of Sections 2 to 7}\label{app:J}
 
-\emph{This appendix gives Sections 2 to 7 in the longer form of our nine-page draft of 22 October 2026, which the main text condenses; section numbers and references are those of the main text. Tables 1 to 3 are not repeated: they are in Sections 3, 4 and 5, slightly condensed (Appendix A gives every entry of Table 1). Two changes from the nine-page draft: in Section 6 the resubmission of 28 October and our nominations for the final test replace two placeholders, and in Section 5.1 a comparison that was not pre-registered is marked post hoc.}
+\emph{This appendix gives Sections 2 to 7 in the longer form of our nine-page draft of 22 October 2026, which the main text condenses; section numbers are those of the main text. Tables J.1 to J.3 give in detail what the main text condenses into Table 1, Figure 1 and Table 2 (Appendix A gives every entry of Table J.1). Two changes from the nine-page draft: in Section 6 the resubmission of 28 October and our nominations for the final test replace two placeholders, and in Sections 5.1 and 5.2 the comparisons that were not pre-registered are marked post hoc.}
 
 \subsection*{J.2\quad The task, the labels and the public data}
 
@@ -18,9 +18,30 @@ On 21 and 14 items the binomial standard error of an accuracy near one half is 1
 
 \subsection*{J.3\quad The falsification campaign}
 
-Validation that fits on some problems and tests on others is grouped by problem. Table 1 condenses the campaign; Appendix A gives every entry with its baseline and caveats.
+Validation that fits on some problems and tests on others is grouped by problem. Table J.1 condenses the campaign; Appendix A gives every entry with its baseline and caveats.
 
-\emph{(Table 1 is in Section 3.)}
+\begin{center}\begin{minipage}{\linewidth}
+\noindent\textbf{Table J.1.} Channels tested against ground truth (DeepSeek and the public pairs unless stated). Accuracy differences are in points against the baseline named in each pre-registration. H1, H7 and T are computed on the 335 published pairs, counting the 52 duplicated DeepSeek pairs twice; counted once, H1 is $-$7.4, H7 $-$1.4 and T +7.1, and no verdict changes.\par\smallskip
+{\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{L{3.7cm}L{1.3cm}L{5.5cm}L{2.3cm}}
+\toprule
+\textbf{Channel} & \textbf{Entry} & \textbf{Result} & \textbf{Verdict} \\
+\midrule
+Problem text, 32 features, grouped 5-fold & H1 & 0.675 vs 0.761 ($-$8.7) & dead \\
+Robustness as a property of the problem & H2 & $-$1.3 (z = 0.88) with duplicated rows counted once; +3.4 (z = 4.04) only when counted twice & dead \\
+Labels, base accuracy, difficulty order across models & H3 to H5, H7 & $-$7.3, $-$11.8, $-$25.4, $-$1.2 & dead \\
+Official uncertainty features, logistic regression, grouped CV & H10 & 0.7744 vs 0.756, inside one standard error & reaches the proposal's accuracy (method substituted) \\
+Cached features for other models; per-target thresholds & H12, H13 & $-$16.5; +7.3 from thresholds chosen on the scored items, $-$2.8 when forced to rank & dead; ceiling withdrawn \\
+Our families; translation; self-consistency; the organizers' families regenerated (pilot) & H19, H22, H33, H32 & kappa 0.02; kappa $-$0.10; AUROC 0.502; kappa $-$0.001 & dead \\
+Representation shift under perturbation; length control & H30, H31 & AUROC 0.615 (planned threshold 0.655; character count 0.705); 0.555 & dead \\
+Our linear probe on the residual stream, nested CV & H36 & AUROC 0.710; about +0.02 over character count & survives, largely explained \\
+The organizers' published probe artifact & H35 & AUROC 0.739 (pre-registered aggregation) and 0.709 (its own), 0.62 and 0.57 residualized on log character count; shuffled-label controls 0.68 & survives, largely explained \\
+Trivial-robust rule (robust iff base accuracy < 0.05), post hoc & T & +6.0 on the 335 public pairs, +0.0 on \texttt{val-sample} & trap \\
+Identical bundles re-executed (warmup, 17 items) & H18 & 11, 9, 11 and 11 correct & noise confirmed \\
+\bottomrule
+\end{tabular}
+}
+\end{minipage}\end{center}
 
 \paragraph{Three traps a conventional validation would not catch.}
 Rule T gains six points on the public pairs and nothing on \texttt{val-sample}, because the trivially robust subpopulation is absent there (Section 2). The oracle H13 appeared to show cross-model signal (+7.3 points, still +5.5 when constant predictions are excluded), but each target's threshold was chosen among all cut points on the very items it was scored on; forced to rank the items and to predict the true number of positives, it gave $-$2.8. And H2, the only warmup hypothesis about a property of the problem that had survived, owed its survival to one measurement published under two model names and counted twice: counted once, its concordance is no longer significant against a null with per-model robust rates (z = 0.88), and predicting from it scores 1.3 points below the per-model majority.
@@ -29,13 +50,29 @@ Rule T gains six points on the public pairs and nothing on \texttt{val-sample}, 
 Problem length recurs throughout: the character count alone orders the DeepSeek labels at AUROC 0.705, above the representation-shift statistic of H30 (0.615). Our pre-registered entry V8 (Section 6) is the rule \texttt{len(problem) >= 98}, with the threshold at the lower median of the 174 public problems and the direction fixed on the public pairs (balanced accuracy 0.652 over the 335 published pairs, 0.631 over the 283 distinct ones).
 
 \paragraph{Probes.}
-Our logistic probe on last-token hidden states of DeepSeek, with layer and regularization chosen in an inner cross-validation, reaches AUROC 0.710 out of fold and survives its permutation null (p95 0.574, with 60 permutations where 500 were pre-registered; 0.570 with the full regularization grid). The organizers' artifact survives its null as well (Table 1), although our pre-registration predicted that both probes would die. The length controls that follow, like our analyses of the artifact (its own inference aggregation, its control groups and the directions of its probes), were not pre-registered: we added them after seeing the data. The probe's score correlates with problem length at Spearman +0.55; in a second-level cross-validation over 20 splits, character count alone gives 0.696, the probe 0.697 and the two together 0.714, a gain of about two points; inside the tercile of the longest prompts the probe is at 0.537, indistinguishable from chance. What the probe reads is not established: residualized on log character count its score gives 0.62, and log character count residualized on the probe gives 0.62 as well. The organizers' published DeepSeek probe artifact orders our labels at AUROC 0.709 under its own inference aggregation, but 0.57 once residualized on log character count, and its own randomization controls, trained on shuffled labels, give 0.68 by themselves; at the layer it uses, each seed's probe points the same way whether trained on true or shuffled labels (cosine 0.93 to 0.998). Under its own inference aggregation, then, the artifact orders the labels mostly through problem length; under the aggregation we pre-registered (AUROC 0.739) its residual on log character count is 0.62, as for our probe, which is largely redundant with length as a predictor of the label.
+Our logistic probe on last-token hidden states of DeepSeek, with layer and regularization chosen in an inner cross-validation, reaches AUROC 0.710 out of fold and survives its permutation null (p95 0.574, with 60 permutations where 500 were pre-registered; 0.570 with the full regularization grid). The organizers' artifact survives its null as well (Table J.1), although our pre-registration predicted that both probes would die. The length controls that follow, like our analyses of the artifact (its own inference aggregation, its control groups and the directions of its probes), were not pre-registered: we added them after seeing the data. The probe's score correlates with problem length at Spearman +0.55; in a second-level cross-validation over 20 splits, character count alone gives 0.696, the probe 0.697 and the two together 0.714, a gain of about two points; inside the tercile of the longest prompts the probe is at 0.537, indistinguishable from chance. What the probe reads is not established: residualized on log character count its score gives 0.62, and log character count residualized on the probe gives 0.62 as well. The organizers' published DeepSeek probe artifact orders our labels at AUROC 0.709 under its own inference aggregation, but 0.57 once residualized on log character count, and its own randomization controls, trained on shuffled labels, give 0.68 by themselves; at the layer it uses, each seed's probe points the same way whether trained on true or shuffled labels (cosine 0.93 to 0.998). Under its own inference aggregation, then, the artifact orders the labels mostly through problem length; under the aggregation we pre-registered (AUROC 0.739) its residual on log character count is 0.62, as for our probe, which is largely redundant with length as a predictor of the label.
 
 \subsection*{J.4\quad Re-execution noise on the evaluation workers' GPU model}
 
 On 8 September the organizers provided a virtual machine with two NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs (96 GB each), the same model as the evaluation workers. All runs in this section used the official runtime image (torch 2.12.1, transformers 5.13.0) and the unmodified official extraction and regressor, on DeepSeek.
 
-\emph{(Table 2 is in Section 4.)}
+\begin{center}\begin{minipage}{\linewidth}
+\noindent\textbf{Table J.2.} Forty public problems, twenty-three executions in six configurations; generated text hashed per item. Items crossing: items whose prediction changes across the runs of a configuration (crossings grow with the number of runs; per pair of runs, 15.3 under contention, 13.3 with batch size 1, 12.7 on the second card, 11.4 by default). Deterministic algorithms: \texttt{CUBLAS\_WORKSPACE\_CONFIG=:4096:8}, \texttt{torch.use\_deterministic\_algorithms(True, warn\_only=True)} and deterministic cuDNN; compilation disabled: \texttt{TORCH\_COMPILE\_DISABLE=1}.\par\smallskip
+{\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{L{4.6cm}L{0.9cm}L{2.2cm}L{2.0cm}L{1.6cm}}
+\toprule
+\textbf{Configuration} & \textbf{Runs} & \textbf{Byte-identical items} & \textbf{Items crossing} & \textbf{Seconds per item} \\
+\midrule
+Default (batch 8) & 5 & 0/40 & 24/40 & 26.0 \\
+Batch size 1 & 3 & 1/40 & 20/40 & 72.3 \\
+Two concurrent processes on one card & 6 & 0/40 & 32/40 & 54.7 \\
+Second physical card & 3 & 0/40 & 19/40 & 26.0 \\
+Deterministic algorithms and cuBLAS workspace setting & 3 & 40/40 & 0 & 27.4 \\
+Compilation disabled & 3 & 40/40 & 0 & 27.8 \\
+\bottomrule
+\end{tabular}
+}
+\end{minipage}\end{center}
 
 Crossings can only grow with the number of runs, so rows with different run counts are not directly comparable; averaged over pairs of runs, 15.3 items cross under contention, 13.3 with batch size 1, 12.7 on the second card and 11.4 under the default configuration.
 
@@ -52,13 +89,28 @@ The official features and regressor score were extracted three times for the 174
 
 If the label could be regenerated from the rule its public labels follow, it could be learned for the three evaluated models that had no public labels before the main-phase train set. We identified the organizers' five perturbation families from the public data (rephrase, rename, domain, distract, typos), regenerated them with gpt-oss-120b at low reasoning effort prompted with the public examples, and gated each variant with gpt-oss-120b at medium effort (the text must differ, the length ratio must lie between 0.7 and 4.0 and the solver's answer must not change; the prompts are in Appendix I). Because the public datasets carry no answers, an answer counts as correct when it matches gpt-oss-120b's answer on the original problem. On the organizers' virtual machine (E13), we labeled four models with ten variants per family in two independent draws (A and B; about 40 accepted variants per problem), ten samples on the base problem and one per variant, and re-sampled draw A's variants with a new seed (A$'$). Generation, gating and labeling ran on that machine in our own Python environment with vLLM 0.28.0 (torch 2.13.0, transformers 5.16.1, as recorded on 17 September), outside the official runtime image; variants were generated at temperature 1.0 with at most 4,096 tokens and gated at temperature 1.0 with at most 8,192 tokens.
 
-\emph{(Table 3 is in Section 5.)}
+\begin{center}\begin{minipage}{\linewidth}
+\noindent\textbf{Table J.3.} Agreement of regenerated labels (Cohen's kappa; in brackets, 95\% percentile bootstrap intervals over problems, 2,000 resamples). Robust rates are over all 164 problems (the 4 without accepted variants count as not robust); kappas are over the problems labeled in both series (159 for A and B, 160 for A$'$ and for the official labels); the main-phase column uses the problems labeled in both draws under the 0.10/0.25 thresholds.\par\smallskip
+{\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{L{1.5cm}L{1.1cm}L{2.1cm}L{2.1cm}L{2.2cm}L{3.0cm}}
+\toprule
+\textbf{Model} & \textbf{Robust in draw A} & \textbf{kappa(A, B), conjunction} & \textbf{kappa(A, A$'$), same variants, new seed} & \textbf{kappa(A, B), main-phase rule} & \textbf{kappa with official labels} \\
+\midrule
+Skywork & 72.6\% & 0.439 [0.28, 0.59] & 0.789 [0.67, 0.89] & 0.49 [0.17, 0.76] (132 problems) & no earlier labels \\
+DeepSeek & 37.8\% & 0.413 [0.26, 0.55] & 0.464* [0.33, 0.59] & 0.56 [0.36, 0.73] (100) & 0.025 [$-$0.12, 0.18]; 0.02 [$-$0.09, 0.13] under the main-phase rule (133) \\
+Olmo & 65.9\% & 0.378 [0.21, 0.54] & 0.653 [0.52, 0.78] & 0.41 [0.09, 0.69] (133) & no earlier labels \\
+Qwen3.5-4B & 9.1\% & 0.178 [$-$0.06, 0.39] & not run & 0.34 [0.13, 0.53] (86) & no earlier labels \\
+\bottomrule
+\end{tabular}
+\par\smallskip\noindent (*) On DeepSeek, A$'$ also received the answer-format line of Section 5.3, so this entry mixes seed and prompt.
+}
+\end{minipage}\end{center}
 
 \paragraph{5.1 More variants do not help, and our noise does not explain the gap.}
-Subsampling DeepSeek's variants from 2 to 40 per problem (20 draws per size), the mean kappa(A, B) stays between 0.36 and 0.47 with no upward trend, and the mean concordance with the official label between $-$0.02 and +0.03. Correcting the observed 0.025 for our process's unreliability gives 0.039; even at the upper end of its interval the corrected value is about 0.27, so our noise could hide at most a weak agreement. Under the main-phase rule (E13b, pre-registered on the same answers with no new generation), all three hypotheses died and none of our three predictions held in full: test-retest stays below 0.60 on every model, and, post hoc, the change of rule adds only 0.01 to 0.11 when both rules are read on the same problems. The gap is not only one of severity: under the main-phase rule, on the compared problems our DeepSeek labels are robust on 71 to 75\% against the organizers' 28 to 30\%, but our robust rate is about the same whether their label is robust or not (77.5\% and 74.2\% in draw A), and the largest accuracy drops do not correlate (Spearman $-$0.09 and $-$0.01), so no stricter threshold on our side would recover theirs.
+Subsampling DeepSeek's variants from 2 to 40 per problem (20 draws per size), the mean kappa(A, B) stays between 0.36 and 0.47 with no upward trend, and the mean concordance with the official label between $-$0.02 and +0.03. Correcting the observed 0.025 for our process's unreliability gives 0.039; even at the upper end of its interval the corrected value is about 0.27, so our noise could hide at most a weak agreement. Under the main-phase rule (E13b, pre-registered on the same answers with no new generation), all three hypotheses died and none of our three predictions held in full: test-retest stays below 0.60 on every model, and, post hoc, the change of rule adds only 0.01 to 0.11 when both rules are read on the same problems. The gap is not only one of severity: under the main-phase rule, on the compared problems our DeepSeek labels are robust on 71 to 75\% against the organizers' 28 to 30\%, but, in comparisons made post hoc, our robust rate is about the same whether their label is robust or not (77.5\% and 74.2\% in draw A), and the largest accuracy drops do not correlate (Spearman $-$0.09 and $-$0.01), so no stricter threshold on our side would recover theirs.
 
 \paragraph{5.2 What drives the instability.}
-On Skywork, re-sampling the same variants with a new seed leaves much higher agreement than drawing new variants (0.79 against 0.44; under the main-phase rule 0.94 against 0.47 on the problems labeled in all three series), so the label depends mainly on which variants are drawn. On Olmo the seed alone accounts for about half of the instability under either rule, although under the main-phase rule this rests on 5 and 9 disagreements, too few to separate the two sources. A plug-in simulation of the organizers' process from their published prediction counts gives a test-retest kappa of 0.94 (median 0.93), but it resamples answers to the same variants and never lets a robust item fail; run on our own draw A, the same procedure gives 0.64 to 0.84, against a measured 0.18 to 0.44 under new variants. It overstates by about 0.4 on every model, so the reliability of the official label remains unmeasured. The files behind the official DeepSeek labels also used a different sampling regime: on 154 of the 164 problems most variants were answered ten times each and the base between 1 and 60 times, where we answered each variant once, which by itself makes a conjunction label stricter; and our decoding (temperature 0.6, top\_p 0.95, at most 16,384 tokens) differs from theirs (temperature 1.0, up to 100,000 tokens), published after our runs [4]. What the data show is narrower than a verdict on the label: variants produced by our process measure something else. Whether any process reproduces the label is open; on 22 September the organizers wrote that they have decided not to publish the code that reproduces their labeling, to test the generalization of submitted methods [6].
+On Skywork, re-sampling the same variants with a new seed leaves much higher agreement than drawing new variants (0.79 against 0.44; under the main-phase rule and post hoc, 0.94 against 0.47 on the problems labeled in all three series), so the label depends mainly on which variants are drawn. On Olmo the seed alone accounts for about half of the instability under either rule, although under the main-phase rule this rests on 5 and 9 disagreements, too few to separate the two sources. A plug-in simulation of the organizers' process from their published prediction counts gives a test-retest kappa of 0.94 (median 0.93), but it resamples answers to the same variants and never lets a robust item fail; run on our own draw A, the same procedure gives 0.64 to 0.84, against a measured 0.18 to 0.44 under new variants. It overstates by about 0.4 on every model, so the reliability of the official label remains unmeasured. The files behind the official DeepSeek labels also used a different sampling regime: on 154 of the 164 problems most variants were answered ten times each and the base between 1 and 60 times, where we answered each variant once, which by itself makes a conjunction label stricter; and our decoding (temperature 0.6, top\_p 0.95, at most 16,384 tokens) differs from theirs (temperature 1.0, up to 100,000 tokens), published after our runs [4]. What the data show is narrower than a verdict on the label: variants produced by our process measure something else. Whether any process reproduces the label is open; on 22 September the organizers wrote that they have decided not to publish the code that reproduces their labeling, to test the generalization of submitted methods [6].
 
 \paragraph{5.3 An unspecified prompt moves the label.}
 Fed the bare problem text, Qwen3.5-4B reasons for about eight thousand tokens and closes its answer in the expected format in only 5 of its 1,640 base samples in draw A. With one added instruction line requesting the format, the share of problems passing the base condition of the label (at least 6 of 10 samples agreeing with the reference answer) moved from 0 of 164 to 145 of 164 (88\%), and its robust rate from 0\% to 9.1\%; DeepSeek passes the base condition on 147 of 164 problems with or without that line. A label defined by correctness is not comparable across prompts that the benchmark leaves unspecified.
