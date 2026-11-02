@@ -237,7 +237,11 @@ NUOVO = ("on 28 October we resubmitted V8 unchanged (Codabench submissions 10167
          "signature `are_robust(model_id, problems)`, V8 again predicted robust for every item, as its logged counts "
          "show, and scored 10/21 and 7/14, the robust base rates; the constant scored the same.")
 parte9 = VECCHIO.sub(lambda _: NUOVO, parte9)
-PRE = "and the change of rule adds only 0.01 to 0.11 when both rules are read on the same problems"
+FINALE = "On the final test set: [TBD after 1 November: nominated submissions and scores]."
+assert parte9.count(FINALE) == 1, "segnaposto del test finale non trovato una volta sola"
+parte9 = parte9.replace(FINALE, "For the final test we nominated V8 (1016713) and the all-robust constant (1016732), both on "
+                        "the Main track; their scores were not yet available when we submitted this report.")
+PRE ="and the change of rule adds only 0.01 to 0.11 when both rules are read on the same problems"
 assert parte9.count(PRE) == 1, "frase del par. 5.1 non trovata una volta sola"
 parte9 = parte9.replace(PRE, "and, post hoc, the change of rule adds only 0.01 to 0.11 when both rules are read on the same problems")
 DOVE = {"1": "Section 3", "2": "Section 4", "3": "Section 5"}
@@ -245,8 +249,8 @@ J = ["\\section{Extended version of Sections 2 to 7}\\label{app:J}",
      "\\emph{This appendix gives Sections 2 to 7 in the longer form of our nine-page draft of 22 October 2026, which the "
      "main text condenses; section numbers and references are those of the main text. Tables 1 to 3 are not "
      "repeated: they are in Sections 3, 4 and 5, slightly condensed (Appendix A gives every entry of Table 1). Two "
-     "changes from the nine-page draft: in Section 6 the resubmission of 28 October replaces a placeholder, and in "
-     "Section 5.1 a comparison that was not pre-registered is marked post hoc.}"]
+     "changes from the nine-page draft: in Section 6 the resubmission of 28 October and our nominations for the final "
+     "test replace two placeholders, and in Section 5.1 a comparison that was not pre-registered is marked post hoc.}"]
 bl = [x.strip() for x in re.split(r"\n\s*\n", parte9.strip()) if x.strip()]
 k = 0
 tabelle_saltate = 0
@@ -316,9 +320,9 @@ DESCR = [
     (925822, "V8 Main bundle again, Main task only, uploaded by the AI assistant without a specific instruction (AI usage statement)."),
     (936802, "V8 on the replacement Main task (Section 6, Appendix B)."),
     (936806, "V8 on the replacement Small task (Section 6, Appendix B)."),
-    (1016713, "V8, unchanged, on the current validation task, after the change of 15 October (Section 6)."),
+    (1016713, "V8, unchanged, on the current validation task, after the change of 15 October (Section 6); nominated for the final test, Main track."),
     (1016730, "V8, unchanged, on the current validation task, after the change of 15 October (Section 6)."),
-    (1016732, "All-robust constant, control (Section 6)."),
+    (1016732, "All-robust constant, control (Section 6); nominated for the final test, Main track."),
     (1016733, "Constant Small bundle: parent of 1016734 and 1016735."),
     (1016734, "Constant Small bundle sent to the Main task in error (AI usage statement); rejected before import (\"small.txt is not allowed for a main-track submission\"), as 924973 was on the original Main task."),
     (1016735, "All-robust constant, control (Section 6)."),
@@ -364,7 +368,8 @@ K = ["\\section{Codabench submissions, bundles and release}\\label{app:K}",
      "Also under our account, and not described in this report: " + ", ".join(str(x) for x in NON_DESCRITTI[:-1])
      + " and " + str(NON_DESCRITTI[-1]) + ", children of 924968 and 924972 created on 16 September and cancelled, "
      "without scores.",
-     "\\paragraph{Bundles.} Our entry on the current tasks is V8, with the all-robust constant as control. "
+     "\\paragraph{Bundles.} Our entry on the current tasks is V8, with the all-robust constant as control; we "
+     "nominated 1016713 and 1016732 for the final test, on the Main track. "
      "Neither loads a model or reads data at run time. V8's two parameters were fixed on the six public datasets, "
      "which are its training data; Appendix D (full report, Section 13) gives them, the scripts that recompute them "
      "and the instructions to reproduce its score. SHA-256 of each bundle:",
@@ -389,8 +394,8 @@ K += ["\\end{itemize}",
       "their entries redacted; the "
       "bundles without the organizers' files that state no license, and the perturbed problem texts only with the "
       "organizers' agreement (Appendix H). On 7 September we asked the organizers whether measurements taken on their "
-      "virtual machine may appear in this report and undertook to share our results with them; we have not yet "
-      "received an answer, and the results have not yet been shared. Deviations from the pre-registrations are listed "
+      "virtual machine may appear in this report and undertook to share our results with them, and we repeated the "
+      "question on 2 November; we have not yet received an answer, and the results have not yet been shared. Deviations from the pre-registrations are listed "
       "in Appendix D."]
 io.open(os.path.join(USCITA, "app_K.tex"), "w", encoding="utf-8", newline="\n").write("\n\n".join(K) + "\n")
 print("scritti latex/main.tex (%d blocchi), app_J.tex (%d blocchi), app_K.tex (%d invii descritti)"
