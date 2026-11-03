@@ -69,8 +69,8 @@
 
 \item {\bf Open access to data and code}
     \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
-    \item[] Answer: \answerNo{}
-    \item[] Justification: The analysis scripts, dated pre-registrations, extraction outputs and submission bundles are not yet public; they will be released with this report (Section 7, Code and data; Appendix K), and until then the report gives the rule, parameters and bundle hashes of our entry (Appendix D) and names the public datasets we used (Appendix H).  % TBD: when the repository is public, switch to Yes with its link and a README giving the command and environment for each result.
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The analysis scripts, dated pre-registrations, extraction outputs, submission bundles and our perturbation variants are public at https://github.com/Dan23RR/aimo-instrument (Section 7, Code and data; Appendix K), where the file paths cited in this report are valid. Its README gives the steps that recompute our entry's parameters and reproduce its score, maps the experiments to the folders that hold their scripts and outputs, and points to the record of the virtual machine's environment; rerunning the GPU experiments needs comparable GPUs and the models of Appendix H, and the organizers' datasets are not redistributed (\texttt{dati.py} fetches the six earlier ones).
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that paper does not include experiments requiring code.
@@ -127,7 +127,7 @@
 \item {\bf Code of ethics}
     \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics \url{https://neurips.cc/public/EthicsGuidelines}?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The work analyses public benchmark data, our own submissions, snapshots of the public Codabench leaderboard and the aggregate facts about the private evaluation sets that our submissions logged, all disclosed together with the entry built on them (Appendices D and G); it involves no human-subjects research and makes no claim about other participants' methods, and the released files, the leaderboard snapshots included, will have other participants' names, usernames and details removed (Appendix K). On 7 September, and again on 2 November, we asked the organizers whether measurements taken on their virtual machine may appear in this report, and we have not yet received an answer.  % TBD: update with date and outcome if the organizers answer before submission.
+    \item[] Justification: The work analyses public benchmark data, our own submissions, snapshots of the public Codabench leaderboard and the aggregate facts about the private evaluation sets that our submissions logged, all disclosed together with the entry built on them (Appendices D and G); it involves no human-subjects research and makes no claim about other participants' methods, and the released files, the leaderboard snapshots included, have other participants' names, usernames and details removed (Appendix K). On 7 September, and again on 2 November, we asked the organizers whether measurements taken on their virtual machine may appear in this report, and on 2 November they answered that this is acceptable.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the authors have not reviewed the NeurIPS Code of Ethics.
@@ -153,7 +153,7 @@
 \item {\bf Safeguards}
     \item[] Question: Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse (e.g., pre-trained language models, image generators, or scraped datasets)?
     \item[] Answer: \answerNA{}
-    \item[] Justification: We release no models and no data with a high risk of misuse: the release (Appendix D, Release, and Appendix K) consists of our scripts and their outputs, our labels and per-variant answers, our submission bundles without the organizers' files that state no license, our dated files and snapshots of the Codabench leaderboard, with other participants' names and usernames removed, and, with the organizers' agreement, perturbed versions of public math problems.
+    \item[] Justification: We release no models and no data with a high risk of misuse: the release (Appendix D, Release, and Appendix K) consists of our scripts and their outputs, our labels and per-variant answers, our submission bundles as submitted, with the organizers' files they contain, our dated files and snapshots of the Codabench leaderboard, with other participants' names and usernames removed, and, with the organizers' permission, perturbed versions of public math problems.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper poses no such risks.
@@ -180,8 +180,8 @@
 
 \item {\bf New assets}
     \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
-    \item[] Answer: \answerNo{}
-    \item[] Justification: The regenerated perturbation variants, our labels, the extraction outputs and the analysis scripts are not yet released; they will be released with this report (Appendix K), with an English description of each file and a stated license, alongside the dated pre-registrations and outcome files, the variants only with the organizers' agreement (Appendix H).  % TBD: when released, switch to Yes with the repository link.
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The regenerated perturbation variants, our labels, the extraction outputs and the analysis scripts are released at https://github.com/Dan23RR/aimo-instrument (Appendix K), alongside the dated pre-registrations and outcome files, with an English README that describes the folders and states the licenses (MIT for code, CC BY 4.0 for our text and data) and a manifest giving each file's size, SHA-256 and origin; the variants are released with the organizers' permission (Appendix H).
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper does not release new assets.

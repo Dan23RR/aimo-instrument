@@ -31,23 +31,23 @@ V8 has no trained weights. Its two parameters were fixed on the six public `aimo
 - Top-level `*.py`: analyses of the public data (E1 to E8, floors, labels).
 - `gpu/`: runs on rented GPUs, with outputs in `gpu/out/`.
 - `vm/`: runs on the virtual machine that the organizers lent us (E13 to E16), with outputs in `vm_risultati/` and the environment record in `vm_backup/AMBIENTE_VM_2026-09-17.txt`. The hidden states used by the probes of Section 3 of the report are in `vm_backup/estratto/work/aimo/e15/`.
-- `sonde/`, `soluzione/`, `soluzione_v8/`, `soluzione_costante/`: our submission bundles and their sources, including `sonde/solution-v4-allocazione/`, the V4 allocation entry (submission 909843, report Appendix G), which the author submitted once as a measurement against its pre-registered rule (`PREREG_V4.md`).
+- `sonde/`, `soluzione/`, `soluzione_v8/`, `soluzione_costante/`: our submission bundles, exactly as submitted, and their sources, including `sonde/solution-v4-allocazione.zip`, the V4 allocation entry (submission 909843, report Appendix G), which the author submitted once as a measurement against its pre-registered rule (`PREREG_V4.md`).
+- `vm_risultati/e13/varianti_D1*.parquet`, `vm_risultati/e13/varianti_D2*.parquet` (E13, one set of files per draw) and `gpu/out/e12_s2_varianti.parquet` (E12): our perturbed variants of the public problems, with gpt-oss-120b's answers, the reference answers and the gate's decisions; the files `*_gen_parziale` and `*_sol_parziale` hold the generation and solving steps. Rows of the family `original` keep the problem identifier but not its text.
 - `dati/`: our Codabench submissions, the competition metadata, and snapshots of the public leaderboard with other participants pseudonymized.
 - `MANIFEST.tsv`: every file with its size, SHA-256, source path in the author's working folder and the transformation applied. `REDACTIONS.md`: the redactions.
 
 ## What is not here, and why
 
-- Files of the organizers that state no license: the copies of the `aimo-interp` datasets, the `getting-started` code (`uncertainty_profile`, the DeepSeek regressor, the probe artifact and its inference code) and copies of files of the `baselines` repository. The bundles that contained `getting-started` files are given with our files only; `ORGANIZERS_FILES.txt` in each lists the omitted files with their SHA-256.
-- Problem texts, and our perturbed variants of the public problems (E12, E13): the variants will be released only with the organizers' agreement. The ten calibration problems of v6 are given by `problem_id` in `aimo-interp/val-sample`, and the column holding the tail of the model's output is removed from `gpu/out/feature_greedy*.parquet`.
-- Correspondence, internal status notes and plans (one of them contains the address of the organizers' machine), and one record about other participants' entries.
+- Copies of the organizers' datasets: the `aimo-interp` datasets on Hugging Face, whose cards state no license (`python dati.py` fetches the six earlier ones), and `train-main-v2`. Copies of the three files of the `baselines` repository that we used (Apache-2.0, available there). Files of the `getting-started` repository other than those inside our bundles, such as the probe artifact and its inference code: fetch them from https://github.com/aimo-interp/getting-started.
+- The organizers' problem texts. In our variant files the rows of the family `original` keep the problem identifier but not its text, `dati/tabella_aggregata.json` has the field `problema` removed, and `soluzione/calibrazione_gptoss.json` gives the ten calibration items of v6 by `problem_id` in `aimo-interp/val-sample`. The exception is the three v6 bundles in `sonde/`, released exactly as submitted, whose `calibrazione_gptoss.json` holds the texts of those items (five problems). Also left out: the few-shot examples of E12 (`gpu/e12_fewshot.json`), which are the organizers' own perturbed texts, the list of the 164 base problems of E12 with their texts (`gpu/out/_base164.parquet`), and the column holding the tail of the model's output in `gpu/out/feature_greedy*.parquet`.
+- Correspondence, internal status notes and plans (one of them contains the address of the organizers' machine), drafts of the full report before v2.4, and one record about other participants' entries.
 - Other participants' names, usernames, personal data and passages about their entries: redacted in place, as listed in `REDACTIONS.md`.
-- Drafts of the full report before v2.4.
 
-The measurements of Sections 3 to 5 of the report were taken on the organizers' virtual machine. On 7 September 2026 we asked the organizers whether such measurements may appear in the report; at the time of this release we have not received an answer.
+The measurements of Sections 3 to 5 of the report were taken on the organizers' virtual machine. On 7 September 2026 we asked the organizers whether such measurements may appear in the report, and we asked again on 2 November, together with whether we may release the `getting-started` files inside our bundles and our perturbed variants; the same day the organizers answered yes to both.
 
 ## License
 
-Code: MIT License (`LICENSE`). Text and data written or produced by us: CC BY 4.0. Third-party files keep their own terms (the NeurIPS 2026 style files in `report_9p/neurips_2026/`).
+Code: MIT License (`LICENSE`). Text and data written or produced by us: CC BY 4.0. Third-party files keep their own terms (the NeurIPS 2026 style files in `report_9p/neurips_2026/`). The `getting-started` files inside the bundles in `sonde/` (`uncertainty_profile/`, `uncertainty_artifacts/`) are the organizers', who state no license for them; we redistribute them with their permission of 2 November 2026, and our licenses do not cover them. Our perturbed variants derive from the organizers' public problems and are released with the same permission; CC BY 4.0 covers only our contribution.
 
 ## Use of AI assistants
 
