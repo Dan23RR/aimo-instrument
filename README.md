@@ -17,11 +17,17 @@ Our entry on the current validation tasks is V8, with an all-robust constant as 
 
 Upload each bundle to Codabench (competition 16180) with only its own task selected: the Main bundles on the Main task, the Small bundles on the Small task. No bundle loads a model or reads data at run time. On 28 October 2026 V8 and the constant both scored 10/21 on the Main task and 7/14 on the Small task (submissions 1016713, 1016730, 1016732 and 1016735); `dati/invii_dan23rr_2026-10-28_sera.json` lists all our submissions. The sources are in `soluzione_v8/` and `soluzione_costante/`.
 
-V8 has no trained weights. Its two parameters were fixed on the six public `aimo-interp` datasets: the threshold, 98, is the lower median of the character counts of their 174 distinct problems, and the direction (longer problems robust) is the one with the higher balanced accuracy on their labeled pairs. To recompute them:
+V8 has no trained weights. Its two parameters were fixed on the six public `aimo-interp` datasets: the threshold, 98, is the lower median of the character counts of their 174 distinct problems, and the direction (longer problems robust) is the one with the higher balanced accuracy on their labeled pairs. To recompute them, from the repository folder, with Python 3.9 or later and its standard library only:
 
-1. `python dati.py` downloads the six datasets into `dati/` through the public Hugging Face datasets-server API;
-2. `python aggrega.py` rebuilds `dati/tabella_aggregata.json` with the problem texts (the released copy has them removed);
-3. `python vm/controlli_verifica3.py` recomputes the threshold and `python vm/dati_pubblici_controlli.py` the balanced accuracies; the latter reads the dataset copies from `vm_backup/estratto/work/aimo/dati/`, so copy the downloaded files there first.
+1. `python dati.py` downloads the six datasets (about 2 MB) into `dati/` through the public Hugging Face datasets-server API;
+2. `python aggrega.py` rebuilds `dati/tabella_aggregata.json` with the problem texts (the released copy has them removed): 335 (model, problem) pairs, 174 distinct problems;
+3. `python ricalcola_v8.py` prints the threshold, 98, and the balanced accuracy of the rule in both directions: 0.65245 with longer problems robust against 0.34755 on the 335 published pairs, and 0.63057 against 0.36943 on the 283 distinct pairs.
+
+`ricalcola_v8.py` was added on 4 November 2026, after a test from a fresh clone. It repeats the computations of `vm/controlli_verifica3.py` (section 8) and `vm/dati_pubblici_controlli.py` (section 6), whose outputs of 23 September are `vm_risultati/controlli_verifica3_2026-09-23.txt` and `vm_risultati/dati_pubblici_controlli_2026-09-23.txt`. Those two scripts also read files that the release does not include (see Rerunning the analyses).
+
+## Rerunning the analyses
+
+The outputs of the analyses are saved next to their scripts' records, mostly in `vm_risultati/` and `gpu/out/`, and the report cites them by path. Rerunning the scripts is a different matter. Most scripts in `vm/` read their inputs from `vm_backup/estratto/work/aimo/`, the layout of our backup of the organizers' virtual machine, of which the release keeps only a few files. The inputs that come from us are released in other folders, with the same content: our E13 labels in `vm_risultati/e13/` (byte for byte the files the scripts read from `vm_backup/estratto/work/aimo/e13/`), and the features in `gpu/out/feature_greedy.parquet` (the same values as the copy they read from `vm_backup/estratto/work/aimo/gpu/out/`). Several scripts also need files of the organizers that are not redistributed here: the public datasets (fetched by `dati.py`), `train-main-v2`, the probe artifact of `getting-started` and copies of `baselines` files. To rerun one of these scripts, place those files where it names them; a script stops with the missing path otherwise. The steps above for V8 need none of this.
 
 ## Map
 
