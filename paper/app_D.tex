@@ -9,7 +9,7 @@
 \end{itemize}
 The other changes after review are listed in the repository README.
 
-\paragraph{Deviations from the pre-registrations.} Each pre-registration is dated before execution, and the deviations below are also recorded as notes in those files.
+\paragraph{Deviations from the pre-registrations.} Each pre-registration is dated before execution.
 \begin{itemize}
 \item \textbf{Not pre-registered.} E5 is documented only in its outcome file. E11 ran from a written plan without the frozen pre-registration it called for. E16 was not pre-registered, although we had told the organizers that every experiment on their machine would be.
 \item \textbf{E4.} H7 was compared with the global prior of the training models instead of the pre-registered per-model majority, against which it scores $-$1.2 points.
@@ -26,7 +26,7 @@ The other changes after review are listed in the repository README.
 \item \textbf{E13.}
   \begin{itemize}
   \item gpt-oss-120b was pre-registered for labeling and not labeled.
-  \item DeepSeek's A$'$ received the answer-format line through a queueing error.
+  \item The answer-format line was added to the prompt on 9 September, after two runs of Qwen3.5-4B with the bare problem text were discarded (Appendix~\ref{app:C}). DeepSeek, whose draw A was complete, was to keep the bare text, but its A$'$ received the line through a queueing error.
   \item The pre-registered table that mapped outcomes to readings was not followed, because it assumed our regeneration reproduces the organizers' process.
   \item The subsampling curve varied the variants per problem, where the design varied them per family.
   \item The token cap was raised from 8,192 to 16,384 before execution.

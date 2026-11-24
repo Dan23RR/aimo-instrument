@@ -13,7 +13,7 @@ independent researcher. The report was written for the AIMO Interpretability Cha
 | `reproduce/` | English scripts that recompute the main numbers of the report from saved outputs, on a laptop. |
 | `archive/` | The author's working folder: every script, log and output, and our submission bundles, with the dated pre-registrations and outcome files gathered in `archive/records/`. The file paths cited in the report are relative to it, except `reproduce/` and the files at the top. |
 | `CORRECTIONS.md` | The 54 corrections made to our own statements before submission. |
-| `MANIFEST.tsv` | Every file, with its size and SHA-256. |
+| `MANIFEST.tsv` | Every other file, with its size and SHA-256. |
 | `REDACTIONS.md` | What was redacted before release, with the SHA-256 of each original. |
 
 ## Revision of November 2026

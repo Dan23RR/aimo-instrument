@@ -1,0 +1,15 @@
+[18:29] gpu0: aspetto '=== E14 fine' e varianti_D2.parquet
+[19:17] gpu0: via. modelli: deepseek-ai/DeepSeek-R1-0528-Qwen3-8B allenai/Olmo-3-7B-Think
+[19:17] gpu0: deepseek-ai/DeepSeek-R1-0528-Qwen3-8B cond A (D1, seme 20260921)
+[02:06] gpu0: scritto /work/aimo/e13/etich_deepseek-ai__DeepSeek-R1-0528-Qwen3-8B_A.parquet: 6656 righe | base: corrette medie 8.91/10, con risposta 8.99 | varianti corrette 0.908 | 24476s
+[02:06] gpu0: deepseek-ai/DeepSeek-R1-0528-Qwen3-8B cond B (D2, seme 20260922)
+[09:04] gpu0: scritto /work/aimo/e13/etich_deepseek-ai__DeepSeek-R1-0528-Qwen3-8B_B.parquet: 6574 righe | base: corrette medie 8.89/10, con risposta 9.04 | varianti corrette 0.896 | 25049s
+[09:04] gpu0: deepseek-ai/DeepSeek-R1-0528-Qwen3-8B cond Ap (D1, seme 20260923)
+[16:06] gpu0: scritto /work/aimo/e13/etich_deepseek-ai__DeepSeek-R1-0528-Qwen3-8B_Ap.parquet: 6656 righe | base: corrette medie 9.00/10, con risposta 9.15 | varianti corrette 0.927 | 25332s
+[16:06] gpu0: allenai/Olmo-3-7B-Think cond A (D1, seme 20260921)
+[03:13] gpu0: scritto /work/aimo/e13/etich_allenai__Olmo-3-7B-Think_A.parquet: 6656 righe | base: corrette medie 9.40/10, con risposta 9.61 | varianti corrette 0.977 | 39958s
+[03:13] gpu0: allenai/Olmo-3-7B-Think cond B (D2, seme 20260922)
+[14:20] gpu0: scritto /work/aimo/e13/etich_allenai__Olmo-3-7B-Think_B.parquet: 6574 righe | base: corrette medie 9.34/10, con risposta 9.57 | varianti corrette 0.979 | 40043s
+[14:20] gpu0: allenai/Olmo-3-7B-Think cond Ap (D1, seme 20260923)
+[18:43] gpu0: scritto /work/aimo/e13/etich_allenai__Olmo-3-7B-Think_Ap.parquet: 6656 righe | base: corrette medie 9.39/10, con risposta 9.55 | varianti corrette 0.979 | 15712s
+e13_coda.sh: line 27: P: unbound variable

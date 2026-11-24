@@ -21,8 +21,8 @@ The inputs are in `archive/`.
 
 | Script | In the report | Inputs |
 |---|---|---|
-| `labels_table.py` | Table 2 and the agreement numbers of Section 4: kappa between draws A and B under three treatments of truncated chains, kappa between A and A', the share of chains at the 16,384-token cap, kappa with the 138 published DeepSeek labels and with the 160 that include our derived ones | `vm_risultati/e13/etich_*.parquet`, `gpu/out/feature_greedy.parquet`, `dati/*.json` |
-| `reexecution_table.py` | Table 1 and the numbers of Figure 1: crossings, identical outputs, correct predictions and cost of each configuration | `vm_risultati/e14/out/*.jsonl`, `vm_risultati/e14/log/*.log`, `gpu/out/feature_greedy.parquet` |
+| `labels_table.py` | Table 2 and the agreement numbers of Section 4: kappa between draws A and B under three treatments of truncated chains, kappa between A and A', the share of chains at the 16,384-token cap, kappa with the 138 published DeepSeek labels and with the 160 that include our derived ones, the robust share of draw A under each treatment, the problems without a label, and how many published labels draw A reverses | `vm_risultati/e13/etich_*.parquet`, `gpu/out/feature_greedy.parquet`, `dati/*.json` |
+| `reexecution_table.py` | Table 1 and the numbers of Figure 1: crossings, identical outputs, correct predictions and cost of each configuration, and which of the 40 labels are published | `vm_risultati/e14/out/*.jsonl`, `vm_risultati/e14/log/*.log`, `gpu/out/feature_greedy.parquet`, `dati/*.json` |
 | `probe_vs_length.py` | Section 5: AUROC of the probe and of the character count on the 164, 138 and 26 labels, and the results of E15-R with the p-value of the permutation null | `vm_risultati/e15_oof_sonda_2026-09-23.npz`, `dati/*.json`, `vm_risultati/e15r/` |
 | `v8_threshold.py` | Section 6: the two parameters of V8 | `dati/tabella_aggregata.json`, from `aggrega.py` |
 | `compute_hours.py` | Appendix C: GPU-hours | `vm_risultati/e13/log`, `vm_risultati/e14/log`, `vm_risultati/vm_logs` |

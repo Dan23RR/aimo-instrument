@@ -1,0 +1,9 @@
+[08:40] gpu1: aspetto '=== E14 extra fine' e varianti_D2.parquet
+[08:40] gpu1: via. modelli: Skywork/Skywork-OR1-Math-7B
+[08:40] gpu1: Skywork/Skywork-OR1-Math-7B cond A (D1, seme 20260921, prompt esplicito)
+[10:25] gpu1: scritto /work/aimo/e13/etich_Skywork__Skywork-OR1-Math-7B_A.parquet: 6656 righe | base: corrette medie 9.54/10, con risposta 9.73 | varianti corrette 0.980 | 6273s
+[10:25] gpu1: Skywork/Skywork-OR1-Math-7B cond B (D2, seme 20260922, prompt esplicito)
+[12:10] gpu1: scritto /work/aimo/e13/etich_Skywork__Skywork-OR1-Math-7B_B.parquet: 6574 righe | base: corrette medie 9.43/10, con risposta 9.74 | varianti corrette 0.974 | 6279s
+[12:10] gpu1: Skywork/Skywork-OR1-Math-7B cond Ap (D1, seme 20260923, prompt esplicito)
+[13:57] gpu1: scritto /work/aimo/e13/etich_Skywork__Skywork-OR1-Math-7B_Ap.parquet: 6656 righe | base: corrette medie 9.49/10, con risposta 9.72 | varianti corrette 0.979 | 6435s
+=== E13 coda gpu1 fine Wed Sep  9 13:57:59 UTC 2026 ===

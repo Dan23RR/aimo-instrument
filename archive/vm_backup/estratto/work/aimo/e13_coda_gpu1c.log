@@ -1,0 +1,8 @@
+[07:19] gpu1: aspetto '=== E14 extra fine' e varianti_D2.parquet
+[07:19] gpu1: via. modelli: allenai/Olmo-3-7B-Think
+escluso allenai/Olmo-3-7B-Think A (non in [Ap])
+escluso allenai/Olmo-3-7B-Think B (non in [Ap])
+[07:19] gpu1: allenai/Olmo-3-7B-Think cond Ap (D1, seme 20260923, prompt esplicito)
+grep: /work/aimo/e13/log/etich_allenai__Olmo-3-7B-Think_Ap.log: binary file matches
+[18:21] gpu1: 
+=== E13 coda gpu1 fine Thu Sep 10 18:21:09 UTC 2026 ===

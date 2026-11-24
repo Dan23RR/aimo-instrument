@@ -20,7 +20,7 @@
 \item {\bf Limitations}
     \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The Limitations section after Section 7 states what we did not do: repeat the analyses on the official data, regenerate labels with the organizers' settings, run them on other models, or test the remedies under more conditions. Sections 3 to 5 qualify each result where it is stated, and Appendix D lists the withdrawn claims and the deviations from the pre-registrations.
+    \item[] Justification: The Limitations section after Section 7 states what we did not do: repeat the analyses on the official data, regenerate labels with the organizers' settings, or test the remedies under more conditions. Nor did we run the probes, the re-execution study or the comparison with the organizers' labels on models other than DeepSeek. Sections 3 to 5 qualify each result where it is stated, and Appendix D lists the withdrawn claims and the deviations from the pre-registrations.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper has no limitation while the answer \answerNo{} means that the paper has limitations, but those are not discussed in the paper. 
@@ -98,7 +98,7 @@
 \item {\bf Experiment statistical significance}
     \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
     \item[] Answer: \answerYes{}
-    \item[] Justification: We report 95\% percentile bootstrap intervals over problems for the agreement statistics (Section 4, Table 2 and Appendix C) and Wilson intervals for V8's scores (Section 6). Appendix C adds a paired bootstrap interval for the official score channel and an interval for the gain of the probe combined with length; Section 5 and Appendix C give the permutation nulls for the probes. The accuracy differences of Appendix A carry no intervals.
+    \item[] Justification: We report 95\% percentile bootstrap intervals over problems for the agreement statistics (Section 4, Table 2 and Appendix C) and Wilson intervals for V8's scores (Section 6). Appendix C adds a paired bootstrap interval for the official score channel and an interval for the gain of the probe combined with length; Section 5 and Appendix C give the nulls of the two probes. The accuracy differences of Appendix A carry no intervals.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper does not include experiments.
@@ -115,7 +115,7 @@
 \item {\bf Experiments compute resources}
     \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
     \item[] Answer: \answerYes{}
-    \item[] Justification: Appendix C gives the hardware (two NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs with 96 GB each, on the organizers' virtual machine), the runtime image and the GPU-hours of every main run from its logs (82.8 in the released logs, about 107 with the discarded runs and the card-1 run of Olmo-3-7B-Think A$'$), the GPU-hours on Modal and the CPU time of the probe recalculation; Figure 1 gives the seconds per item of each configuration.
+    \item[] Justification: Appendix C gives the hardware (two NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs with 96 GB each, on the organizers' virtual machine), the runtime image and the GPU-hours of every main run from its logs (82.8 in the logs of the run manifest, about 107 with the discarded runs and the card-1 run of Olmo-3-7B-Think A$'$, timed from its queue log), the GPU-hours on Modal and the CPU time of the probe recalculation; Figure 1 gives the seconds per item of each configuration.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the paper does not include experiments.
@@ -127,7 +127,7 @@
 \item {\bf Code of ethics}
     \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics \url{https://neurips.cc/public/EthicsGuidelines}?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The work analyses public benchmark data and our own submissions; the release also includes pseudonymized snapshots of the public leaderboard. It involves no human-subjects research and makes no claim about other participants' methods, and the released files have other participants' names and passages about their entries removed (Appendix E). The organizers confirmed on 2 November that the measurements taken on their virtual machine may appear in this report.
+    \item[] Justification: The work analyses public benchmark data and our own submissions; the release also includes pseudonymized snapshots of the public leaderboard. It involves no human-subjects research and makes no claim about other participants' methods, and the released files have other participants' names and passages about their entries removed (Appendix E). Appendix D reports one warmup entry (V4) submitted against its own pre-registered rule, and the AI usage statement two uploads that the author had not specifically approved. The organizers confirmed on 2 November that the measurements taken on their virtual machine may appear in this report.
     \item[] Guidelines:
     \begin{itemize}
         \item The answer \answerNA{} means that the authors have not reviewed the NeurIPS Code of Ethics.

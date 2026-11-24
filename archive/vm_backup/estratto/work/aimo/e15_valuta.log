@@ -1,0 +1,23 @@
+============================================================================
+E15 — VERDETTO
+============================================================================
+n=164 problemi con etichetta | robust 24.4% | layer 37 | hidden 4096
+null permutazionale AUROC (20000, orientamento libero): p95 = 0.6022
+
+H35  sonda LORO (ensemble ufficiale, system prompt loro)
+     AUROC 0.7391 (orientato 0.7391) | acc. bilanciata regola margine>=0: 0.5000 | predice robust 0.0%
+     esito: SOPRAVVIVE
+
+H36  sonda NOSTRA, CV nidificata, con system prompt
+     AUROC OOF 0.7097 | acc. bilanciata OOF (soglia 0) 0.6456 | layer/C scelti per fold: [(4, 0.001, 0.798), (4, 0.001, 0.743), (20, 0.001, 0.699), (20, 0.001, 0.761), (7, 0.001, 0.694)]
+     null NIDIFICATO (60 permutazioni, stessa procedura): media 0.4895, p95 0.5744
+     esito: SOPRAVVIVE
+     (info) AUROC per layer, CV semplice a C fisso: max 0.664 al layer 12, mediana 0.621  <- include selezione, NON e' il risultato
+
+H36  sonda NOSTRA, CV nidificata, senza system prompt
+     AUROC OOF 0.6183 | acc. bilanciata OOF (soglia 0) 0.5661 | layer/C scelti per fold: [(6, 0.001, 0.81), (4, 0.001, 0.739), (9, 0.001, 0.672), (21, 1.0, 0.75), (12, 0.1, 0.704)]
+     null NIDIFICATO (60 permutazioni, stessa procedura): media 0.4960, p95 0.5888
+     esito: SOPRAVVIVE
+     (info) AUROC per layer, CV semplice a C fisso: max 0.669 al layer 35, mediana 0.634  <- include selezione, NON e' il risultato
+
+============================================================================

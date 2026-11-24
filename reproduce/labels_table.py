@@ -26,6 +26,13 @@ def main():
         robust_a = regenerated_labels(r["A"], "scored")
         print("\n%s | variant chains at the %d-token cap in A, B: %s | robust in A: %.1f%% of %d" % (
             SHORT[model], CAP, cap, 100 * robust_a.mean(), len(robust_a)))
+        shares = []
+        for t in ("scored", "dropped", "correct"):
+            s = regenerated_labels(r["A"], t)
+            shares.append("%s %.1f%% of %d" % (t, 100 * s.mean(), len(s)))
+        print("   robust share in A, by treatment of truncated variant chains: " + ", ".join(shares))
+        print("   problems with no accepted variant, hence no label: " + ", ".join(
+            "%s %d" % (c, sum(1 for _, g in r[c].groupby("problem_id") if (g.idx >= 0).sum() == 0)) for c in ("A", "B")))
         for t in ("scored", "dropped", "correct"):
             a, b = pair(r["A"], r["B"], t)
             k, lo, hi = kappa_ci(a, b)
@@ -52,6 +59,9 @@ def main():
                 only_cap = [p for p in flipped.index if upper.get(p, False)]
                 print("   robust in the organizers' labels (%s): %d; draw A calls %d of them non-robust; %d of these change when truncated variants all count as correct" % (
                     name, len(pos), len(flipped), len(only_cap)))
+                neg = mm[mm.robust == 0]
+                print("   non-robust in the organizers' labels (%s): %d; draw A calls %d of them robust" % (
+                    name, len(neg), int(neg.ours.sum())))
 
 
 if __name__ == "__main__":
