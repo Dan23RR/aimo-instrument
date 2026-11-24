@@ -1,0 +1,51 @@
+2026-11-23 10:18:19 E15-R | python 3.11.12 | numpy 2.4.4 | sklearn 1.8.0 | lavori 5 | prova False
+2026-11-23 10:18:19 dati: X (164, 37, 4096) | robust 40 su 164 | esplicite 138 (robust 36)
+2026-11-23 10:18:19 Parte 1 su 164: n=164 robust 40, 20 semi x 5 fold
+2026-11-23 11:44:59 Parte 1 su 164 finita: {"insieme": "164", "n": 164, "robust": 40, "semi": 20, "media": {"lunghezza": 0.6955897177419355, "sonda": 0.6916028225806453, "entrambi": 0.7007459677419354, "differenza": 0.005156250000000001}, "min": {"lunghezza": 0.6863911290322581, "sonda": 0.5691532258064517, "entrambi": 0.6649193548387097, "differenza": -0.02409274193548383}, "max": {"lunghezza": 0.7039314516129033, "sonda": 0.7574596774193548, "entrambi": 0.7207661290322581, "differenza": 0.022580645161290325}, "ic95_differenza_mediana_sui_semi": [-0.03178807066166123, 0.044432947409676696], "secondi": 5200}
+2026-11-23 11:46:21 sonda riaddestrata sulle esplicite: {"n": 138, "robust": 36, "auroc_sonda_riaddestrata": 0.6203703703703703, "auroc_n_char": 0.7331154684095861, "scelte": [[7.0, 1.0, 0.744], [4.0, 0.01, 0.823], [32.0, 0.001, 0.738], [6.0, 1.0, 0.66], [12.0, 0.1, 0.736]]}
+2026-11-23 11:46:21 Parte 1 su 138: n=138 robust 36, 10 semi x 5 fold
+2026-11-23 12:18:33 Parte 1 su 138 finita: {"insieme": "138", "n": 138, "robust": 36, "semi": 10, "media": {"lunghezza": 0.7291394335511983, "sonda": 0.6442265795206972, "entrambi": 0.7195261437908496, "differenza": -0.009613289760348576}, "min": {"lunghezza": 0.7205882352941176, "sonda": 0.5931372549019608, "entrambi": 0.7026143790849673, "differenza": -0.02573529411764708}, "max": {"lunghezza": 0.7322984749455338, "sonda": 0.7132352941176471, "entrambi": 0.7426470588235294, "differenza": 0.01157407407407407}, "ic95_differenza_mediana_sui_semi": [-0.04000331977901941, 0.01800980070426226], "secondi": 1932}
+2026-11-23 12:19:49 Parte 2: statistica H36 AUROC OOF 0.7097 (atteso 0,7097) | scelte [(4, 0.001, 0.798), (4, 0.001, 0.743), (20, 0.001, 0.699), (20, 0.001, 0.761), (7, 0.001, 0.694)]
+2026-11-23 12:37:03 Parte 2: 25 permutazioni | media 0.4882 p95 0.5686 | >= statistica 0 | p 0.0385 | prime 25: media 0.4882 p95 0.5686 | 1110 s
+2026-11-23 12:53:59 Parte 2: 50 permutazioni | media 0.4869 p95 0.5722 | >= statistica 0 | p 0.0196 | prime 50: media 0.4869 p95 0.5722 | 2126 s
+2026-11-23 13:11:19 Parte 2: 75 permutazioni | media 0.4892 p95 0.5744 | >= statistica 0 | p 0.0132 | prime 60: media 0.4890 p95 0.5700 | 3166 s
+2026-11-23 13:28:19 Parte 2: 100 permutazioni | media 0.4919 p95 0.5742 | >= statistica 0 | p 0.0099 | prime 60: media 0.4890 p95 0.5700 | 4186 s
+2026-11-23 13:48:03 Parte 2: 125 permutazioni | media 0.4947 p95 0.5813 | >= statistica 0 | p 0.0079 | prime 60: media 0.4890 p95 0.5700 | 5370 s
+2026-11-23 14:08:42 Parte 2: 150 permutazioni | media 0.4932 p95 0.5745 | >= statistica 0 | p 0.0066 | prime 60: media 0.4890 p95 0.5700 | 6609 s
+2026-11-23 14:31:31 Parte 2: 175 permutazioni | media 0.4955 p95 0.5908 | >= statistica 0 | p 0.0057 | prime 60: media 0.4890 p95 0.5700 | 7978 s
+2026-11-23 14:49:00 Parte 2: 200 permutazioni | media 0.4925 p95 0.5832 | >= statistica 0 | p 0.0050 | prime 60: media 0.4890 p95 0.5700 | 9027 s
+2026-11-23 15:06:32 Parte 2: 225 permutazioni | media 0.4926 p95 0.5812 | >= statistica 0 | p 0.0044 | prime 60: media 0.4890 p95 0.5700 | 10079 s
+2026-11-23 15:23:39 Parte 2: 250 permutazioni | media 0.4931 p95 0.5874 | >= statistica 0 | p 0.0040 | prime 60: media 0.4890 p95 0.5700 | 11106 s
+2026-11-23 15:40:04 Parte 2: 275 permutazioni | media 0.4925 p95 0.5860 | >= statistica 0 | p 0.0036 | prime 60: media 0.4890 p95 0.5700 | 12091 s
+2026-11-23 15:56:28 Parte 2: 300 permutazioni | media 0.4934 p95 0.5846 | >= statistica 0 | p 0.0033 | prime 60: media 0.4890 p95 0.5700 | 13074 s
+2026-11-23 16:13:00 Parte 2: 325 permutazioni | media 0.4951 p95 0.5931 | >= statistica 0 | p 0.0031 | prime 60: media 0.4890 p95 0.5700 | 14067 s
+2026-11-23 16:29:35 Parte 2: 350 permutazioni | media 0.4961 p95 0.5979 | >= statistica 0 | p 0.0028 | prime 60: media 0.4890 p95 0.5700 | 15062 s
+2026-11-23 16:46:45 Parte 2: 375 permutazioni | media 0.4968 p95 0.5998 | >= statistica 0 | p 0.0027 | prime 60: media 0.4890 p95 0.5700 | 16091 s
+2026-11-23 17:03:41 Parte 2: 400 permutazioni | media 0.4964 p95 0.5996 | >= statistica 0 | p 0.0025 | prime 60: media 0.4890 p95 0.5700 | 17107 s
+2026-11-23 17:20:47 Parte 2: 425 permutazioni | media 0.4968 p95 0.5956 | >= statistica 0 | p 0.0023 | prime 60: media 0.4890 p95 0.5700 | 18134 s
+2026-11-23 17:37:50 Parte 2: 450 permutazioni | media 0.4967 p95 0.5979 | >= statistica 0 | p 0.0022 | prime 60: media 0.4890 p95 0.5700 | 19157 s
+2026-11-23 17:54:54 Parte 2: 475 permutazioni | media 0.4963 p95 0.5953 | >= statistica 0 | p 0.0021 | prime 60: media 0.4890 p95 0.5700 | 20181 s
+2026-11-23 18:11:38 Parte 2: 500 permutazioni | media 0.4957 p95 0.5948 | >= statistica 0 | p 0.0020 | prime 60: media 0.4890 p95 0.5700 | 21185 s
+2026-11-23 18:29:25 Parte 2: 525 permutazioni | media 0.4960 p95 0.5956 | >= statistica 0 | p 0.0019 | prime 60: media 0.4890 p95 0.5700 | 22252 s
+2026-11-23 18:52:42 Parte 2: 550 permutazioni | media 0.4961 p95 0.5989 | >= statistica 0 | p 0.0018 | prime 60: media 0.4890 p95 0.5700 | 23649 s
+2026-11-23 19:11:17 Parte 2: 575 permutazioni | media 0.4962 p95 0.5996 | >= statistica 0 | p 0.0017 | prime 60: media 0.4890 p95 0.5700 | 24763 s
+2026-11-23 19:42:52 Parte 2: 600 permutazioni | media 0.4967 p95 0.5996 | >= statistica 0 | p 0.0017 | prime 60: media 0.4890 p95 0.5700 | 26659 s
+2026-11-23 20:01:34 Parte 2: 625 permutazioni | media 0.4961 p95 0.5994 | >= statistica 0 | p 0.0016 | prime 60: media 0.4890 p95 0.5700 | 27781 s
+2026-11-23 20:19:20 Parte 2: 650 permutazioni | media 0.4967 p95 0.5996 | >= statistica 1 | p 0.0031 | prime 60: media 0.4890 p95 0.5700 | 28846 s
+2026-11-23 20:44:37 Parte 2: 675 permutazioni | media 0.4959 p95 0.5996 | >= statistica 1 | p 0.0030 | prime 60: media 0.4890 p95 0.5700 | 30364 s
+2026-11-23 21:04:28 Parte 2: 700 permutazioni | media 0.4952 p95 0.5986 | >= statistica 1 | p 0.0029 | prime 60: media 0.4890 p95 0.5700 | 31555 s
+2026-11-23 21:31:59 Parte 2: 725 permutazioni | media 0.4950 p95 0.5985 | >= statistica 1 | p 0.0028 | prime 60: media 0.4890 p95 0.5700 | 33205 s
+2026-11-23 21:50:22 Parte 2: 750 permutazioni | media 0.4947 p95 0.5983 | >= statistica 1 | p 0.0027 | prime 60: media 0.4890 p95 0.5700 | 34309 s
+2026-11-23 22:07:40 Parte 2: 775 permutazioni | media 0.4954 p95 0.5996 | >= statistica 1 | p 0.0026 | prime 60: media 0.4890 p95 0.5700 | 35347 s
+2026-11-23 22:24:27 Parte 2: 800 permutazioni | media 0.4957 p95 0.5996 | >= statistica 1 | p 0.0025 | prime 60: media 0.4890 p95 0.5700 | 36354 s
+2026-11-23 22:40:46 Parte 2: 825 permutazioni | media 0.4960 p95 0.6014 | >= statistica 1 | p 0.0024 | prime 60: media 0.4890 p95 0.5700 | 37333 s
+2026-11-23 22:57:02 Parte 2: 850 permutazioni | media 0.4963 p95 0.6011 | >= statistica 1 | p 0.0024 | prime 60: media 0.4890 p95 0.5700 | 38308 s
+2026-11-23 23:13:14 Parte 2: 875 permutazioni | media 0.4968 p95 0.6031 | >= statistica 1 | p 0.0023 | prime 60: media 0.4890 p95 0.5700 | 39281 s
+2026-11-23 23:30:12 Parte 2: 900 permutazioni | media 0.4970 p95 0.6029 | >= statistica 1 | p 0.0022 | prime 60: media 0.4890 p95 0.5700 | 40299 s
+2026-11-23 23:46:15 Parte 2: 925 permutazioni | media 0.4970 p95 0.6035 | >= statistica 1 | p 0.0022 | prime 60: media 0.4890 p95 0.5700 | 41262 s
+2026-11-24 10:19:33 RIPRESA della Parte 2 con e15r_riprendi.py: 925 permutazioni gia' scritte, lavori 5
+2026-11-24 10:20:44 Parte 2: statistica H36 AUROC OOF 0.7097 (atteso 0,7097) | scelte [(4, 0.001, 0.798), (4, 0.001, 0.743), (20, 0.001, 0.699), (20, 0.001, 0.761), (7, 0.001, 0.694)]
+2026-11-24 10:39:48 Parte 2: 950 permutazioni | media 0.4974 p95 0.6033 | >= statistica 1 | p 0.0021 | prime 60: media 0.4890 p95 0.5700 | 1215 s
+2026-11-24 11:02:33 Parte 2: 975 permutazioni | media 0.4971 p95 0.6020 | >= statistica 1 | p 0.0020 | prime 60: media 0.4890 p95 0.5700 | 2580 s
+2026-11-24 11:22:36 Parte 2: 1000 permutazioni | media 0.4975 p95 0.6032 | >= statistica 1 | p 0.0020 | prime 60: media 0.4890 p95 0.5700 | 3782 s
+2026-11-24 11:22:36 fine

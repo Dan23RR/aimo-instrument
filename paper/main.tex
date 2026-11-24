@@ -1,0 +1,251 @@
+\documentclass{article}
+
+%% Conditional revision of November 2026: six pages of main text, from the title to the end of Section 7 (label
+%% fine-testo); the Limitations, the AI usage statement, the references and the appendices do not count.
+%% Final mode with the workshop name. Line numbers on every fifth line, small and grey, for the note to the
+%% program chairs, who asked for section and line numbers. Copy without them: pdflatex "\def\cleancopy{}\input{main}".
+%% Every line numbered (same numbering, used to find the lines cited in the note): "\def\everyline{}\input{main}".
+\usepackage[final,sglblindworkshop]{neurips_2026}
+\workshoptitle{AIMO Interpretability Challenge}
+\ifdefined\cleancopy\else
+  \usepackage{lineno}
+  \linenumbers
+  \ifdefined\everyline\else\modulolinenumbers[5]\fi
+  \renewcommand\linenumberfont{\normalfont\tiny\sffamily\color{black!45}}
+\fi
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do\.\do\_\do\-\do\:}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{amsfonts}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{needspace}
+\setlist[itemize]{leftmargin=1.4em, itemsep=2pt, topsep=4pt, parsep=0pt}
+\setlist[itemize,2]{label=$\circ$}
+\renewcommand{\arraystretch}{1.15}
+\raggedbottom
+
+\title{The Instrument Behind the Leaderboard: Re-Execution Noise and Label Regeneration in the AIMO Interpretability Challenge}
+
+\author{%
+  Daniel Culotta \\
+  Independent researcher
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We treat the AIMO Interpretability benchmark, which asks whether a model's answer to a math problem survives perturbations, as a measurement instrument. Almost all our label and probe analyses use the preliminary datasets. As the program chairs note, these differ from the official training and validation data in sampling, perturbations and eligibility, so findings on label reliability and predictability may not hold in the official evaluation. First, on DeepSeek-R1-0528-Qwen3-8B in the official pipeline, 24 of 40 items changed prediction across five default runs. Turning compilation off, or deterministic algorithms on, gave three byte-identical runs, each on one card. Second, we regenerated labels with our own protocol, not the official one: our perturbations and answer key, one answer per variant, a 16,384-token cap and temperature 0.6, where the organizers publish 100,000 tokens and 1.0. Two independent draws agree at kappa 0.35 to 0.44 on three of four models however truncated chains are treated, and 0.18 to 0.44 on Qwen3.5-4B, whose chains often reach the cap. Draw A agrees with the 138 published DeepSeek labels at kappa 0.01. This describes our protocol and does not measure the reliability of the organizers' labels. Third, of the 27 dated hypotheses with a kill criterion, 21 failed it. Our probe on DeepSeek's hidden states does no better than problem length (AUROC 0.710 against 0.704; lower on the published labels) and adds no detectable gain to it.
+\end{abstract}
+
+\section{Introduction}\label{sec:1}
+
+A leaderboard is a measurement. Its score is read off an instrument made of a label, an evaluation set, an inference pipeline and the hardware it runs on. When the label is itself produced by a stochastic process, the instrument has noise of its own, which a single submission cannot see. We measure the re-execution noise of the official extraction and regressor, and the repeatability of labels regenerated with our own protocol, not the noise of the organizers' labels.
+
+We study the instrument of the AIMO Interpretability Challenge, in which a submission predicts, for a given model and math problem, whether the model's answer is robust to perturbations of the problem [1]. We ran our work as a falsification campaign: every hypothesis was recorded in a dated file, 26 of the 31 before their data were seen, and every tested hypothesis is reported. Of the 31 entries, 27 carried a kill criterion written before their test ran (for 3 of them in a written plan rather than a frozen pre-registration, and for H2 after its concordance had been seen). By that criterion 21 were rejected, 5 survived and 1 is not established (Appendix~\ref{app:A}).
+
+\paragraph{Scope.} Three limits apply.
+\begin{itemize}
+\item \textbf{Preliminary and official data.} Almost all of our label and probe analyses use the six preliminary public datasets released before the main phase. Their labels follow an earlier rule than those of the official training set (\texttt{train-main-v2}) and of the validation and test tasks [5]; as the program chairs noted in their meta-review, their sampling procedures, perturbations and eligibility criteria also differ. Beyond the label rule, we did not compare the two. Unless we say otherwise, a result on labels or on their predictability holds for the preliminary data and may not hold in the official evaluation setting.
+\item \textbf{Our labeling protocol is not the official one.} When we regenerate labels (Section~\ref{sec:labels}), we use our own perturbations, prompts, sampling, decoding, answer key and labeling rule. Disagreement with the organizers' preliminary labels therefore shows that the two processes give different labels; it does not establish that their labels are unreliable or irreproducible.
+\item \textbf{Mostly one model.} The re-execution study of Section~\ref{sec:reexec}, the probe analyses and every comparison of our regenerated labels with the organizers' preliminary labels are on DeepSeek-R1-0528-Qwen3-8B. Regenerated labels cover four models, but no conclusion about the official benchmark is established across models.
+\end{itemize}
+
+Within these limits, Sections~\ref{sec:reexec} to~\ref{sec:campaign} report re-execution noise and two candidate remedies, our regenerated labels, and signals that do no better than problem length or come from an artifact of the data. Nondeterminism of LLM inference is documented in general [2, 3]; we add its size for one model, one submission and 40 problems on this benchmark's hardware and pipeline. We make no claim about any participant's method.
+
+\section{The task, the labels and the data}\label{sec:data}
+
+\paragraph{Task.} A submission receives a model identifier, a reasoning effort and a list of problems, and returns one robustness verdict per problem, offline on one GPU within one hour [4, 5], or 70 minutes since 15 October [6]. The models are Qwen3.5-4B, Skywork-OR1-Math-7B, Olmo-3-7B-Think and \mbox{DeepSeek-R1-0528-Qwen3-8B} in both tracks, and gpt-oss-120b in the Main track only.
+
+\paragraph{Official data.} The main-phase training set \texttt{train-main-v2} labels all five models with a threshold on the largest accuracy drop across perturbation families: robust at most 0.10, non-robust at least 0.25, no label in between [5]. The organizers' published decoding settings are up to 100,000 tokens at temperature 1.0, top-k 40 and top-p 0.95, and a response that reaches the limit without a final answer counts as wrong [4]. Since 16 September the private validation tasks have 21 items (Main) and 14 (Small), on which the binomial standard error of an accuracy near one half is 10.9 and 13.4 points; the final test uses 30 to 50 new problems [5, 6].
+
+\paragraph{Preliminary data.} Six datasets released before the main phase aggregate to 335 (model, problem) pairs over 174 distinct problems, for up to eight models; 52 pairs repeat the DeepSeek measurements under a second model name. Their labels follow an earlier rule: on all 379 labeled rows (a pair can have several), the label equals the conjunction ``no perturbation lowered accuracy''. A per-family majority rule (``more than half of the answers are correct in every perturbation family'') reproduces the same 379 labels, so these rows cannot tell the two rules apart. Whether they used the decoding settings above is not documented; in the files behind most DeepSeek labels, most variants listed as lowering accuracy were answered 10 times. We call their labels the organizers' preliminary labels, and keep ``official'' for \texttt{train-main-v2} and the validation and test tasks.
+
+\paragraph{DeepSeek labels.} DeepSeek is the only evaluated model with many preliminary labels: 164 distinct problems (the 52 duplicated pairs count once). For 138 of them the data publish a label. For the other 26 we derived one with the conjunction, which makes 4 of them robust; the majority rule would make 21 robust, so these 26 labels depend on the choice of rule. We therefore report results on the 138 published labels separately.
+
+\section{Re-execution noise on the evaluation workers' type of GPU}\label{sec:reexec}
+
+On a virtual machine lent by the organizers, with two NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs (the type the evaluation workers use), we ran 40 preliminary public problems through the official runtime image, extraction and regressor, unmodified, on DeepSeek. Decoding was greedy, with at most 4,096 new tokens in batches of 8. The 40 labels are DeepSeek's of Section~\ref{sec:data}: 28 published and 12 that we derived with the conjunction, which include 3 of the 7 robust ones. Figure~\ref{fig:noise} shows the 23 executions; Table~\ref{tab:reexec} gives the repeatability of each configuration.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_rumore.pdf}
+\caption{Predictions of the official pipeline for 40 preliminary public problems (columns) in 23 executions on DeepSeek (rows), by configuration; the last row is the label, dark cells are robust, and columns are sorted by how often they are predicted robust. At right: items whose prediction changes across the configuration's runs (more runs, more crossings), items whose generated text is byte-identical in all of them, and seconds per item.}
+\label{fig:noise}
+\end{figure}
+
+\begin{table}[t]
+\caption{Repeatability of the official pipeline on DeepSeek, 40 public problems, by configuration, in the order of Figure~\ref{fig:noise}. ``Crossings'': items whose prediction changes across the configuration's runs. ``Identical'': items whose generated text is byte-identical in all runs. Cost is runtime against the default configuration. Card 0 and card 1 are the two GPUs of the same machine. With two processes on one card, any five of its six runs give 29 to 31 crossings.}
+\label{tab:reexec}
+\centering
+\small
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+\textbf{Configuration} & \textbf{Card} & \textbf{Runs} & \textbf{Crossings} & \textbf{Identical} & \textbf{Correct per run} & \textbf{Cost} \\
+\midrule
+Default (batch 8) & 0 & 5 & 24/40 & 0/40 & 24, 24, 24, 23, 24 & reference \\
+Batch size 1 & 0 & 3 & 20/40 & 1/40 & 20, 21, 24 & +178\% \\
+Two processes on one card & 0 & 6 & 32/40 & 0/40 & 24 to 28 & +110\% \\
+Second physical card & 1 & 3 & 19/40 & 0/40 & 24, 24, 21 & +0\% \\
+Deterministic algorithms & 0 & 3 & 0/40 & 40/40 & 24, 24, 24 & +5\% \\
+Compilation disabled & 1 & 3 & 0/40 & 40/40 & 25, 25, 25 & +7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Two candidate remedies.} Deterministic algorithms (PyTorch's, in warn-only mode, with deterministic cuDNN and a fixed cuBLAS workspace; Appendix~\ref{app:C}) and disabled compilation each made the generated text byte-identical in three sequential runs, at 5 to 7\% runtime cost. On card 0, the default configuration produced 24 crossings in five runs. Each remedy ran on one card where the default had produced crossings, each run in a new process, without contention. Three identical runs are weak evidence: the default configuration also gave three identical runs on card 0 before its fourth diverged, and five of its eight runs on the two cards shared one output. The two remedies produced different outputs, predicting 15 and 12 of the 40 problems robust, and because they ran on different cards we cannot tell whether the difference comes from the configuration or from the card. Neither gained more than one item (24 and 25 correct).
+
+\paragraph{Distinct outputs.} The 23 executions fall into 14 distinct outputs, byte-identical within each. The same output appeared on both cards, and two runs launched in the same second on one card produced different outputs, so the output is not a property of the card alone; what selects it is not established. As only 7 of the 40 problems are robust and crossings largely cancel, accuracy moved much less than predictions: 21 to 24 correct in the default configuration on either card and 24 to 28 with two processes on one card, always below the 33 of the majority constant. An exploratory repetition of the official score extraction, whose third run ranks the 164 labeled problems at Spearman 0.24 against the first two, is in Appendix~\ref{app:C}.
+
+\section{Regenerating the labels with our own protocol}\label{sec:labels}
+
+\paragraph{Our labeling protocol.} We identified the organizers' perturbation families in the preliminary data (rephrase, rename, domain, distract, typos), regenerated them with gpt-oss-120b prompted with public examples, and gated each variant with gpt-oss-120b. An answer counts as correct when it matches gpt-oss-120b's answer on the original problem, because the preliminary data carry no answers; we did not check this key against the answers of the collections the problems come from. On the organizers' machine, with vLLM 0.28.0 [8] outside the official image, we labeled four models with two independent draws of variants (A and B, about 40 accepted variants per problem): 10 samples on the base problem and one per variant, at temperature 0.6, top-p 0.95 and at most 16,384 new tokens. Draw A's variants were also re-sampled with a new seed (A$'$). A label is robust when at least 6 of the 10 base samples are correct and every variant is answered correctly; unlike the earlier rule's conjunction, this requires the base problem to be solved.
+
+A chain that reaches our cap is scored by the last boxed answer it contains, and counts as wrong without one; the organizers also count a response that reaches their limit without a parseable final answer as wrong [4]. Our protocol therefore differs from the organizers' in perturbations, answer key, rule and sampling (one answer per variant, against 10 in the files behind most of their DeepSeek labels). Its decoding differs from the settings they publish, and its prompt may differ from the one behind their labels, which they have not stated.
+
+\begin{table}[t]
+\caption{Agreement of labels regenerated with our protocol: Cohen's kappa. The three columns for A and B treat variant chains that reached the 16,384-token cap in three ways: scored as in the protocol (by their last boxed answer, if any), dropped, or all counted as correct. The first of these columns and the A and A$'$ column give 95\% percentile bootstrap intervals over problems, and the script of Appendix~\ref{app:E} gives them for the other two. Kappa between A and B uses the 159 problems labeled in both (150 for Qwen3.5-4B and 156 for DeepSeek when truncated chains are dropped), and between A and A$'$ 160. ``At cap'': percentage of variant chains that reached the cap in draws A and B. ``Robust'': percentage of problems labeled robust in draw A, as scored. The last column gives kappa of draw A with the organizers' preliminary DeepSeek labels: on the 138 published ones, and on the 160 that include 22 labels we derived (Section~\ref{sec:data}).}
+\label{tab:label}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llllllll@{}}
+\toprule
+& & & \multicolumn{3}{l}{\textbf{A and B, truncated variant chains}} & & \\
+\cmidrule(lr){4-6}
+\textbf{Model} & \textbf{At cap} & \textbf{Robust} & \textbf{as scored} & \textbf{dropped} & \textbf{correct} & \textbf{A and A$'$} & \textbf{Organizers'} \\
+\midrule
+Skywork & 1.2, 1.5 & 74 & 0.44 [0.28, 0.59] & 0.39 & 0.39 & 0.79 [0.67, 0.89] & none \\
+DeepSeek & 5.1, 6.1 & 39 & 0.41 [0.26, 0.55] & 0.35 & 0.36 & 0.46 [0.33, 0.59]$^{*}$ & 0.011; 0.025 \\
+Olmo & 1.1, 0.9 & 68 & 0.38 [0.21, 0.54] & 0.39 & 0.39 & 0.65 [0.52, 0.78] & none \\
+Qwen3.5-4B & 22.1, 29.2 & 9 & 0.18 [$-$0.06, 0.39] & 0.26 & 0.44 & not run & none \\
+\bottomrule
+\end{tabular}
+\par\smallskip{\footnotesize $^{*}$On DeepSeek, A$'$ also received the answer-format line described at the end of this section, so this entry mixes seed and prompt.}
+\end{table}
+
+\paragraph{Results.} Under our protocol, two independent draws of variants give labels that agree at kappa 0.35 to 0.44 on Skywork, Olmo and DeepSeek, whether truncated variant chains are scored as in the protocol, dropped or all counted as correct (Table~\ref{tab:label}). On Qwen3.5-4B, 22 to 29\% of the variant chains reach the cap, and agreement moves from 0.18 to 0.44 with their treatment, as does its robust share in draw A, from 9\% to 79\%. On Skywork, re-sampling the same variants with a new seed agrees far more than drawing new variants (0.79 against 0.44), so its label depends more on the variants than on the seed; on Olmo the gap is smaller (0.65 against 0.38), and on DeepSeek, where A$'$ also changed the prompt, it is 0.46 against 0.41.
+
+Our DeepSeek labels agree with the 138 labels the organizers published at kappa 0.011 [$-$0.13, 0.17], and with the 160 that include 22 of our derived labels at 0.025 [$-$0.12, 0.18]. Of the 36 problems with a published robust label, draw A calls 20 non-robust: 4 of these change when truncated variants all count as correct, and 2 more fail the base condition, with 10 and 6 of their 10 base samples ending without an answer (one also has 8 wrong variants below the cap). Of the 102 with a published non-robust label, draw A calls 44 robust. The reliability of the organizers' labels remains unmeasured. A retrospective calculation on the same saved answers with the main-phase threshold rule, applied as its pre-registration fixed it, with no filter on the base problem (Appendix~\ref{app:C}), gives test-retest point estimates between 0.34 and 0.56, below the pre-registered bar of 0.60, though three of the four intervals include it.
+
+\paragraph{The prompt changes our labels.} In a first run with the bare problem text, later discarded, \mbox{Qwen3.5-4B} gave a final answer in the expected format in only 5 of its 1,640 base samples in draw A. With one instruction line requesting the format, 145 of 164 problems passed the base condition, against none. DeepSeek passed it on 147 of 164 with or without that line; its draws A and B ran without the line and A$'$ with it, and on the same variants its robust share moved from 39\% to 51\% of the 160 labeled problems, a change that mixes prompt and seed. Under our protocol, the label of Qwen3.5-4B therefore depends on the prompt. Whether this affects the organizers' labels is unknown: their baselines repository has a solve prompt that asks for an ANSWER line, but they have not said whether it was used for labeling (R3).
+
+\section{The falsification campaign}\label{sec:campaign}
+
+Table~\ref{tab:campaign} summarizes the campaign; Appendix~\ref{app:A} lists all 31 entries and explains three traps (rule T, the oracle H13, the duplicated pairs behind H2) and two pitfalls of the data. All entries use the preliminary data, except H16 to H18, which were scored on the 17 items of the warmup evaluation task.
+
+\begin{table}[t]
+\caption{The campaign in brief, in 19 of its 31 entries (Appendix~\ref{app:A} lists all). Ground truth is DeepSeek's and the preliminary pairs' unless stated; accuracy differences are in points against each pre-registration's baseline. H1, H7 and T count the 52 duplicated DeepSeek pairs twice; counted once, no verdict changes.}
+\label{tab:campaign}
+\centering
+\small
+\begin{tabular}{@{}L{5.5cm}L{1.9cm}L{5.6cm}@{}}
+\toprule
+\textbf{What we tested} & \textbf{Entries} & \textbf{Outcome} \\
+\midrule
+Text features; robustness as a property of the problem; labels, base accuracy and difficulty order across models & H1 to H5, H7 & rejected; H2 gained only when the duplicated pairs were counted twice \\
+Official uncertainty features, logistic regression & H10 & 0.774 against a majority constant of 0.756, within the 0.692 $\pm$ 0.101 of the proposal [1] (method substituted) \\
+Features cached for other models; per-target thresholds & H12, H13 & H12 rejected; the H13 ceiling withdrawn, $-$2.8 points when forced to rank \\
+Our perturbation families, translation, self-consistency, the organizers' families regenerated (pilot), representation shift & H19, H22, H30 to H33 & rejected: kappa at most 0.02, AUROC at most 0.615 \\
+Probes on DeepSeek's hidden states: ours and the organizers' published artifact & H36, H35 & survive their nulls; ours adds no detectable gain over length, and the artifact's score is probably in-sample \\
+Trivial-robust rule, post hoc & T & a trap: +6.0 points on the preliminary pairs, +0.0 on \texttt{val-sample} \\
+Identical bundles re-executed (warmup, 17 items) & H18 & noise confirmed: 11, 9, 11 and 11 correct \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Length and probes.} The character count of the problem alone orders the 164 DeepSeek labels at AUROC 0.704. Our logistic probe on DeepSeek's last-token hidden states, with layer and regularization chosen by inner cross-validation, reaches 0.710 out of fold with the original fold assignment; over 20 other assignments, passed through the second-stage model below, it gives 0.57 to 0.76 (mean 0.69); its scores correlate with length at Spearman +0.55, and residualized on log character count it gives 0.62. Its permutation null, rerun with 1{,}000 permutations of the whole nested procedure (the first version used 60, where 500 were pre-registered), gives $p = 0.002$. Restricted to the 138 published labels, these out-of-fold scores give 0.714 and length 0.733; retrained on those 138 alone with H36's procedure and seed, the probe gives 0.620. Combined with length in a second-stage model fitted on common outer folds, the probe changes AUROC over length alone by +0.005 on the 164 labels and by $-$0.010 on the 138 published ones (median bounds of the per-assignment 95\% intervals: $-$0.03 to 0.04, and $-$0.04 to 0.02): we detect no gain from adding the probe to length (Appendix~\ref{app:C}). This analysis replaces an earlier combination that leaked labels (Appendix~\ref{app:D}).
+
+The organizers' published DeepSeek probe artifact orders the 164 DeepSeek labels at 0.739 with the aggregation we pre-registered and at 0.709 with its own, and at 0.62 and 0.57 residualized on log character count; its controls trained on shuffled labels give 0.68 at layer 31. The artifact does not record its training data; we infer that 137 of the 164 problems were among the public rows it was trained on, so these scores are probably largely in-sample. These length controls, which play the role of control tasks [7], were post hoc. Whether either probe reads anything beyond length that bears on robustness is not established. Apart from rule T and the withdrawn oracle H13, no signal we scored by accuracy beats the majority constant by more than about one standard error on the preliminary labels, most of them DeepSeek's.
+
+\section{Our entries}\label{sec:entries}
+
+Our entry V8, pre-registered on 13 September, is the whole rule \texttt{return~[len(p)~>=~98 for~p~in~problems]}, with the threshold at the lower median of the 174 preliminary problems and the direction fixed on the preliminary pairs. On the original main-phase tasks it scored 11/21 and 10/19, like our entry v6 and the organizers' own entries. None of these beat the majority constant, which scores at least 11/21 and 10/19 on these tasks, and on so few items the ties do not show that length carries no signal (95\% Wilson intervals 0.32 to 0.72 and 0.32 to 0.73). On the 71 labeled rows of the official training set (revision of 17 September; 36 distinct problems), V8 differs from the all-robust constant on only 6 rows and is wrong on all 6 (46/71 against 52/71): too few to say what length is worth on official data. On the replacement tasks of 16 September, before and after the change of 15 October [6], it predicted robust for every item (10/21 and 7/14), like an all-robust control. For the final test we nominated V8 (Codabench 1016713) and the constant (1016732), both on the Main track; our pre-registered predictions will be scored there (Appendix~\ref{app:B}).
+
+\section{Recommendations}\label{sec:recs}
+
+These rest mostly on DeepSeek and the preliminary data, and should be checked on the other models.
+\begin{itemize}
+\item \textbf{R1. Remove the variation between runs, and test the remedy:} on the same card with independent restarts, under load and across cards.
+\item \textbf{R2. Repeat only where it decides something:} at the warmup's re-execution noise (a standard deviation of 1.0 item on 17, itself estimated from four runs), a one-item gap needs about eight runs per entry to reach two standard errors, so repeat only entries that run a model and sit near a prize boundary.
+\item \textbf{R3. Say which prompt and decoding settings produced each released label file,} at least after the close.
+\item \textbf{R4. Measure the label's reliability directly,} with two independent draws of variants labeled by the official process.
+\item \textbf{R5. Show floors and noise on the leaderboard:} a row per constant predictor, the re-execution noise and binomial intervals.
+\item \textbf{R6. Require a length control in white-box ablations.}
+\item \textbf{R7. Remove the leaking field} \texttt{permutation\_type} from the aggregated datasets (Appendix~\ref{app:A}).
+\end{itemize}
+
+\paragraph{Code and data.} Our code, bundles, pre-registrations and outcome files are released at \href{https://github.com/Dan23RR/aimo-instrument}{\nolinkurl{github.com/Dan23RR/aimo-instrument}}. Its folder \texttt{reproduce/} recomputes the main tables from saved outputs and the six preliminary datasets, and the other numbers come from the dated records in \texttt{archive/} (Appendix~\ref{app:E}).
+
+%%%%%% End of the main text: the six pages end here; the Limitations do not count %%%%%%
+\label{fine-testo}
+
+\section*{Limitations}
+
+\begin{enumerate}[leftmargin=1.6em, itemsep=2pt, topsep=4pt, parsep=0pt]
+\item \textbf{Preliminary data, not official data.} We did not repeat our label and probe analyses on the official training set, beyond the evaluation of V8 and a five-row check of our labels (Appendix~\ref{app:C}). Findings on label reliability and predictability may not generalize to the official evaluation setting.
+\item \textbf{Our protocol, not the official one.} We did not regenerate labels with the organizers' published settings (100,000 tokens, temperature 1.0), with 10 answers per variant as in the files behind most DeepSeek labels, or on \texttt{train-main-v2}. The three treatments of truncated variant chains show how much our cap moves agreement between our draws; all three score base samples that reach the cap as the protocol does, and none of them reproduces longer decoding or a different temperature. Our low agreement with the organizers' labels is a fact about our process.
+\item \textbf{One model.} We ran the probes, the re-execution study of Section~\ref{sec:reexec} and the comparisons of our regenerated labels with the organizers' preliminary labels only on DeepSeek.
+\item \textbf{Re-execution.} We did not run the two candidate remedies on the same card, so card and configuration are confounded; we did not test either remedy under contention or on both cards, and we used 40 problems and one image.
+\item \textbf{Records.} Some analyses rest on re-created scripts or dated records (Appendix~\ref{app:D}). Nothing here estimates performance on the final held-out problems.
+\end{enumerate}
+
+\section*{AI usage statement}
+
+In this work, we used one generative AI tool, Claude (Anthropic), through Claude Code, for ideation, coding, analysis and writing. Ideation: it drafted the pre-registrations, including hypotheses, predictions and kill criteria, and searched and summarized the literature and the public records, including the organizers' Discord channels and the author's correspondence with them. Coding: it wrote the solution code of our bundles and the analysis and extraction scripts, ran them, and operated the organizers' virtual machine over SSH. Analysis: it computed and interpreted the results and ran automated adversarial reviews of hypotheses, drafts and code. Writing: it drafted the correspondence, this report and its revision after review.
+
+It also made most of our Codabench uploads through the author's browser at the author's instruction. There were two exceptions: one resubmission (925822, 14 September), made without a specific instruction, and one submission that the author had not approved, sent in error and rejected before import (1016734, 28 October).
+
+Language models were also components of our method: gpt-oss-120b generated and gated the perturbation variants and supplied the reference answers of Section~\ref{sec:labels}, and phi-4 translated problems for H22. The final decisions on the direction of the work, on the submissions (with the two exceptions above), on the nominations for the final test and on the claims of this report were the author's, and the author sent all correspondence personally. The author has reviewed all AI-assisted work and takes full responsibility for the final content of this report.
+
+\begin{ack}
+We thank Michal Štefánik, Róbert Belanec and the AIMO Interpretability team for the compute grant, a virtual machine with two GPUs, and for answering our questions; on 2 November they confirmed that the measurements taken on their machine may appear in this report. We also thank the three reviewers and the program chairs: two reviewers checked our analyses against the released code and data, and their checks corrected several of our claims. Other GPU time was rented on Modal and paid by the author or covered by Modal's platform credit. This work received no other funding, and the author has no competing interests.
+\end{ack}
+
+\section*{References}
+{\small
+[1] M. Štefánik, P. Mondorf, A. Waldis, Q. Liu, C. Yang, M. Spiegel, J. Kuchař, M. Kadlčík, A. Vawda-Oomerjee, C. Liu, S. Frieder, B. Plank, F. Barez and P. Stenetorp. AIMO Interpretability Challenge. CoRR, abs/2607.13899, 2026. doi:10.48550/arXiv.2607.13899.
+
+[2] H. He and Thinking Machines Lab. Defeating Nondeterminism in LLM Inference. Thinking Machines Lab: Connectionism, 2025.
+
+[3] J. Yuan, H. Li, X. Ding, W. Xie, Y.-J. Li, W. Zhao, K. Wan, J. Shi, X. Hu and Z. Liu. Understanding and Mitigating Numerical Sources of Nondeterminism in LLM Inference. NeurIPS 2025. arXiv:2506.09501.
+
+[4] AIMO Interpretability Challenge website and FAQ. \url{https://aimo-interp.github.io} (accessed 28 October 2026), and its source repository aimo-interp/aimo-interp.github.io on GitHub.
+
+[5] aimo-interp/getting-started and aimo-interp/baselines, GitHub repositories: README and issues \#6 and \#10 of getting-started; aimo-interp datasets on Hugging Face, including \texttt{train-main-v2} and \texttt{val-sample}.
+
+[6] AIMO Interpretability Challenge Discord, \#announcements and \#qa: 5, 15 and 22 September, 9, 15, 16 and 20 October 2026.
+
+[7] J. Hewitt and P. Liang. Designing and Interpreting Probes with Control Tasks. EMNLP-IJCNLP 2019.
+
+[8] W. Kwon et al. Efficient Memory Management for Large Language Model Serving with PagedAttention. SOSP 2023.
+
+[9] D. Hendrycks et al. Measuring Mathematical Problem Solving With the MATH Dataset. NeurIPS 2021 Datasets and Benchmarks Track. arXiv:2103.03874.
+}
+
+%%%%%% End of the references %%%%%%
+\clearpage
+\appendix
+\raggedright
+
+\input{app_A}
+\input{app_B}
+\input{app_C}
+\input{app_D}
+\input{app_E}
+
+\newpage
+\input{checklist_compilata.tex}
+
+\end{document}

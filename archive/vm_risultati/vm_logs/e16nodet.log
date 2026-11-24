@@ -1,0 +1,6 @@
+=== E16-bis (senza flag) gpu=1 N=174 rep=2 inizio Sun Sep 13 10:28:46 UTC 2026 ===
+[10:28] deepseek-ai/DeepSeek-R1-0528-Qwen3-8B rep0 su gpu1 (nessun flag deterministico)
+[11:44] scritto /work/aimo/e16nodet/rep0/e16_deepseek-ai__DeepSeek-R1-0528-Qwen3-8B.jsonl: 174 righe | score min 0.2100 q25 0.5754 mediana 0.6627 q75 0.7588 max 0.9441 | sotto la soglia ereditata 25.9%
+[11:44] deepseek-ai/DeepSeek-R1-0528-Qwen3-8B rep1 su gpu1 (nessun flag deterministico)
+[12:59] scritto /work/aimo/e16nodet/rep1/e16_deepseek-ai__DeepSeek-R1-0528-Qwen3-8B.jsonl: 174 righe | score min 0.1406 q25 0.5160 mediana 0.6494 q75 0.7673 max 0.9287 | sotto la soglia ereditata 34.5%
+=== E16-bis gpu1 fine Sun Sep 13 12:59:46 UTC 2026 ===

@@ -1,0 +1,48 @@
+\section{Withdrawn claims, deviations and records}\label{app:D}
+
+\paragraph{Claims withdrawn after review.}
+\begin{itemize}
+\item \textbf{A bound on latent agreement.} We had corrected the kappa of 0.025 with the organizers' DeepSeek labels for our own noise and quoted about 0.27 as an upper bound on latent agreement. That needs a measurement-error model for binary labels that we had not justified.
+\item \textbf{The combination of probe and length.} Its earlier second-stage cross-validation reused probe scores computed on other folds, so some training scores depended on test labels. Its numbers (0.696 for length, 0.697 for the probe, 0.714 for both) are replaced by E15-R (Appendix~\ref{app:C}).
+\item \textbf{Re-execution.} We no longer infer that the output of a run is fixed when the process starts.
+\item \textbf{A simulation.} A plug-in simulation of the organizers' labeling process, which we had reported as overstating test-retest agreement by about 0.4, is no longer reported. It was a model of their process, not a measurement of it.
+\end{itemize}
+The other changes after review are listed in the repository README.
+
+\paragraph{Deviations from the pre-registrations.} Each pre-registration is dated before execution, and the deviations below are also recorded as notes in those files.
+\begin{itemize}
+\item \textbf{Not pre-registered.} E5 is documented only in its outcome file. E11 ran from a written plan without the frozen pre-registration it called for. E16 was not pre-registered, although we had told the organizers that every experiment on their machine would be.
+\item \textbf{E4.} H7 was compared with the global prior of the training models instead of the pre-registered per-model majority, against which it scores $-$1.2 points.
+\item \textbf{E6.} H10 was run as a logistic regression on 13 of the 14 features in place of the pre-registered regressor and threshold, and this was not declared at the time.
+\item \textbf{E11.}
+  \begin{itemize}
+  \item Three planned primary tests were not run.
+  \item A Holm correction was planned and not applied, and H30 would fail it.
+  \item The confirmation set was not held out.
+  \item AUROCs were computed on raw scores, with the orientation chosen on the data.
+  \item Only one of the three planned layer depths (0.80, the primary one) was extracted.
+  \item The six-feature text baseline of H28 was replaced by character count alone, and the two reference analyses the plan required next to every AUROC were not computed.
+  \end{itemize}
+\item \textbf{E13.}
+  \begin{itemize}
+  \item gpt-oss-120b was pre-registered for labeling and not labeled.
+  \item DeepSeek's A$'$ received the answer-format line through a queueing error.
+  \item The pre-registered table that mapped outcomes to readings was not followed, because it assumed our regeneration reproduces the organizers' process.
+  \item The subsampling curve varied the variants per problem, where the design varied them per family.
+  \item The token cap was raised from 8,192 to 16,384 before execution.
+  \end{itemize}
+\item \textbf{E13b.} It was written after the E13 answers had been measured (Appendix~\ref{app:C}).
+\item \textbf{E14.} Its fourth measure, the repeatability (ICC) of the 14 official features, was not computed, and two of its predictions failed (Appendix~\ref{app:C}).
+\item \textbf{E15.}
+  \begin{itemize}
+  \item It predicted that both probes would fail their nulls; both survived.
+  \item H36's nested null was pre-registered with 500 permutations and the full grid of $C$. The first run (14 September) used 60 permutations and two values of $C$. It was rerun with the full grid on 23 September, and extended to 1{,}000 permutations in a run started on 23 November.
+  \item The Holm correction over the two primaries was not computed.
+  \item The length controls of H35 and H36 were post hoc.
+  \end{itemize}
+\item \textbf{V4.} The allocation entry (909843) predicted robust on the 9 warmup items of gpt-oss-120b. It combined three numbers: the share of robust items implied by public leaderboard scores of constant entries, the count of gpt-oss-120b items read from the log of our warmup submission 907310, and that model's higher robust rate in the preliminary datasets (0.40 against 0.24). Our compliance review found that without the first two, which describe the evaluation set, it reduces to the entry it modified. Its pre-registration said it would not be sent if that review refuted it; the review did, and the author submitted it once anyway, as a measurement kept off the leaderboard. It tied the entry it modified.
+\end{itemize}
+
+\paragraph{Records.} Several analyses were first run from scripts that were not saved, and were re-created and saved later. The two length-control scripts of E15 and the rerun of its null were re-created on 23 September, each checked against the logged values before use. A few figures rest only on a dated record, not on a saved per-item output: H29's repeatability, the GPU-hours on Modal, and V8's predictions on the replacement and current tasks, which come from counts its container logged.
+
+\paragraph{Earlier corrections.} Between our first drafts and the submitted version we corrected 54 of our own statements. They are listed, with what each changed, in \texttt{CORRECTIONS.md} in the repository, and every number in this report already includes them. The main text cites English entry points (\texttt{reproduce/}); the commands of the run manifest keep the original script names, which the dated pre-registrations cite.

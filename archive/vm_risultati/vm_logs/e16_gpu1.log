@@ -1,0 +1,6 @@
+=== E16 gpu=1 N=174 inizio Sun Sep 13 09:05:04 UTC 2026 ===
+[09:05] Qwen/Qwen3.5-4B su gpu1
+[09:31] scritto /work/aimo/e16/e16_Qwen__Qwen3.5-4B.jsonl: 174 righe | score min 0.2761 q25 0.5518 mediana 0.5860 q75 0.6430 max 0.8474 | sotto la soglia ereditata 43.7%
+[09:31] Skywork/Skywork-OR1-Math-7B su gpu1
+[10:27] scritto /work/aimo/e16/e16_Skywork__Skywork-OR1-Math-7B.jsonl: 174 righe | score min 0.2745 q25 0.5605 mediana 0.6543 q75 0.7890 max 0.9202 | sotto la soglia ereditata 44.3%
+=== E16 gpu1 fine Sun Sep 13 10:27:46 UTC 2026 ===

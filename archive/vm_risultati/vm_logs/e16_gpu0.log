@@ -1,0 +1,9 @@
+=== E16 gpu=0 N=174 inizio Sun Sep 13 09:05:04 UTC 2026 ===
+[09:05] deepseek-ai/DeepSeek-R1-0528-Qwen3-8B su gpu0
+[10:20] scritto /work/aimo/e16/e16_deepseek-ai__DeepSeek-R1-0528-Qwen3-8B.jsonl: 174 righe | score min 0.2100 q25 0.5754 mediana 0.6627 q75 0.7588 max 0.9441 | sotto la soglia ereditata 25.9%
+[10:20] allenai/Olmo-3-7B-Think su gpu0
+[11:06] scritto /work/aimo/e16/e16_allenai__Olmo-3-7B-Think.jsonl: 174 righe | score min 0.2801 q25 0.5422 mediana 0.6053 q75 0.6468 max 0.7765 | sotto la soglia ereditata 36.2%
+[11:06] openai/gpt-oss-120b su gpu0
+[11:06] 
+!!! errore su openai/gpt-oss-120b
+=== E16 gpu0 fine Sun Sep 13 11:06:25 UTC 2026 ===

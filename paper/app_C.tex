@@ -1,0 +1,156 @@
+\section{Protocols, run manifest and recalculations}\label{app:C}
+
+\paragraph{Hardware and software.} The generation runs used the organizers' virtual machine with two NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs (96 GB each), the evaluation workers' model, from 8 September 2026. Each run used one GPU; the Olmo-3-7B-Think A$'$ labels combine two runs, one on each card (below).
+\begin{itemize}
+\item \textbf{Official runtime image.} Section~\ref{sec:reexec} and the official score channel (E16) ran inside it: {\footnotesize\path{ghcr.io/aimo-interp/aimo-codabench-runtime:torch2.12.1-cuda13.2-cudnn9-transformers5.13.0-sklearn1.8.0-kernels0.15.2}}, digest {\footnotesize\path{sha256:fb4dab6343de7ce022ddd7906493f9ced16ff9008d497326a781d1e5adc8207a}}. They used the official extraction and regressor as shipped in our bundles: greedy decoding, at most 4,096 new tokens, static cache, batch 8.
+\item \textbf{Labeling environment.} Section~\ref{sec:labels} ran with vLLM 0.28.0, torch 2.13.0 and transformers 5.16.1 (driver 610.57.04 with CUDA 13.3 on the machine, CUDA 13.0 runtime libraries in the environment) in a separate environment on the same machine; \texttt{vm\_backup/AMBIENTE\_VM\_2026-09-17.txt} lists every package.
+\item \textbf{Model revisions.} Hugging Face snapshot hashes: Qwen3.5-4B \texttt{851bf6e8}, Skywork-OR1-Math-7B \texttt{fcef970f}, Olmo-3-7B-Think \texttt{d97e442d}, DeepSeek-R1-0528-Qwen3-8B \texttt{6e8885a6}, gpt-oss-120b \texttt{b5c939de}. The full hashes are in the run logs.
+\item \textbf{Analyses.} They ran on CPU: E13's analysis and E15's evaluation, up to 14 September, on the virtual machine (Python 3.12, NumPy 2.3.5, scikit-learn 1.9.1), the others on the author's computer (Python 3.11.12, NumPy 2.4.4 and scikit-learn 1.8.0, as recorded for the runs of September and November). The release pins every output by SHA-256 in \texttt{MANIFEST.tsv}.
+\end{itemize}
+
+\needspace{8\baselineskip}
+\paragraph{Run manifest.}
+\begin{itemize}
+\item \textbf{Where they ran.} The scripts in \texttt{vm/} written up to 14 September (setup, generation, extraction, E13's analysis and E15's evaluation), after which the machine stayed idle, and the clean-up script of 17 September ran on the virtual machine; the later ones ran on the author's computer.
+\item \textbf{Outputs} are in \texttt{vm\_risultati/} unless the table gives another path.
+\item \textbf{GPU-hours} are times from the logs (\texttt{reproduce/compute\_hours.py}). They include model loading except for the E13 labels, a difference under 1\%.
+\end{itemize}
+
+{\small\setlength{\tabcolsep}{4pt}
+\begin{longtable}{L{2.4cm}L{3.2cm}L{2.2cm}>{\raggedright\arraybackslash\footnotesize}p{4.8cm}}
+\toprule
+\textbf{Run} & \textbf{Where it ran} & \textbf{GPU-hours} & \textbf{Outputs} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Run} & \textbf{Where it ran} & \textbf{GPU-hours} & \textbf{Outputs} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+E13 variants & virtual machine & 1.15 and 1.20 & \path{e13/varianti_D1.parquet}, \path{e13/varianti_D2.parquet} \\
+E13 labels & virtual machine, one queue per card & 64.4, in the logs of the 11 runs of Table~\ref{tab:label} & \path{e13/etich_*.parquet} \\
+E13b, main-phase rule & author's computer & CPU only & \path{e13b_regola_nuova_2026-09-21.txt} \\
+E14 re-execution & virtual machine, official image & 8.4 & \path{e14/out/*.jsonl}, \path{e14/log/} \\
+E15 extraction & virtual machine & under 0.1 & \path{vm_backup/estratto/work/aimo/e15/hs_*.npz} \\
+E15 probes & the virtual machine's CPU on 14 September, then the author's computer & CPU only & \path{e15_*}, \path{e15r/} \\
+E16 score channel & virtual machine, official image & 5.9 & \path{e16_*.jsonl}, \path{e16nodet/} \\
+\end{longtable}
+}
+
+\paragraph{Commands.} Script paths are relative to \texttt{archive/}, the working folder of the repository. The scripts in \texttt{vm/} that ran on the virtual machine use paths under \texttt{/work/aimo}. \texttt{M} stands for the model, and in E14 \texttt{C}, \texttt{r}, \texttt{g} and \texttt{t} for the configuration, repetition, card and process tag.
+\begin{itemize}
+\item \textbf{E13 variants.} \texttt{vm/e13\_varianti.py -{}-draw~D1 -{}-seed~20260913 -{}-n~164 -{}-k~10}, and \texttt{-{}-draw~D2 -{}-seed~20260914}. The model gpt-oss-120b generates, solves and gates the variants (prompts below).
+\item \textbf{E13 labels.} DeepSeek A and B ran an earlier version of \texttt{e13\_etichetta.py} that sent the bare problem text (now \texttt{-{}-prompt~nudo}); every other run behind Table~\ref{tab:label}, DeepSeek A$'$ included, used the explicit prompt. Draw A: \texttt{vm/e13\_etichetta.py -{}-model~M -{}-cond~A -{}-draw~D1 -{}-seed~20260921 -{}-prompt~esplicito}; B: \texttt{-{}-cond~B -{}-draw~D2 -{}-seed~20260922}; A$'$: \texttt{-{}-cond~Ap -{}-draw~D1 -{}-seed~20260923}. \texttt{vm/e13\_coda.sh} launched one queue per card; the card 0 queue ran an earlier version that passed no \texttt{-{}-prompt} flag, so DeepSeek A$'$ got the default of \texttt{e13\_etichetta.py}, the explicit prompt.
+\item \textbf{E13b.} \texttt{vm/e13b\_regola\_nuova.py}, on the saved E13 answers; retrospective (below).
+\item \textbf{E14.} \texttt{vm/e14\_all.sh 40 "C0 C1 C2 C3"} and \texttt{vm/e14\_extra.sh 1 "C5 C4"}. Each run is \texttt{e14\_run.py -{}-cond~C -{}-rep~r -{}-gpu~g -{}-tag~t -{}-n~40} inside the official image: 23 runs on DeepSeek. In the 8.4 GPU-hours the two processes of each contention pair, which shared one GPU, count once (20 runs).
+\item \textbf{E15 extraction.} \texttt{vm/e15\_estrai.py -{}-model~deepseek-ai/DeepSeek-R1-0528-Qwen3-8B}, with and without the official system prompt: one forward pass per problem, last input token, all 37 hidden-state indices, at most 2,048 tokens.
+\item \textbf{E15 probes.} \texttt{vm/e15\_valuta.py} ran H35, H36 and the first null (60 permutations) on 14 September, on the virtual machine's CPU. \texttt{vm/e15\_null\_nidificato.py} reran that null on 23 September with both grids of $C$, on the author's computer. E15-R (below) is \texttt{vm/e15r\_ricalcolo.py vm\_risultati/e15r 5} (on 5 cores of the author's computer, 14.5 hours). H35 needs the organizers' artifact \texttt{probe\_artifact.pkl} (hash below), which we do not redistribute.
+\item \textbf{E16.} \texttt{vm/e16\_all.sh} and \texttt{vm/e16\_nodet.sh}, in the official image. Of the variables that \texttt{e16\_all.sh} sets, only the cuBLAS workspace variable reaches the extraction; \texttt{e16\_nodet.sh} sets neither.
+\end{itemize}
+
+The organizers' artifact used by H35 has SHA-256 {\footnotesize\texttt{8607478c7408922a6490adb7bda34d6a7d95403b7aa62f80dd3f2649139ccdeb}}. The listed logs total 82.8 GPU-hours. Not in the table:
+\begin{itemize}
+\item two complete runs of Qwen3.5-4B with the bare prompt (about 13 GPU-hours, no released log);
+\item a partial run of Qwen3.5-4B A$'$ with the bare prompt (1.7 GPU-hours, included in the 82.8), discarded with them;
+\item a run of Olmo-3-7B-Think A$'$ on card 1 (11.0 GPU-hours, 07:19 to 18:21 UTC on 10 September). Card 0 reached the same condition at 14:20, resumed from its partial file with 96 of the 164 problems done and finished the other 68, so the reported A$'$ labels come from both cards.
+\end{itemize}
+With these, the virtual machine ran about 107 GPU-hours, plus short smoke and feasibility tests. Our earlier runs on Modal used about 12 to 13 GPU-hours, mostly on A100 GPUs, as documented in their dated outcome files: the feature extraction behind H10, its pilot, and E9 to E12.
+
+\paragraph{What can be recomputed.}
+\begin{itemize}
+\item \textbf{From saved outputs.} The scripts in \texttt{reproduce/} (Appendix~\ref{app:E}), which also read the six preliminary datasets; the other numbers come from the dated records in \texttt{archive/}.
+\item \textbf{On a CPU, from the released hidden states.} Our probe (H36) and E15-R can be rerun end to end. H35 also needs the organizers' artifact.
+\item \textbf{Only with the original GPUs and models.} The generation runs.
+\end{itemize}
+
+\paragraph{Re-execution configurations (Section~\ref{sec:reexec}).}
+\begin{itemize}
+\item \textbf{C0, default:} batch 8, on card 0, five runs.
+\item \textbf{C1, batch size 1.}
+\item \textbf{C2, deterministic algorithms:} \texttt{torch.use\_deterministic\_algorithms(True, warn\_only=True)}, \texttt{cudnn.deterministic = True}, \texttt{cudnn.benchmark = False} and \texttt{CUBLAS\_WORKSPACE\_CONFIG=:4096:8}.
+\item \textbf{C3, contention:} two identical processes at the same time on card 0, three pairs.
+\item \textbf{C4, second card:} the default on card 1.
+\item \textbf{C5, compilation disabled:} \texttt{TORCH\_COMPILE\_DISABLE=1}, on card 1.
+\end{itemize}
+Runs within a configuration were sequential, each a new process. During these runs the other card was running another of our jobs. Two pre-registered predictions failed:
+\begin{itemize}
+\item batch size 1 did not make generation more repeatable: three runs gave three different outputs;
+\item disabled compilation was predicted to land in one of the default outputs; it was byte-identical across its runs, but in an output of its own.
+\end{itemize}
+\texttt{reproduce/reexecution\_table.py} recomputes Table~\ref{tab:reexec} and the numbers of Figure~\ref{fig:noise}, and lists the 14 distinct outputs.
+
+\paragraph{Variants and labels (Section~\ref{sec:labels}).}
+\begin{itemize}
+\item \textbf{Few-shot pool.} The generator saw five public examples of each family, drawn from a pool of 621 public examples (original, perturbed) over the five families. The texts are the organizers' and are not redistributed. \texttt{vm\_risultati/e13/fewshot\_pool\_ids.json} lists each example's problem identifier and SHA-256 hashes, and \texttt{reproduce/fewshot\_pool.py} rebuilds the pool from the downloaded preliminary datasets (verified on 23 November 2026: 621 of 621, byte-identical).
+\item \textbf{Drawing the examples.} For draw seed $s$, problem $p$ and family $f$, the five examples are \texttt{random.Random("s|p|f").sample(pool[f] without p, 5)}.
+\item \textbf{Generator.} gpt-oss-120b at low reasoning effort, temperature 1.0, top-p 1.0, at most 4,096 tokens, one request per problem and family, asking for 10 variants.
+\item \textbf{Gate and reference answers.} gpt-oss-120b at medium effort, temperature 1.0, at most 8,192 tokens, solves the original and each variant. A variant is accepted if its text differs from the original, the length ratio lies between 0.7 and 4.0, and the solver's answer is unchanged. The solver's answer on the original is the reference answer.
+\item \textbf{Labeling.}
+  \begin{itemize}
+  \item \textbf{Prompt.} Each model receives the instruction line below followed by the problem, except DeepSeek in A and B, which received the bare text.
+  \item \textbf{Sampling.} Temperature 0.6, top-p 0.95, at most 16,384 new tokens (raised from 8,192 before execution, after a test in which 2 of 3 problems saturated 8,192). There are 10 samples on the base problem and one per accepted variant.
+  \item \textbf{Scoring.} A chain is scored by the last boxed answer it contains. Without one, including when it was cut at the cap, it counts as wrong.
+  \end{itemize}
+\end{itemize}
+
+{\footnotesize
+\begin{quote}\ttfamily
+You create variants of mathematics competition problems for a robustness benchmark. Perturbation type: <family>. <family instruction> The variant must be a complete, self-contained problem with exactly the same final answer as the original. Do not solve the problem. Do not add hints or solutions. Here are 5 examples of this perturbation type: Example 1 Original: <public original> Variant: <public variant> (four more examples) Now write 10 different variants of the following problem. Make them genuinely different from each other. Output each variant between <variant> and </variant> tags, and nothing else. Original: <problem>
+\end{quote}
+\begin{quote}\ttfamily
+Solve the following problem. Reason step by step, then give only the final answer inside \textbackslash{}boxed\{\}.
+\end{quote}
+}
+The five family instructions, verbatim:
+\begin{itemize}
+\item rephrase: ``Rewrite the problem in different words while preserving exactly its mathematical content and its final answer.''
+\item rename: ``Rename the variables, people, objects or entities in the problem while preserving its mathematical structure and its final answer.''
+\item domain: ``Transfer the problem to a different real-world surface domain (a different story, setting and objects) while preserving exactly the same mathematical structure and the same final answer.''
+\item distract: ``Insert irrelevant but plausible additional information (extra facts, numbers or context) that does not change the problem or its final answer.''
+\item typos: ``Introduce harmless typographical or formatting noise (misspellings, spacing, punctuation, capitalisation) without changing the meaning of the problem or its final answer.''
+\end{itemize}
+
+\paragraph{The main-phase rule, retrospectively (E13b).} PREREG\_E13b was written on 21 September, before any calculation under the main-phase rule but after the E13 answers had been measured, so the calculation is retrospective.
+\begin{itemize}
+\item \textbf{The rule.} On the saved answers, a problem is robust if the largest drop in accuracy across families is at most 0.10 and non-robust if it is at least 0.25; problems in between get no label.
+\item \textbf{No base filter.} As pre-registered, the primary calculation has no filter on the base problem, so a problem the model never solves counts as robust when no family lowers its accuracy.
+\item \textbf{Test-retest, primary.} Kappa between A and B is 0.34 [0.13, 0.53] on 86 problems (Qwen3.5-4B), 0.49 [0.17, 0.76] on 132 (Skywork), 0.41 [0.09, 0.69] on 133 (Olmo) and 0.56 [0.36, 0.73] on 100 (DeepSeek). Because 58 to 95\% of the problems are labeled robust, kappa stays low even where raw agreement is high.
+\item \textbf{Test-retest, secondary (S1).} On problems with at least 5 of 10 correct base samples in both draws, kappa is 0.31, 0.52, 0.40 and 0.55.
+\item \textbf{Against the organizers.} Against DeepSeek labels that we computed with the same rule from the accuracy drops published in the preliminary data: 0.02 [$-$0.09, 0.13] on 133 problems.
+\item \textbf{Against \texttt{train-main-v2}.} On its five labeled rows that fall on our problems and models, our labels agree with the official ones on 2 (draw A, one undefined) and 3 (draw B); five rows are too few to read.
+\item \textbf{Truncated chains} are scored as in the protocol here too.
+\end{itemize}
+
+\paragraph{Subsampling (E13).} Subsampling DeepSeek's variants from 2 to 40 per problem leaves the mean kappa between A and B between 0.36 and 0.47, with no upward trend: more variants per problem do not make our labels more repeatable.
+
+\paragraph{The official score channel (E16, exploratory).} We extracted the official regressor score on DeepSeek three times for the 174 public problems with the same code and image; this measurement was not pre-registered. The first run set the cuBLAS workspace variable and gave the same scores as the second, run without it, on all 174 problems. The second and third correlate at Spearman 0.24 over the 164 labeled problems. They give AUROC 0.487 and 0.602 in the regressor's own orientation; the paired bootstrap 95\% interval of their difference, $-$0.015 to 0.246, includes zero. The ranking of the problems was not reproduced in one of two repetitions; this does not show that the signal itself changes. As 137 of the 164 problems are in the regressor's training set, this concerns the stability of its inputs, not new problems.
+
+\paragraph{E15-R: the probe recalculated after review.} The procedure was fixed in \texttt{vm/e15r\_ricalcolo.py} before it ran, in a run started on 23 November 2026. It uses the same hidden states, labels and nested cross-validation as H36: layers 1 to 36, $C$ in \{0.001, 0.01, 0.1, 1\}, 5 outer and 4 inner folds.
+\begin{itemize}
+\item \textbf{Combination with length.}
+  \begin{itemize}
+  \item There are 20 fold assignments on the 164 labels and 10 on the 138 published ones.
+  \item The probe's scores for the outer training problems come from a nested cross-validation inside them. Its score for each outer test problem comes from a probe selected and fitted on the outer training problems.
+  \item A second-stage logistic regression on log character count, on the probe score, or on both, is fitted on the outer training problems and scored on the outer test problems.
+  \item The 95\% interval of the gain of ``both'' over length is a paired bootstrap over problems (2,000 resamples) for each assignment; we report the median of its bounds.
+  \end{itemize}
+\item \textbf{Retraining.} The nested probe is retrained on the 138 published labels alone.
+\item \textbf{Permutation null.} The null of H36 is extended from 60 to 1,000 permutations of the whole nested procedure, with the seeds of the first 60 unchanged.
+\end{itemize}
+We fixed the decision rule before the run: if the interval of the gain includes zero, the probe adds nothing measurable to length.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\textbf{Labels} & \textbf{Length} & \textbf{Probe} & \textbf{Both} & \textbf{Gain of both over length} \\
+\midrule
+164 (20 assignments) & 0.696 & 0.692 & 0.701 & +0.005 [$-$0.03, 0.04] \\
+138 published (10 assignments) & 0.729 & 0.644 & 0.720 & $-$0.010 [$-$0.04, 0.02] \\
+\bottomrule
+\end{tabular}
+\end{center}
+Values are means over the assignments. Length and probe here are the second-stage models, cross-validated and pooled over folds, so they differ slightly from the raw values of Section~\ref{sec:campaign} (0.704 and 0.733 for character count). On the 164 labels the gain ranges from $-$0.024 to +0.023 over the 20 assignments, and its interval excludes zero in 1 of them; the probe's second-stage model alone ranges from 0.57 to 0.76. The inner cross-validation chose hidden-state index 4 in 66 of the 100 outer folds. On the 138 published labels the gain ranges from $-$0.026 to +0.012 over the 10 assignments. With H36's procedure and random seed, the probe retrained on the 138 published labels alone gives AUROC 0.620 (0.59 to 0.71 over the 10 fold assignments of the table), against 0.733 for character count.
+
+The null with 1{,}000 permutations has mean 0.4975 and 95th percentile 0.6032; 1 permutation reaches the observed 0.710 ($p = 0.002$). Its first 60 permutations reproduce the null of 23 September (mean 0.4890, 95th percentile 0.5700) to the last digit. The run stopped after 925 permutations, when the computer restarted; \texttt{vm/e15r\_riprendi.py} computed the other 75 with the same permutations and seeds.

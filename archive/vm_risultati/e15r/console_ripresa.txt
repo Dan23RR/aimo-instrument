@@ -1,0 +1,6 @@
+2026-11-24 10:19:33 RIPRESA della Parte 2 con e15r_riprendi.py: 925 permutazioni gia' scritte, lavori 5
+2026-11-24 10:20:44 Parte 2: statistica H36 AUROC OOF 0.7097 (atteso 0,7097) | scelte [(4, 0.001, 0.798), (4, 0.001, 0.743), (20, 0.001, 0.699), (20, 0.001, 0.761), (7, 0.001, 0.694)]
+2026-11-24 10:39:48 Parte 2: 950 permutazioni | media 0.4974 p95 0.6033 | >= statistica 1 | p 0.0021 | prime 60: media 0.4890 p95 0.5700 | 1215 s
+2026-11-24 11:02:33 Parte 2: 975 permutazioni | media 0.4971 p95 0.6020 | >= statistica 1 | p 0.0020 | prime 60: media 0.4890 p95 0.5700 | 2580 s
+2026-11-24 11:22:36 Parte 2: 1000 permutazioni | media 0.4975 p95 0.6032 | >= statistica 1 | p 0.0020 | prime 60: media 0.4890 p95 0.5700 | 3782 s
+2026-11-24 11:22:36 fine

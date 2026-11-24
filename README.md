@@ -1,60 +1,140 @@
 # aimo-instrument
 
-Code, data and dated records behind the technical report *The Instrument Behind the Leaderboard: Re-Execution Noise and Label Reliability in the AIMO Interpretability Challenge* by Daniel Culotta (independent researcher; Codabench user `dan23rr`), written for the AIMO Interpretability Challenge (https://aimo-interp.github.io). The report is `report_5p/latex/main.pdf`.
+This repository holds the code, data and dated records behind the report *The Instrument Behind the Leaderboard:
+Re-Execution Noise and Label Regeneration in the AIMO Interpretability Challenge*. The author is Daniel Culotta,
+independent researcher. The report was written for the AIMO Interpretability Challenge at NeurIPS 2026
+(https://aimo-interp.github.io), and this is its revision of November 2026.
 
-The repository keeps the layout of the author's working folder, so the file paths cited in the report (for example `vm/controlli_verifica3.py` or `vm_risultati/e13_analisi_2026-09-14.txt`) are valid here. Most records and code comments are in Italian, the author's working language; the report is in English.
+## What is here
 
-## Our entry, and how to reproduce its score
+| Folder or file | What it holds |
+|---|---|
+| `paper/` | The report, `main.pdf`, and its LaTeX sources. |
+| `reproduce/` | English scripts that recompute the main numbers of the report from saved outputs, on a laptop. |
+| `archive/` | The author's working folder: every script, log and output, and our submission bundles, with the dated pre-registrations and outcome files gathered in `archive/records/`. The file paths cited in the report are relative to it, except `reproduce/` and the files at the top. |
+| `CORRECTIONS.md` | The 54 corrections made to our own statements before submission. |
+| `MANIFEST.tsv` | Every file, with its size and SHA-256. |
+| `REDACTIONS.md` | What was redacted before release, with the SHA-256 of each original. |
 
-Our entry on the current validation tasks is V8, with an all-robust constant as control.
+## Revision of November 2026
 
-| Bundle | What it does | SHA-256 |
+The report was conditionally accepted on 21 November 2026. Compared with the submitted version, the revision:
+
+- separates the preliminary public datasets from the official training and validation data, says that our
+  regenerated labels come from our own protocol, and says that most results are on DeepSeek-R1-0528-Qwen3-8B;
+- reports the share of chains that reach our 16,384-token cap, agreement under three treatments of truncated
+  chains, and agreement with the 138 published DeepSeek labels separately from the 160 that include our derived ones;
+- replaces a combination of probe and length that leaked labels across folds with a recalculation on common outer
+  folds (E15-R), and extends the probe's permutation null to 1,000 permutations;
+- presents the two candidate remedies for re-execution noise with their limits, and flags the organizers' probe
+  artifact (H35) as probably in-sample;
+- has a shorter appendix with a run manifest, and moves the 54 corrections of September to `CORRECTIONS.md`.
+
+## Recompute the main numbers
+
+From the repository root, with Python 3.11, NumPy, pandas, PyArrow and SciPy:
+
+```
+python archive/dati.py                  # once: the six preliminary datasets (about 2 MB)
+python archive/aggrega.py               # once: the aggregated table used by V8
+python reproduce/labels_table.py        # Table 2
+python reproduce/reexecution_table.py   # Table 1 and Figure 1
+python reproduce/probe_vs_length.py     # Section 5
+python reproduce/v8_threshold.py        # Section 6
+python reproduce/compute_hours.py       # Appendix C
+python reproduce/fewshot_pool.py        # Appendix C
+```
+
+`reproduce/README.md` says what each script recomputes, which inputs it reads, and which runs need GPUs.
+
+## Reproduce our leaderboard score
+
+Our entry is V8, with an all-robust constant as control. Neither bundle loads a model or reads data at run time.
+
+| Bundle in `archive/sonde/` | What it does | SHA-256 |
 |---|---|---|
-| `sonde/solution-v8-main.zip` | `are_robust(model_id, problems)` returns `[len(p) >= 98 for p in problems]` | `7b70f15c51752dcf4285e477d58c541d0ecf052d833c325c0702dbbd054ffb5f` |
-| `sonde/solution-v8-small.zip` | the same, with the empty marker file `small.txt` | `0b83b55f94dc16b9852a7c2b35d71ac5787e43d81afd6396dee00fb5e011e500` |
-| `sonde/solution-costante-main.zip` | returns True for every problem | `35c47bbef717a5d4c5b6c7786bddbab9d87a02483e4f417cd34fd4ecf669c67d` |
-| `sonde/solution-costante-small.zip` | the same, with `small.txt` | `f798c2979b136a84c22e6d994bf0228bbfeffa044ac68f7868e13859b4c6075a` |
+| `solution-v8-main.zip` | returns `[len(p) >= 98 for p in problems]` | `7b70f15c51752dcf4285e477d58c541d0ecf052d833c325c0702dbbd054ffb5f` |
+| `solution-v8-small.zip` | the same, with the empty marker file `small.txt` | `0b83b55f94dc16b9852a7c2b35d71ac5787e43d81afd6396dee00fb5e011e500` |
+| `solution-costante-main.zip` | returns True for every problem | `35c47bbef717a5d4c5b6c7786bddbab9d87a02483e4f417cd34fd4ecf669c67d` |
+| `solution-costante-small.zip` | the same, with `small.txt` | `f798c2979b136a84c22e6d994bf0228bbfeffa044ac68f7868e13859b4c6075a` |
 
-Upload each bundle to Codabench (competition 16180) with only its own task selected: the Main bundles on the Main task, the Small bundles on the Small task. No bundle loads a model or reads data at run time. On 28 October 2026 V8 and the constant both scored 10/21 on the Main task and 7/14 on the Small task (submissions 1016713, 1016730, 1016732 and 1016735); `dati/invii_dan23rr_2026-10-28_sera.json` lists all our submissions. The sources are in `soluzione_v8/` and `soluzione_costante/`.
+Upload each bundle to Codabench (competition 16180) with only its own task selected: the Main bundles to task 36237,
+the Small bundles to task 36241. On 28 October 2026 V8 and the constant both scored 10/21 on the Main task and 7/14 on
+the Small task. V8's two parameters were fixed on the six preliminary datasets, and `reproduce/v8_threshold.py`
+recomputes them.
 
-V8 has no trained weights. Its two parameters were fixed on the six public `aimo-interp` datasets: the threshold, 98, is the lower median of the character counts of their 174 distinct problems, and the direction (longer problems robust) is the one with the higher balanced accuracy on their labeled pairs. To recompute them, from the repository folder, with Python 3.9 or later and its standard library only:
+## Reading the archive
 
-1. `python dati.py` downloads the six datasets (about 2 MB) into `dati/` through the public Hugging Face datasets-server API;
-2. `python aggrega.py` rebuilds `dati/tabella_aggregata.json` with the problem texts (the released copy has them removed): 335 (model, problem) pairs, 174 distinct problems;
-3. `python ricalcola_v8.py` prints the threshold, 98, and the balanced accuracy of the rule in both directions: 0.65245 with longer problems robust against 0.34755 on the 335 published pairs, and 0.63057 against 0.36943 on the 283 distinct pairs.
+- Most records and code comments are in Italian, the author's working language; the glossary at the end translates
+  the words in the file names.
+- Dated files are append-only: a correction is added at the end of its file, never made in place. The only in-place
+  changes are the redactions listed in `REDACTIONS.md`.
+- `archive/records/` holds the dated records: the pre-registrations (`PREREG_*.md`), with their predictions and kill
+  criteria; their outcomes and deviations (`*_ESITO.md`, `*_DEVIAZIONE.md`, `RISULTATI_*.md`); and the other dated
+  notes. They cite each other and the scripts by name.
+- The scripts in `archive/vm/` written up to 14 September ran on the virtual machine that the organizers lent us,
+  and their paths point there; the later ones ran on the author's computer from the working folder. Many also need
+  files of the organizers that are not released here; a script stops with the missing path.
 
-`ricalcola_v8.py` was added on 4 November 2026, after a test from a fresh clone. It repeats the computations of `vm/controlli_verifica3.py` (section 8) and `vm/dati_pubblici_controlli.py` (section 6), whose outputs of 23 September are `vm_risultati/controlli_verifica3_2026-09-23.txt` and `vm_risultati/dati_pubblici_controlli_2026-09-23.txt`. Those two scripts also read files that the release does not include (see Rerunning the analyses).
+## Not included, and why
 
-## Rerunning the analyses
+- **The organizers' datasets and files.** `archive/dati.py` downloads the six preliminary datasets; `train-main-v2` is
+  on Hugging Face; the `getting-started` and `baselines` repositories are on GitHub under `aimo-interp`.
+- **The organizers' problem texts.** Our variant files and tables keep the problem identifiers but not the texts, and
+  phi-4's translations of the problems (H22) are left out. The exception is five problems inside the v6 bundles,
+  released exactly as submitted.
+- **Correspondence, internal notes and other participants' data.** Other participants' names and passages about their
+  entries are redacted in place, as `REDACTIONS.md` lists.
+- **Earlier drafts of the report.** The submitted version is on OpenReview; the drafts are in commit 47be35d of this
+  repository.
 
-The outputs of the analyses are saved next to their scripts' records, mostly in `vm_risultati/` and `gpu/out/`, and the report cites them by path. Rerunning the scripts is a different matter. Most scripts in `vm/` read their inputs from `vm_backup/estratto/work/aimo/`, the layout of our backup of the organizers' virtual machine, of which the release keeps only a few files. The inputs that come from us are released in other folders, with the same content: our E13 labels in `vm_risultati/e13/` (byte for byte the files the scripts read from `vm_backup/estratto/work/aimo/e13/`), and the features in `gpu/out/feature_greedy.parquet` (the same values as the copy they read from `vm_backup/estratto/work/aimo/gpu/out/`). Several scripts also need files of the organizers that are not redistributed here: the public datasets (fetched by `dati.py`), `train-main-v2`, the probe artifact of `getting-started` and copies of `baselines` files. To rerun one of these scripts, place those files where it names them; a script stops with the missing path otherwise. The steps above for V8 need none of this.
+## Permissions and licenses
 
-## Map
-
-- `report_5p/`: the five-page report (Markdown source, build scripts, LaTeX sources and PDF). `report_9p/`: the nine-page draft that forms Appendix J of the report, with the records of its adversarial verifications. `versioni_writeup/WRITEUP_v2.4_2026-09-23.md`: the full report, frozen on 23 September 2026.
-- `PREREG_*.md` and `PIANO_E11_definitivo.md`: dated pre-registrations and plans, with predictions and kill criteria, and their outcome files (`*_ESITO.md`, `*_DEVIAZIONE.md`). Corrections are appended at the end of each file, never edited in place.
-- `RISULTATI_*.md`, `OSSERVATO*.md`, `NOTA_TECNICA_nondeterminismo_2026-09-04.md`, `PILOTA_COLAB_ESITO.md`: dated records of results.
-- Top-level `*.py`: analyses of the public data (E1 to E8, floors, labels).
-- `gpu/`: runs on rented GPUs, with outputs in `gpu/out/`.
-- `vm/`: runs on the virtual machine that the organizers lent us (E13 to E16), with outputs in `vm_risultati/` and the environment record in `vm_backup/AMBIENTE_VM_2026-09-17.txt`. The hidden states used by the probes of Section 3 of the report are in `vm_backup/estratto/work/aimo/e15/`.
-- `sonde/`, `soluzione/`, `soluzione_v8/`, `soluzione_costante/`: our submission bundles, exactly as submitted, and their sources, including `sonde/solution-v4-allocazione.zip`, the V4 allocation entry (submission 909843, report Appendix G), which the author submitted once as a measurement against its pre-registered rule (`PREREG_V4.md`).
-- `vm_risultati/e13/varianti_D1*.parquet`, `vm_risultati/e13/varianti_D2*.parquet` (E13, one set of files per draw) and `gpu/out/e12_s2_varianti.parquet` (E12): our perturbed variants of the public problems, with gpt-oss-120b's answers, the reference answers and the gate's decisions; the files `*_gen_parziale` and `*_sol_parziale` hold the generation and solving steps. Rows of the family `original` keep the problem identifier but not its text.
-- `dati/`: our Codabench submissions, the competition metadata, and snapshots of the public leaderboard with other participants pseudonymized.
-- `MANIFEST.tsv`: every file with its size, SHA-256, source path in the author's working folder and the transformation applied. `REDACTIONS.md`: the redactions.
-
-## What is not here, and why
-
-- Copies of the organizers' datasets: the `aimo-interp` datasets on Hugging Face, whose cards state no license (`python dati.py` fetches the six earlier ones), and `train-main-v2`. Copies of the three files of the `baselines` repository that we used (Apache-2.0, available there). Files of the `getting-started` repository other than those inside our bundles, such as the probe artifact and its inference code: fetch them from https://github.com/aimo-interp/getting-started.
-- The organizers' problem texts. In our variant files the rows of the family `original` keep the problem identifier but not its text, `dati/tabella_aggregata.json` has the field `problema` removed, and `soluzione/calibrazione_gptoss.json` gives the ten calibration items of v6 by `problem_id` in `aimo-interp/val-sample`. The exception is the three v6 bundles in `sonde/`, released exactly as submitted, whose `calibrazione_gptoss.json` holds the texts of those items (five problems). Also left out: the few-shot examples of E12 (`gpu/e12_fewshot.json`), which are the organizers' own perturbed texts, the list of the 164 base problems of E12 with their texts (`gpu/out/_base164.parquet`), and the column holding the tail of the model's output in `gpu/out/feature_greedy*.parquet`.
-- Correspondence, internal status notes and plans (one of them contains the address of the organizers' machine), drafts of the full report before v2.4, and one record about other participants' entries.
-- Other participants' names, usernames, personal data and passages about their entries: redacted in place, as listed in `REDACTIONS.md`.
-
-The measurements of Sections 3 to 5 of the report were taken on the organizers' virtual machine. On 7 September 2026 we asked the organizers whether such measurements may appear in the report, and we asked again on 2 November, together with whether we may release the `getting-started` files inside our bundles and our perturbed variants; the same day the organizers answered yes to both.
-
-## License
-
-Code: MIT License (`LICENSE`). Text and data written or produced by us: CC BY 4.0. Third-party files keep their own terms (the NeurIPS 2026 style files in `report_9p/neurips_2026/`). The `getting-started` files inside the bundles in `sonde/` (`uncertainty_profile/`, `uncertainty_artifacts/`) are the organizers', who state no license for them; we redistribute them with their permission of 2 November 2026, and our licenses do not cover them. Our perturbed variants derive from the organizers' public problems and are released with the same permission; CC BY 4.0 covers only our contribution.
+The measurements on the organizers' virtual machine appear with their permission, and the `getting-started` files
+inside our bundles and our perturbed variants are redistributed with their permission of 2 November 2026. Our code is
+under the MIT License (`LICENSE`), and the text and data we wrote or produced under CC BY 4.0. Third-party files keep
+their own terms: the NeurIPS 2026 style file in `paper/`, and the `getting-started` files inside the bundles, for which
+the organizers state no license.
 
 ## Use of AI assistants
 
-Most of the code and of the records were written by an AI assistant (Claude, by Anthropic, through Claude Code) under the author's direction; see the AI usage statement of the report.
+Most of the code and of the records were written by an AI assistant (Claude, by Anthropic, through Claude Code) under
+the author's direction; the AI usage statement of the report gives the details.
+
+## Glossary: Italian words in file names
+
+| Word | Meaning | Word | Meaning |
+|---|---|---|---|
+| `affidabilita` | reliability | `percorso ufficiale` | official path |
+| `aggrega`, `aggregata` | aggregate, aggregated | `piano` | plan |
+| `allocazione` | allocation | `pilota` | pilot |
+| `ambiente` | environment | `pubblici` | public |
+| `analisi` | analysis | `pulizia` | clean-up |
+| `artefatto` | artifact | `regola nuova` | new rule |
+| `calibrata` | calibrated | `ricalcola`, `ricalcolo`, `ricalcoli` | recompute, recalculation, recalculations |
+| `campioni` | samples | `riprendi` | resume |
+| `classifica` | leaderboard | `ripresa` | resumption |
+| `coda` | queue | `riproducibilita` | reproducibility |
+| `collaudo locale` | local test | `risultati` | results |
+| `competizione` | competition | `rumore` | noise |
+| `controllo`, `controlli` | check, checks | `scartati` | discarded |
+| `costante` | constant | `scelte` | choices |
+| `cronometro` | timer | `segnale` | signal |
+| `dati` | data | `simulazione` | simulation |
+| `definitivo` | final | `sintesi` | summary |
+| `deviazione` | deviation | `soluzione` | solution |
+| `esito` | outcome | `sonda` | probe |
+| `esperimento` | experiment | `sonde` | probes (our submission bundles) |
+| `estrai`, `estratto` | extract, extracted | `sottocampionamento` | subsampling |
+| `etichetta`, `etich` | label | `stadio` | stage |
+| `fattibilita` | feasibility | `strumentata` | instrumented |
+| `invii` | submissions | `tabella` | table |
+| `lunghezza` | length | `tetto` | ceiling |
+| `modello` | model | `traduzioni` | translations |
+| `nidificato` | nested | `valuta` | evaluate |
+| `nota tecnica` | technical note | `varianti`, `varianza` | variants, variance |
+| `nudo`, `esplicito` | bare, explicit (prompt) | `verdetto` | verdict |
+| `organizzatori` | organizers | `verifica` | verification |
+| `osservato` | observed | `verifica tutto` | verify everything |
+| `parziale` | partial | `versioni` | versions |
+| `perche scartati` | why discarded |  |  |

@@ -1,0 +1,54 @@
+\section{The hypotheses, three traps and two pitfalls of the preliminary data}\label{app:A}
+
+Section~\ref{sec:campaign} summarizes these entries. Unless stated, the ground truth is the 335 public pairs for H1 to H9 and T, the other models' preliminary labels for H12 to H15, the 17 items of the warmup evaluation set for H16 to H18, and DeepSeek's labels for the others. Validation that fits on some problems and tests on others is grouped by problem. The cross-model tests H7 and H12 to H15 hold out the model but not the problem, so part of them is in-sample; H7, H12, H14 and H15 were rejected anyway, and H13 is withdrawn. Numbers are accuracy points against each pre-registration's baseline unless they are kappa or AUROC.
+
+{\small\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.2}
+\begin{longtable}{L{1.1cm}L{3.9cm}L{5.6cm}L{2.0cm}}
+\toprule
+\textbf{ID} & \textbf{Hypothesis} & \textbf{Result} & \textbf{Verdict} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{ID} & \textbf{Hypothesis} & \textbf{Result} & \textbf{Verdict} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+H1 & The problem text predicts robustness (32 features) & 0.675 against 0.761, $-$8.7 ($-$7.4 with the duplicated pairs counted once) & rejected \\
+H2 & Robustness is a property of the problem & with the 52 duplicated pairs counted once, z~=~0.88 and $-$1.3 against the per-model majority (bar 4.0); z~=~4.04 and +3.4 only when they are counted twice & rejected \\
+H3 & One model's label predicts another's & $-$7.3 & rejected \\
+H4 & One model's base accuracy predicts another's robustness & $-$11.8 & rejected \\
+H5 & The difficulty order transfers across models & $-$25.4 & rejected \\
+H6 & The same, with the oracle number of positives & $-$13.0 & ceiling (no kill criterion) \\
+H7 & Base accuracy beats the prior on held-out models & $-$1.2 against the per-model majority that its pre-registration named (+0.0 against the global prior we used instead) & rejected \\
+T & Robust if and only if base accuracy is below 0.05 (post hoc; see the traps below) & +6.0 on the 335 public pairs, +0.0 on \texttt{val-sample} & trap (no kill criterion) \\
+H10 & The official uncertainty features reach the accuracy the proposal reports & 0.774 against a majority constant of 0.756, within 0.692 $\pm$ 0.101 [1]; a logistic regression on 13 of the 14 features of our own A100 re-implementation of the extraction (three of them constant), substituted for the official regressor & confirmed (method substituted, not declared at the time) \\
+H11b & Length, saturation and trend features add signal & $-$1.8 and $-$2.5 & rejected \\
+H12 & A cached model's uncertainty features predict other models & $-$16.5 & rejected \\
+H13 & The same, with a threshold chosen per target & +7.3, from thresholds chosen on the scored items; $-$2.8 when forced to rank & withdrawn (no kill criterion) \\
+H14, H15 & Calibration by the target's rate or by the global rate & $-$2.8 and $-$10.1 & rejected \\
+H16 & Every model measured by itself beats the constant & 10/17 against 9/17 on one execution, inside the noise of H18 & survives, within noise \\
+H17 & A gpt-oss threshold calibrated on \texttt{val-sample} beats H16 & 11/17, then 9, 11 and 11 on re-execution; 9/17 meets the kill criterion & not established \\
+H18 & Identical bundles score differently across executions & 11, 9, 11 and 11 correct & confirmed (no kill criterion) \\
+H19 & Our five mechanical perturbation families reproduce the organizers' preliminary label & accuracy 0.354 against 0.788, kappa 0.02 & rejected \\
+H20 & A threshold tuned on our label transfers & 0.212 against 0.788 & rejected \\
+H22 & Stability under translation reproduces the organizers' preliminary label & 0.507 against 0.740, kappa $-$0.10 & rejected \\
+H23 & A threshold tuned on it transfers & +0.0 & rejected \\
+H29 & Representation-distance features are repeatable (gate; written plan, not a frozen pre-registration) & ICC 0.997 to 0.999, from the dated outcome file & passes \\
+H30 & The representation shift under perturbation predicts the label (written plan) & AUROC 0.615, below the kill threshold of 0.655; character count 0.704 (0.705 in E11's own computation) & rejected \\
+H31 & The direction of that shift predicts the label (written plan) & AUROC 0.555 & rejected \\
+H32 & The organizers' families, regenerated (pilot), reproduce their label & kappa $-$0.001 on four families, $-$0.030 with all five & rejected \\
+H33 & Self-consistency over 8 samples predicts the label & AUROC 0.502 & rejected \\
+H35 & The organizers' published probe artifact orders the 164 DeepSeek labels & 0.739 under the pre-registered aggregation and 0.709 under its own; 0.62 and 0.57 once residualized on log character count; its shuffled-label controls give 0.68 at layer 31 & survives its null; probably in-sample, not separated from length \\
+H36 & Our linear probe, nested cross-validation, orders the 164 DeepSeek labels & 0.710 out of fold, above its permutation null, and 0.62 once residualized on log character count; 0.714 against 0.733 for length on the 138 published labels (Appendix~\ref{app:C}) & survives its null; no detectable gain over length \\
+E13b-1 & Under the main-phase rule our regenerated label is test-retest reliable (kappa at least 0.60 on 3 of 4 models) & 0.34 to 0.56, retrospective (Appendix~\ref{app:C}) & rejected \\
+E13b-2 & Under the main-phase rule it agrees with DeepSeek labels we computed with that rule from the preliminary data (kappa at least 0.40) & 0.02 [$-$0.09, 0.13] & rejected \\
+E13b-3 & The labeling rule drives the instability of our regenerated labels & a gain of at least 0.15 on 2 of 4 models, where 3 were required; 0 of 4 on common problems & rejected \\
+\end{longtable}
+}
+
+Not in the table are H8, H9, H21, H24 and H25 to H28. H8 is an oracle ceiling: 0.774, +1.8 points against the global constant and +0.4 against the per-model majority, with the duplicated pairs counted once. The outcome of H9 became rule T. H21 and H24 needed H19 and H20, and H22 and H23, to survive, so they were not run. H25 to H28 are entries of the E11 plan that its outcome file does not report under these identifiers. H25 is an anomaly of our own re-implementation of the extraction, found before the plan. H26 is the list field of the first pitfall below. H27 is a label-noise ceiling, which the plan itself closed with a resampling estimate instead of a test. H28 is the text-only baseline, which became character count (Appendix~\ref{app:D}). Three further E11 tests were not run (Appendix~\ref{app:D}). V4, an entry submitted once against its own pre-registered rule, is in Appendix~\ref{app:D}.
+
+\paragraph{Three traps.} Rule T gains six points on the public pairs and nothing on \texttt{val-sample}, because the trivially robust items (base accuracy 0, robust under the conjunction) are absent there. The oracle H13 chose each target's threshold among all cut points on the very items it was scored on; forced to rank the items and to predict the true number of positives, it gave $-$2.8. H2 owed its survival to one measurement published under two model names and counted twice; counted once, its z falls from 4.04 to 0.88.
+
+\paragraph{Two pitfalls of the preliminary data.} In the three aggregated datasets, the field \texttt{permutation\_type} is a list if and only if the item is robust, because the aggregation merges all perturbation types into one row for robust items and keeps one row per retained type otherwise, usually a single type. The rule ``robust if the field is a list'' reproduces all 223 labeled rows of the three datasets, and the field does not exist at inference (recommendation R7). And 20 of the 80 robust pairs among the 335 have base accuracy 0. None of them carries a published label, so they are robust only under the conjunction we used to derive their labels, while \texttt{val-sample} has no labeled pair with base accuracy below 0.05.
